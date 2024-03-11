@@ -44,7 +44,7 @@ public class ThreadPool {
 	public static void main(final String[] args) {
 
 		if (args.length != 1) {
-			System.out.println("Usage: java SimpleThreadPool1 folder");
+			System.out.println("Usage: java ThreadPool folder");
 			return;
 		}
 
