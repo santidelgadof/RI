@@ -4,6 +4,15 @@ import java.io.IOException;
 import java.nio.file.Paths;
 
 public class WebIndexer {
+
+    public static int tryParse(String text, String errorMessage) {
+        try {
+            return Integer.parseInt(text);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(errorMessage);
+        }
+    }
+
     public static void main(String[] args) {
         String usage = "Usage: java WebIndexer -index INDEX_PATH -docs DOCS_PATH [-create] [-numThreads int]" +
         "[-h] [-p] [-titleTermVectors] [-bodyTermVectors] [-analyzer Analyzer]";
@@ -15,10 +24,10 @@ public class WebIndexer {
 
         String indexPath;
         String docsPath;
-        boolean create = false;
+        boolean create;
         int numThreads = Runtime.getRuntime().availableProcessors();
-        boolean threadInfo = false;
-        boolean appInfo = false;
+        boolean threadInfo;
+        boolean appInfo;
         boolean titleTermVectors;
         boolean bodyTermVectors;
         String analyzer = "StandardAnalyzer";
@@ -35,7 +44,7 @@ public class WebIndexer {
                     create = true;
                     break;
                 case "-numThreads":
-                    numThreads = args[++i];
+                    numThreads = tryParse(args[++i], "numThreads paramenter is not a valid integer.");
                     break;
                 case "-h":
                     threadInfo = true;
@@ -51,13 +60,12 @@ public class WebIndexer {
                     break;
                 case "-analyzer":
                     analyzer = args[++i];
-                    break;
                 default:
                     throw new IllegalArgumentException("unknown parameter " + args[i]);
             }
           }
       
-          if (docsPath == null) {
+          if (docsPath == null || indexPath == null) {
             System.err.println("Usage: " + usage);
             System.exit(1);
           }

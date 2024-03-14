@@ -1,6 +1,15 @@
 package practicari;
 
 public class TopTermsInDoc {
+
+    public static int tryParse(String text, String errorMessage) {
+        try {
+            return Integer.parseInt(text);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(errorMessage);
+        }
+    }
+
     public static void main(String[] args) {
         String usage = "Usage: java TopTermsInDoc -index path -field campo -docID int -top n -outfile path";
         
@@ -18,16 +27,16 @@ public class TopTermsInDoc {
         for (int i = 0; i < args.length; i++) {
             switch (args[i]) {
                 case "-index":
-                    indexPath = args[++i];
+                    index = args[++i];
                     break;
                 case "-field":
                     field = args[++i];
                     break;
                 case "-docID":
-                    docId = args[++i];
+                    docId = tryParse(args[++i], "docID paramenter is not a valid integer.");
                     break;
                 case "-top":
-                    top = args[++i];    // TODO: PARSE INT
+                    top = tryParse(args[++i], "top paramenter is not a valid integer.");
                     break;
                 case "-outfile":
                     outfile = args[++i];
