@@ -17,7 +17,8 @@
     
         private static final String INDEX_DIR = "Index/";
         private static final String DOCS_DIR = "Doc/";
-    
+        private static final int HTTP_OK = 200;
+
         public static void main(String[] args) {
             if (args.length < 4) {
                 System.out.println("Usage: java WebIndexer -index INDEX_PATH -docs DOCS_PATH [-create] [-numThreads int] [-h] [-p] [-titleTermVectors] [-bodyTermVectors] [-analyzer Analyzer]");
@@ -108,31 +109,43 @@
             return urls;
         }
     
+    
+
         private static void processUrls(List<String> urls) {
             HttpClient httpClient = HttpClient.newHttpClient();
-    
+
             for (String url : urls) {
                 try {
                     HttpRequest request = HttpRequest.newBuilder()
                             .uri(new URI(url))
                             .build();
-    
+
                     HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
-    
+
                     int statusCode = response.statusCode();
-                    if (statusCode == 200) {
-                        String responseBody = response.body();
-                        String fileName = url.substring(url.lastIndexOf('/') + 1).replaceAll("^(http://|https://)", "");
-                        Path locFilePath = Paths.get(DOCS_DIR + fileName + ".loc");
-                        Files.writeString(locFilePath, responseBody);
-                        System.out.println("Page " + url + " downloaded and saved as " + fileName + ".loc");
+                    if (statusCode == HTTP_OK) {
+                        saveResponseToFile(response, url);
+                        System.out.println("Page " + url + " downloaded and saved.");
                     } else {
                         System.err.println("Failed to download page " + url + ". Status code: " + statusCode);
                     }
-                } catch (URISyntaxException | IOException | InterruptedException e) {
-                    System.err.println("Error processing URL " + url + ": " + e.getMessage());
+                } catch (URISyntaxException e) {
+                    System.err.println("Invalid URL syntax: " + url);
+                } catch (IOException e) {
+                    System.err.println("Error reading or writing file: " + e.getMessage());
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                    System.err.println("Thread interrupted while waiting for response: " + e.getMessage());
                 }
             }
         }
+
+        private static void saveResponseToFile(HttpResponse<String> response, String url) throws IOException {
+            String responseBody = response.body();
+            String fileName = url.substring(url.lastIndexOf('/') + 1).replaceAll("^(http://|https://)", "");
+            Path locFilePath = Paths.get(DOCS_DIR + fileName + ".loc");
+            Files.writeString(locFilePath, responseBody);
+        }
+
     }
     
