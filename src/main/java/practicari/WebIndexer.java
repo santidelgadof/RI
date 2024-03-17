@@ -111,7 +111,7 @@
     
     
 
-        private static void processUrls(List<String> urls) {
+        static void processUrls(List<String> urls) {
             HttpClient httpClient = HttpClient.newHttpClient();
 
             for (String url : urls) {
