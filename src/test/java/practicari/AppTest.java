@@ -15,7 +15,6 @@ public class AppTest {
     @Test
     void testProcessUrls() {
         // Definir la ruta del directorio de índice y el directorio de documentos
-        Path indexDir = Paths.get("Index/");
         Path docsDir = Paths.get("Doc/");
 
         // Leer las URL desde el archivo urls.txt en el directorio de recursos de prueba
