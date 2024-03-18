@@ -1,13 +1,16 @@
     package practicari;
 
     import java.io.BufferedReader;
-    import java.io.IOException;
+import java.io.File;
+import java.io.IOException;
     import java.net.URI;
     import java.net.URISyntaxException;
     import java.net.http.HttpClient;
     import java.net.http.HttpRequest;
     import java.net.http.HttpResponse;
-    import java.nio.file.Files;
+import java.nio.file.FileSystem;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
     import java.nio.file.Path;
     import java.nio.file.Paths;
     import java.util.ArrayList;
@@ -18,21 +21,22 @@
         private static final String INDEX_DIR = "Index/";
         private static final String DOCS_DIR = "Doc/";
         private static final int HTTP_OK = 200;
+        public static final String usage = "Usage: java WebIndexer -index INDEX_PATH -docs DOCS_PATH [-create] [-numThreads int] [-h] [-p] [-titleTermVectors] [-bodyTermVectors] [-analyzer Analyzer]";
 
         public static void main(String[] args) {
             if (args.length < 4) {
-                System.out.println("Usage: java WebIndexer -index INDEX_PATH -docs DOCS_PATH [-create] [-numThreads int] [-h] [-p] [-titleTermVectors] [-bodyTermVectors] [-analyzer Analyzer]");
+                System.out.println(usage);
                 return;
             }
     
             String indexPath = INDEX_DIR;
             String docsPath = DOCS_DIR;
-            boolean create = false;
+            boolean create;
             int numThreads = Runtime.getRuntime().availableProcessors();
-            boolean showThreadInfo = false;
-            boolean showAppInfo = false;
-            boolean titleTermVectors = false;
-            boolean bodyTermVectors = false;
+            boolean showThreadInfo;
+            boolean showAppInfo;
+            boolean titleTermVectors;
+            boolean bodyTermVectors;
             String analyzer = "StandardAnalyzer";
     
             for (int i = 0; i < args.length; i++) {
@@ -80,9 +84,9 @@
             }
     
             try {
-                String urlFilePath = "src/test/resources/urls/urls.txt";
+                String urlFilePath = "src/test/resources/urls/sites.url";
                 List<String> urls = readUrlsFromFile(Paths.get(urlFilePath));
-                processUrls(urls);
+                processUrls(urls, docsPath);
             } catch (IOException e) {
                 System.err.println("Error reading URLs file: " + e.getMessage());
             }
@@ -110,8 +114,7 @@
         }
     
     
-
-        static void processUrls(List<String> urls) {
+        static void processUrls(List<String> urls, String docsPath) {
             HttpClient httpClient = HttpClient.newHttpClient();
 
             for (String url : urls) {
@@ -124,7 +127,7 @@
 
                     int statusCode = response.statusCode();
                     if (statusCode == HTTP_OK) {
-                        saveResponseToFile(response, url);
+                        saveResponseToFile(response, url, docsPath);
                         System.out.println("Page " + url + " downloaded and saved.");
                     } else {
                         System.err.println("Failed to download page " + url + ". Status code: " + statusCode);
@@ -140,10 +143,15 @@
             }
         }
 
-        private static void saveResponseToFile(HttpResponse<String> response, String url) throws IOException {
+        private static void saveResponseToFile(HttpResponse<String> response, String url, String docsPath) throws IOException {
             String responseBody = response.body();
-            String fileName = url.substring(url.lastIndexOf('/') + 1).replaceAll("^(http://|https://)", "");
-            Path locFilePath = Paths.get(DOCS_DIR + fileName + ".loc");
+            //String fileName = url.substring(url.lastIndexOf('/') + 1).replaceAll("http://|https://", "");
+            String fileName;
+            if(url.charAt(url.length() - 1) == '/')
+                fileName = url.substring(url.indexOf("://") + 3, url.length() - 1);
+            else 
+                fileName = url.substring(url.indexOf("://") + 3);
+            Path locFilePath = Paths.get(docsPath + FileSystems.getDefault().getSeparator() + fileName + ".loc");
             Files.writeString(locFilePath, responseBody);
         }
 
