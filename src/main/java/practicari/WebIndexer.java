@@ -15,6 +15,9 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 public class WebIndexer {
 
@@ -29,6 +32,7 @@ public class WebIndexer {
             return;
         }
 
+        // Guardar y validar opciones
         String indexPath = INDEX_DIR;
         String docsPath = DOCS_DIR;
         boolean create;
@@ -83,12 +87,40 @@ public class WebIndexer {
             throw new IllegalArgumentException("Docs directory does not exist: " + docsPath);
         }
 
+        // Creamos el pool de threads
+        final ExecutorService executor = Executors.newFixedThreadPool(numThreads);
+
         try {
-            String urlFilePath = "src/test/resources/urls/sites.url";
+            String urlFilePath = "src/test/resources/urls/sites.url";       // TODO: cambiar por el input del usuario
             List<String> urls = readUrlsFromFile(Paths.get(urlFilePath));
-            processUrls(urls, docsPath);
+
+            for (final String url : urls) {
+                final Runnable worker = new WorkerThread(url, docsPath);
+                /*
+                * Send the thread to the ThreadPool. It will be processed eventually.
+                */
+                executor.execute(worker);
+            }
+
+            /*
+            * Close the ThreadPool; no more jobs will be accepted, but all the previously
+            * submitted jobs will be processed.
+            */
+            executor.shutdown();
+
+            /* Wait up to 1 hour to finish all the previously submitted jobs */
+            try {
+                executor.awaitTermination(1, TimeUnit.HOURS);
+            } catch (final InterruptedException e) {
+                e.printStackTrace();
+                System.exit(-2);
+            }
+
+            System.out.println("Finished all threads");
+            
         } catch (IOException e) {
             System.err.println("Error reading URLs file: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 
@@ -113,8 +145,74 @@ public class WebIndexer {
         return urls;
     }
 
+    public static class WorkerThread implements Runnable {
 
-    static void processUrls(List<String> urls, String docsPath) {
+		private final String url;
+		private final String docsPath;
+
+		public WorkerThread(final String url, final String docsPath) {
+			this.url = url;
+			this.docsPath = docsPath;
+		}
+
+		/**
+		 * This is the work that the current thread will do when processed by the pool.
+		 */
+		@Override
+		public void run() {
+			System.out.println(String.format("I am the thread '%s' and I am responsible for url '%s'",
+					Thread.currentThread().getName(), url));
+
+			// Aquí va el trabajo del thread (PROCESAMIENTO URL)
+			processUrl(url, docsPath);
+		}
+
+		static void processUrl(String url, String docsPath) {
+        	HttpClient httpClient = HttpClient.newHttpClient();
+
+			try {
+                HttpRequest request = HttpRequest.newBuilder()
+                        .uri(new URI(url))
+                        .build();
+
+                HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+
+                int statusCode = response.statusCode();
+                if (statusCode == HTTP_OK) {
+                    saveResponseToFile(response, url, docsPath);
+                    System.out.println("Page " + url + " downloaded and saved.");
+                } else {
+                    System.err.println("Failed to download page " + url + ". Status code: " + statusCode);
+                }
+            } catch (URISyntaxException e) {
+                System.err.println("Invalid URL syntax: " + url);
+                e.printStackTrace();
+            } catch (IOException e) {
+                System.err.println("Error reading or writing file: " + e.getMessage());
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                System.err.println("Thread interrupted while waiting for response: " + e.getMessage());
+                e.printStackTrace();
+            }
+		}
+
+		private static void saveResponseToFile(HttpResponse<String> response, String url, String docsPath) throws IOException {
+			String responseBody = response.body();
+			//String fileName = url.substring(url.lastIndexOf('/') + 1).replaceAll("http://|https://", "");
+			String fileName;
+			if(url.charAt(url.length() - 1) == '/')
+				fileName = url.substring(url.indexOf("://") + 3, url.length() - 1);
+			else 
+				fileName = url.substring(url.indexOf("://") + 3);
+			Path locFilePath = Paths.get(docsPath + FileSystems.getDefault().getSeparator() + fileName + ".loc");
+			Files.writeString(locFilePath, responseBody);
+    	}
+
+	}
+
+    /* static void processUrls(List<String> urls, String docsPath) {
+        // puesto en threadPool
         HttpClient httpClient = HttpClient.newHttpClient();
 
         for (String url : urls) {
@@ -134,16 +232,20 @@ public class WebIndexer {
                 }
             } catch (URISyntaxException e) {
                 System.err.println("Invalid URL syntax: " + url);
+                e.printStackTrace();
             } catch (IOException e) {
                 System.err.println("Error reading or writing file: " + e.getMessage());
+                e.printStackTrace();
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
                 System.err.println("Thread interrupted while waiting for response: " + e.getMessage());
+                e.printStackTrace();
             }
         }
-    }
+    }*/
 
-    private static void saveResponseToFile(HttpResponse<String> response, String url, String docsPath) throws IOException {
+    /* private static void saveResponseToFile(HttpResponse<String> response, String url, String docsPath) throws IOException {
+        // puesto en threadPool
         String responseBody = response.body();
         //String fileName = url.substring(url.lastIndexOf('/') + 1).replaceAll("http://|https://", "");
         String fileName;
@@ -153,6 +255,6 @@ public class WebIndexer {
             fileName = url.substring(url.indexOf("://") + 3);
         Path locFilePath = Paths.get(docsPath + FileSystems.getDefault().getSeparator() + fileName + ".loc");
         Files.writeString(locFilePath, responseBody);
-    }
+    }*/
 
 }
