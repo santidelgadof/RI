@@ -91,7 +91,7 @@ public class WebIndexer {
         final ExecutorService executor = Executors.newFixedThreadPool(numThreads);
 
         try {
-            String urlFilePath = "src/test/resources/urls/sites.url";       // TODO: cambiar por el input del usuario
+            String urlFilePath = "src/test/resources/urls/sites.url";
             List<String> urls = readUrlsFromFile(Paths.get(urlFilePath));
 
             for (final String url : urls) {
@@ -199,7 +199,6 @@ public class WebIndexer {
 
 		private static void saveResponseToFile(HttpResponse<String> response, String url, String docsPath) throws IOException {
 			String responseBody = response.body();
-			//String fileName = url.substring(url.lastIndexOf('/') + 1).replaceAll("http://|https://", "");
 			String fileName;
 			if(url.charAt(url.length() - 1) == '/')
 				fileName = url.substring(url.indexOf("://") + 3, url.length() - 1);
@@ -210,51 +209,4 @@ public class WebIndexer {
     	}
 
 	}
-
-    /* static void processUrls(List<String> urls, String docsPath) {
-        // puesto en threadPool
-        HttpClient httpClient = HttpClient.newHttpClient();
-
-        for (String url : urls) {
-            try {
-                HttpRequest request = HttpRequest.newBuilder()
-                        .uri(new URI(url))
-                        .build();
-
-                HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
-
-                int statusCode = response.statusCode();
-                if (statusCode == HTTP_OK) {
-                    saveResponseToFile(response, url, docsPath);
-                    System.out.println("Page " + url + " downloaded and saved.");
-                } else {
-                    System.err.println("Failed to download page " + url + ". Status code: " + statusCode);
-                }
-            } catch (URISyntaxException e) {
-                System.err.println("Invalid URL syntax: " + url);
-                e.printStackTrace();
-            } catch (IOException e) {
-                System.err.println("Error reading or writing file: " + e.getMessage());
-                e.printStackTrace();
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-                System.err.println("Thread interrupted while waiting for response: " + e.getMessage());
-                e.printStackTrace();
-            }
-        }
-    }*/
-
-    /* private static void saveResponseToFile(HttpResponse<String> response, String url, String docsPath) throws IOException {
-        // puesto en threadPool
-        String responseBody = response.body();
-        //String fileName = url.substring(url.lastIndexOf('/') + 1).replaceAll("http://|https://", "");
-        String fileName;
-        if(url.charAt(url.length() - 1) == '/')
-            fileName = url.substring(url.indexOf("://") + 3, url.length() - 1);
-        else 
-            fileName = url.substring(url.indexOf("://") + 3);
-        Path locFilePath = Paths.get(docsPath + FileSystems.getDefault().getSeparator() + fileName + ".loc");
-        Files.writeString(locFilePath, responseBody);
-    }*/
-
 }
