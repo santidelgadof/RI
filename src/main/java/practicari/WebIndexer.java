@@ -1,6 +1,7 @@
 package practicari;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
@@ -18,6 +19,12 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+
 
 public class WebIndexer {
 
@@ -196,17 +203,63 @@ public class WebIndexer {
                 e.printStackTrace();
             }
 		}
+        
+        /**
+         * Método para procesar el archivo .loc y crear el archivo .loc.notags.
+         * Se lee el contenido del archivo .loc, se extrae el título y el cuerpo de la página utilizando Jsoup,
+         * y se almacena el título como la primera línea y el cuerpo sin etiquetas HTML como el resto del contenido
+         * en el archivo .loc.notags.
+         *
+         * @param locFilePath        Ruta del archivo .loc que contiene el contenido de la página web.
+         * @param locNotagsFilePath Ruta del archivo .loc.notags que se creará y donde se almacenará el contenido procesado.
+         */
+        private static void createLocNotagsFile(Path locFilePath, Path locNotagsFilePath) {
+            try (BufferedReader reader = Files.newBufferedReader(locFilePath);
+                BufferedWriter writer = Files.newBufferedWriter(locNotagsFilePath)) {
+                String line;
+                boolean firstLine = true;
+                StringBuilder bodyBuilder = new StringBuilder(); // StringBuilder para construir el cuerpo de la página
+                while ((line = reader.readLine()) != null) {
+                    if (firstLine) {
+                        // Guardar la primera línea como título
+                        writer.write(line);
+                        writer.newLine();
+                        firstLine = false;
+                    } else {
+                        // Agregar las líneas al cuerpo de la página
+                        bodyBuilder.append(line);
+                    }
+                }
+                
+                // Extraer el título y el cuerpo de la página utilizando Jsoup
+                Document doc = Jsoup.parse(bodyBuilder.toString());
+                String title = doc.title();
+                String body = doc.body().text(); // Obtener el texto del cuerpo sin etiquetas HTML
+                
+                // Escribir el título y el cuerpo en el archivo .loc.notags
+                writer.write(title);
+                writer.newLine();
+                writer.write(body);
+                
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
 
-		private static void saveResponseToFile(HttpResponse<String> response, String url, String docsPath) throws IOException {
-			String responseBody = response.body();
-			String fileName;
-			if(url.charAt(url.length() - 1) == '/')
-				fileName = url.substring(url.indexOf("://") + 3, url.length() - 1);
-			else 
-				fileName = url.substring(url.indexOf("://") + 3);
-			Path locFilePath = Paths.get(docsPath + FileSystems.getDefault().getSeparator() + fileName + ".loc");
-			Files.writeString(locFilePath, responseBody);
-    	}
+        private static void saveResponseToFile(HttpResponse<String> response, String url, String docsPath) throws IOException {
+            String responseBody = response.body();
+            String fileName;
+            if(url.charAt(url.length() - 1) == '/')
+                fileName = url.substring(url.indexOf("://") + 3, url.length() - 1);
+            else 
+                fileName = url.substring(url.indexOf("://") + 3);
+            Path locFilePath = Paths.get(docsPath + FileSystems.getDefault().getSeparator() + fileName + ".loc");
+            Files.writeString(locFilePath, responseBody);
+
+            // Crear archivo .loc.notags
+            createLocNotagsFile(locFilePath, Paths.get(docsPath, fileName + ".loc.notags"));
+        }
+
 
 	}
 }
