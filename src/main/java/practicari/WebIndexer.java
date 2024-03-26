@@ -14,6 +14,7 @@ import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -28,7 +29,7 @@ import org.jsoup.nodes.Document;
 
 public class WebIndexer {
 
-    private static final String INDEX_DIR = "Index/";
+    private static final String INDEX_DIR = "Index/";   // TODO: quitar carpetas por defecto al acabar la práctica
     private static final String DOCS_DIR = "Doc/";
     private static final int HTTP_OK = 200;
     public static final String usage = "Usage: java WebIndexer -index INDEX_PATH -docs DOCS_PATH [-create] [-numThreads int] [-h] [-p] [-titleTermVectors] [-bodyTermVectors] [-analyzer Analyzer]";
@@ -175,7 +176,8 @@ public class WebIndexer {
 		}
 
 		static void processUrl(String url, String docsPath) {
-        	HttpClient httpClient = HttpClient.newHttpClient();
+            // Timeout de 5 minutos
+        	HttpClient httpClient = HttpClient.newBuilder().connectTimeout(Duration.ofMinutes(5)).build(); // TODO: handle timeout exception?
 
 			try {
                 HttpRequest request = HttpRequest.newBuilder()
@@ -214,25 +216,11 @@ public class WebIndexer {
          * @param locNotagsFilePath Ruta del archivo .loc.notags que se creará y donde se almacenará el contenido procesado.
          */
         private static void createLocNotagsFile(Path locFilePath, Path locNotagsFilePath) {
-            try (BufferedReader reader = Files.newBufferedReader(locFilePath);
-                BufferedWriter writer = Files.newBufferedWriter(locNotagsFilePath)) {
-                String line;
-                boolean firstLine = true;
-                StringBuilder bodyBuilder = new StringBuilder(); // StringBuilder para construir el cuerpo de la página
-                while ((line = reader.readLine()) != null) {
-                    if (firstLine) {
-                        // Guardar la primera línea como título
-                        writer.write(line);
-                        writer.newLine();
-                        firstLine = false;
-                    } else {
-                        // Agregar las líneas al cuerpo de la página
-                        bodyBuilder.append(line);
-                    }
-                }
-                
+            try (BufferedWriter writer = Files.newBufferedWriter(locNotagsFilePath)) {
+                String content = new String(Files.readAllBytes(locFilePath));
+
                 // Extraer el título y el cuerpo de la página utilizando Jsoup
-                Document doc = Jsoup.parse(bodyBuilder.toString());
+                Document doc = Jsoup.parse(content);
                 String title = doc.title();
                 String body = doc.body().text(); // Obtener el texto del cuerpo sin etiquetas HTML
                 
