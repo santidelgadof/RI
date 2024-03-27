@@ -50,10 +50,10 @@ public class WebIndexer {
     public static final String usage = "Usage: java WebIndexer -index INDEX_PATH -docs DOCS_PATH [-create] [-numThreads int] [-h] [-p] [-titleTermVectors] [-bodyTermVectors] [-analyzer Analyzer]";
 
     public static void main(String[] args) {
-        if (args.length < 4) {
+        /*if (args.length < 4) {
             System.out.println(usage);
             return;
-        }
+        }*/
 
         // Guardar y validar opciones
         String indexPath = INDEX_DIR;
@@ -102,7 +102,7 @@ public class WebIndexer {
 
         Path indexDir = Paths.get(indexPath);
         Path docsDir = Paths.get(docsPath);
-        IndexWriterConfig config;
+        //IndexWriterConfig config;
 
         if (!Files.exists(indexDir) || !Files.isDirectory(indexDir)) {
             throw new IllegalArgumentException("Index directory does not exist: " + indexPath);
@@ -110,13 +110,16 @@ public class WebIndexer {
         if (!Files.exists(docsDir) || !Files.isDirectory(docsDir)) {
             throw new IllegalArgumentException("Docs directory does not exist: " + docsPath);
         }
-        if (analyzer.equals("StandardAnalyzer")) {
+        if (!analyzer.equals("StandardAnalyzer") && !analyzer.equals("EnglishAnalyzer")) {
+            throw new IllegalArgumentException("Invalid analyzer: " + analyzer);
+        }
+        /*if (analyzer.equals("StandardAnalyzer")) {
             config = new IndexWriterConfig(new StandardAnalyzer());
         } else if (analyzer.equals("EnglishAnalyzer")) {
             config = new IndexWriterConfig(new EnglishAnalyzer());  // TODO: añadir el resto de analyzers
         } else {
             throw new IllegalArgumentException("Invalid analyzer: " + analyzer);
-        }
+        }*/
 
         // Creamos el pool de threads
         final ExecutorService executor = Executors.newFixedThreadPool(numThreads);
@@ -126,7 +129,7 @@ public class WebIndexer {
             List<String> urls = readUrlsFromFile(Paths.get(urlFilePath));
 
             for (final String url : urls) {
-                final Runnable worker = new WorkerThread(url, docsPath, indexPath, config);
+                final Runnable worker = new WorkerThread(url, docsPath, indexPath, analyzer);
                 /*
                 * Send the thread to the ThreadPool. It will be processed eventually.
                 */
@@ -181,13 +184,13 @@ public class WebIndexer {
 		private final String url;
 		private final String docsPath;
         private final String indexPath;
-        private final IndexWriterConfig config;
+        private final String analyzer;
 
-		public WorkerThread(final String url, final String docsPath, final String indexPath, final IndexWriterConfig config) {
+		public WorkerThread(final String url, final String docsPath, final String indexPath, final String analyzer) {
 			this.url = url;
 			this.docsPath = docsPath;
             this.indexPath = indexPath;
-            this.config = config;
+            this.analyzer = analyzer;
 		}
 
 		/**
@@ -199,10 +202,10 @@ public class WebIndexer {
 					Thread.currentThread().getName(), url));
 
 			// Aquí va el trabajo del thread (PROCESAMIENTO URL)
-			processUrl(url, docsPath, indexPath, config);
+			processUrl(url, docsPath, indexPath, analyzer);
 		}
 
-		static void processUrl(String url, String docsPath, String indexPath, IndexWriterConfig config) {
+		static void processUrl(String url, String docsPath, String indexPath, String analyzer) {
             // Timeout de 5 minutos
         	HttpClient httpClient = HttpClient.newBuilder().connectTimeout(Duration.ofMinutes(5)).build(); // TODO: handle timeout exception?
 
@@ -241,7 +244,7 @@ public class WebIndexer {
 
                         System.out.println("Page " + url + " downloaded and saved.");
 
-                        indexUrl(locFilePath, docsPath, config, title, body);
+                        indexUrl(locFilePath, docsPath, analyzer, title, body);
                         
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -262,9 +265,17 @@ public class WebIndexer {
             }
 		}
 
-        static void indexUrl(Path locPath, String indexPath, IndexWriterConfig config, String title, String body) {
-            Path locNotagsPath = Path.of(locPath.toString(), ".loc.notags");
+        static void indexUrl(Path locPath, String indexPath, String analyzer, String title, String body) {
+            Path locNotagsPath = Path.of(locPath.toString() + ".notags");
             IndexWriter writer = null;
+            IndexWriterConfig config;
+            if (analyzer.equals("StandardAnalyzer")) {
+                config = new IndexWriterConfig(new StandardAnalyzer());
+            } else if (analyzer.equals("EnglishAnalyzer")) {
+                config = new IndexWriterConfig(new EnglishAnalyzer());  // TODO: añadir el resto de analyzers
+            } else {
+                throw new IllegalArgumentException("Invalid analyzer: " + analyzer);
+            }
 
             /*
             * Creates a new index if one does not exist, otherwise it opens the index and
@@ -278,6 +289,7 @@ public class WebIndexer {
             } catch (LockObtainFailedException e) {
                 System.out.println("Exception: " + e);
                 e.printStackTrace();
+                System.exit(-1);
             } catch (IOException e) {
                 System.out.println("Exception: " + e);
                 e.printStackTrace();
