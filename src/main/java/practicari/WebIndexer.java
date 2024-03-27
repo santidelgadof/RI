@@ -2,30 +2,45 @@ package practicari;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.InetAddress;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.nio.file.FileSystem;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.attribute.FileTime;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.Date;
 
+import org.apache.lucene.analysis.standard.StandardAnalyzer;
+import org.apache.lucene.document.StringField;
+import org.apache.lucene.document.TextField;
+import org.apache.lucene.document.DateTools.Resolution;
+import org.apache.lucene.analysis.en.EnglishAnalyzer;
+import org.apache.lucene.index.CorruptIndexException;
+import org.apache.lucene.index.IndexWriter;
+import org.apache.lucene.index.IndexWriterConfig;
+import org.apache.lucene.store.FSDirectory;
+import org.apache.lucene.store.LockObtainFailedException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-
+import org.apache.lucene.document.DateTools;
+import org.apache.lucene.document.Field;
+import org.apache.lucene.document.KeywordField;
+import org.apache.lucene.document.LongField;
 
 public class WebIndexer {
 
@@ -87,12 +102,20 @@ public class WebIndexer {
 
         Path indexDir = Paths.get(indexPath);
         Path docsDir = Paths.get(docsPath);
+        IndexWriterConfig config;
 
         if (!Files.exists(indexDir) || !Files.isDirectory(indexDir)) {
             throw new IllegalArgumentException("Index directory does not exist: " + indexPath);
         }
         if (!Files.exists(docsDir) || !Files.isDirectory(docsDir)) {
             throw new IllegalArgumentException("Docs directory does not exist: " + docsPath);
+        }
+        if (analyzer.equals("StandardAnalyzer")) {
+            config = new IndexWriterConfig(new StandardAnalyzer());
+        } else if (analyzer.equals("EnglishAnalyzer")) {
+            config = new IndexWriterConfig(new EnglishAnalyzer());  // TODO: añadir el resto de analyzers
+        } else {
+            throw new IllegalArgumentException("Invalid analyzer: " + analyzer);
         }
 
         // Creamos el pool de threads
@@ -103,7 +126,7 @@ public class WebIndexer {
             List<String> urls = readUrlsFromFile(Paths.get(urlFilePath));
 
             for (final String url : urls) {
-                final Runnable worker = new WorkerThread(url, docsPath);
+                final Runnable worker = new WorkerThread(url, docsPath, indexPath, config);
                 /*
                 * Send the thread to the ThreadPool. It will be processed eventually.
                 */
@@ -157,10 +180,14 @@ public class WebIndexer {
 
 		private final String url;
 		private final String docsPath;
+        private final String indexPath;
+        private final IndexWriterConfig config;
 
-		public WorkerThread(final String url, final String docsPath) {
+		public WorkerThread(final String url, final String docsPath, final String indexPath, final IndexWriterConfig config) {
 			this.url = url;
 			this.docsPath = docsPath;
+            this.indexPath = indexPath;
+            this.config = config;
 		}
 
 		/**
@@ -172,10 +199,10 @@ public class WebIndexer {
 					Thread.currentThread().getName(), url));
 
 			// Aquí va el trabajo del thread (PROCESAMIENTO URL)
-			processUrl(url, docsPath);
+			processUrl(url, docsPath, indexPath, config);
 		}
 
-		static void processUrl(String url, String docsPath) {
+		static void processUrl(String url, String docsPath, String indexPath, IndexWriterConfig config) {
             // Timeout de 5 minutos
         	HttpClient httpClient = HttpClient.newBuilder().connectTimeout(Duration.ofMinutes(5)).build(); // TODO: handle timeout exception?
 
@@ -188,8 +215,37 @@ public class WebIndexer {
 
                 int statusCode = response.statusCode();
                 if (statusCode == HTTP_OK) {
-                    saveResponseToFile(response, url, docsPath);
-                    System.out.println("Page " + url + " downloaded and saved.");
+                    // Crear archivo .loc
+                    String responseBody = response.body();
+                    String fileName;
+                    if(url.charAt(url.length() - 1) == '/')
+                        fileName = url.substring(url.indexOf("://") + 3, url.length() - 1);
+                    else 
+                        fileName = url.substring(url.indexOf("://") + 3);
+                    Path locFilePath = Paths.get(docsPath + FileSystems.getDefault().getSeparator() + fileName + ".loc");
+                    Files.writeString(locFilePath, responseBody);
+
+                    // Crear archivo .loc.notags
+                    try (BufferedWriter writer = Files.newBufferedWriter(Paths.get(docsPath, fileName + ".loc.notags"))) {
+                        String content = new String(Files.readAllBytes(locFilePath));
+        
+                        // Extraer el título y el cuerpo de la página utilizando Jsoup
+                        Document doc = Jsoup.parse(content);
+                        String title = doc.title();
+                        String body = doc.body().text(); // Obtener el texto del cuerpo sin etiquetas HTML
+                        
+                        // Escribir el título y el cuerpo en el archivo .loc.notags
+                        writer.write(title);
+                        writer.newLine();
+                        writer.write(body);
+
+                        System.out.println("Page " + url + " downloaded and saved.");
+
+                        indexUrl(locFilePath, docsPath, config, title, body);
+                        
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 } else {
                     System.err.println("Failed to download page " + url + ". Status code: " + statusCode);
                 }
@@ -205,49 +261,80 @@ public class WebIndexer {
                 e.printStackTrace();
             }
 		}
-        
-        /**
-         * Método para procesar el archivo .loc y crear el archivo .loc.notags.
-         * Se lee el contenido del archivo .loc, se extrae el título y el cuerpo de la página utilizando Jsoup,
-         * y se almacena el título como la primera línea y el cuerpo sin etiquetas HTML como el resto del contenido
-         * en el archivo .loc.notags.
-         *
-         * @param locFilePath        Ruta del archivo .loc que contiene el contenido de la página web.
-         * @param locNotagsFilePath Ruta del archivo .loc.notags que se creará y donde se almacenará el contenido procesado.
-         */
-        private static void createLocNotagsFile(Path locFilePath, Path locNotagsFilePath) {
-            try (BufferedWriter writer = Files.newBufferedWriter(locNotagsFilePath)) {
-                String content = new String(Files.readAllBytes(locFilePath));
 
-                // Extraer el título y el cuerpo de la página utilizando Jsoup
-                Document doc = Jsoup.parse(content);
-                String title = doc.title();
-                String body = doc.body().text(); // Obtener el texto del cuerpo sin etiquetas HTML
-                
-                // Escribir el título y el cuerpo en el archivo .loc.notags
-                writer.write(title);
-                writer.newLine();
-                writer.write(body);
-                
+        static void indexUrl(Path locPath, String indexPath, IndexWriterConfig config, String title, String body) {
+            Path locNotagsPath = Path.of(locPath.toString(), ".loc.notags");
+            IndexWriter writer = null;
+
+            /*
+            * Creates a new index if one does not exist, otherwise it opens the index and
+            * documents will be appended with writer.addDocument(doc).
+            */
+            try {
+                writer = new IndexWriter(FSDirectory.open(Paths.get(indexPath)), config);
+            } catch (CorruptIndexException e) {
+                System.out.println("Exception: " + e);
+                e.printStackTrace();
+            } catch (LockObtainFailedException e) {
+                System.out.println("Exception: " + e);
+                e.printStackTrace();
             } catch (IOException e) {
+                System.out.println("Exception: " + e);
                 e.printStackTrace();
             }
+
+            // index document
+            try (InputStream stream = Files.newInputStream(locPath)) {
+                org.apache.lucene.document.Document doc = new org.apache.lucene.document.Document();
+                FileTime creationTime = (FileTime) Files.getAttribute(locPath, "creationTime");
+                FileTime lastAccessTime = (FileTime) Files.getAttribute(locPath, "lastAccessTime");
+                FileTime lastModifiedTime = (FileTime) Files.getAttribute(locPath, "lastModifiedTime");
+                String creationTimeLucene = DateTools.dateToString(Date.from(creationTime.toInstant()), Resolution.MILLISECOND);
+                String lastAccessTimeLucene = DateTools.dateToString(Date.from(lastAccessTime.toInstant()), Resolution.MILLISECOND);
+                String lastModifiedTimeLucene = DateTools.dateToString(Date.from(lastModifiedTime.toInstant()), Resolution.MILLISECOND);
+
+                doc.add(new KeywordField("path", locPath.toString(), Field.Store.YES));
+                doc.add(new TextField("contents", new BufferedReader(new InputStreamReader(stream, StandardCharsets.UTF_8))));
+                doc.add(new StringField("hostname", InetAddress.getLocalHost().getHostName(), Field.Store.YES));
+                doc.add(new StringField("thread", Thread.currentThread().getName(), Field.Store.YES));
+                doc.add(new LongField("locKb", Files.size(locPath)/1024, Field.Store.YES));
+                doc.add(new LongField("notagsKb", Files.size(locNotagsPath)/1024, Field.Store.YES));
+                doc.add(new StringField("creationTime", creationTime.toString(), Field.Store.YES));
+                doc.add(new StringField("lastAccessTime", lastAccessTime.toString(), Field.Store.YES));
+                doc.add(new StringField("lastModifiedTime", lastModifiedTime.toString(), Field.Store.YES));
+                doc.add(new StringField("creationTimeLucene", creationTimeLucene, Field.Store.YES));
+                doc.add(new StringField("lastAccessTimeLucene", lastAccessTimeLucene, Field.Store.YES));
+                doc.add(new StringField("lastModifiedTimeLucene", lastModifiedTimeLucene, Field.Store.YES));
+                
+                doc.add(new TextField("title", title, Field.Store.YES));
+                doc.add(new TextField("body", body, Field.Store.YES));
+                
+                // add to index and close
+                try {
+                    writer.addDocument(doc);
+                } catch (CorruptIndexException e) {
+                    System.out.println("Graceful message: exception " + e);
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    System.out.println("Graceful message: exception " + e);
+                    e.printStackTrace();
+                }
+
+                try {
+                    writer.commit();
+                    System.out.println("Wrote document \"" + title + "\" in the index");    // TODO: arreglar mensajes excepciones (en toda la práctica)
+                    writer.close();
+                } catch (CorruptIndexException e) {
+                    System.out.println("Graceful message: exception " + e);
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    System.out.println("Graceful message: exception " + e);
+                    e.printStackTrace();
+                }
+            } catch (IOException e) {
+                System.err.println("IOException on thread " + Thread.currentThread().getName() + ": " + e);
+            }
         }
-
-        private static void saveResponseToFile(HttpResponse<String> response, String url, String docsPath) throws IOException {
-            String responseBody = response.body();
-            String fileName;
-            if(url.charAt(url.length() - 1) == '/')
-                fileName = url.substring(url.indexOf("://") + 3, url.length() - 1);
-            else 
-                fileName = url.substring(url.indexOf("://") + 3);
-            Path locFilePath = Paths.get(docsPath + FileSystems.getDefault().getSeparator() + fileName + ".loc");
-            Files.writeString(locFilePath, responseBody);
-
-            // Crear archivo .loc.notags
-            createLocNotagsFile(locFilePath, Paths.get(docsPath, fileName + ".loc.notags"));
-        }
-
 
 	}
 }
