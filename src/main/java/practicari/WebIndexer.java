@@ -281,22 +281,11 @@ public class WebIndexer {
             * Creates a new index if one does not exist, otherwise it opens the index and
             * documents will be appended with writer.addDocument(doc).
             */
-            try {
-                writer = new IndexWriter(FSDirectory.open(Paths.get(indexPath)), config);
-            } catch (CorruptIndexException e) {
-                System.out.println("Exception: " + e);
-                e.printStackTrace();
-            } catch (LockObtainFailedException e) {
-                System.out.println("Exception: " + e);
-                e.printStackTrace();
-                System.exit(-1);
-            } catch (IOException e) {
-                System.out.println("Exception: " + e);
-                e.printStackTrace();
-            }
 
             // index document
             try (InputStream stream = Files.newInputStream(locPath)) {
+                writer = new IndexWriter(FSDirectory.open(Paths.get(indexPath)), config);
+
                 org.apache.lucene.document.Document doc = new org.apache.lucene.document.Document();
                 FileTime creationTime = (FileTime) Files.getAttribute(locPath, "creationTime");
                 FileTime lastAccessTime = (FileTime) Files.getAttribute(locPath, "lastAccessTime");
@@ -322,17 +311,9 @@ public class WebIndexer {
                 doc.add(new TextField("body", body, Field.Store.YES));
                 
                 // add to index and close
-                try {
-                    writer.addDocument(doc);
-                } catch (CorruptIndexException e) {
-                    System.out.println("Graceful message: exception " + e);
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    System.out.println("Graceful message: exception " + e);
-                    e.printStackTrace();
-                }
 
                 try {
+                    writer.addDocument(doc);
                     writer.commit();
                     System.out.println("Wrote document \"" + title + "\" in the index");    // TODO: arreglar mensajes excepciones (en toda la práctica)
                     writer.close();
