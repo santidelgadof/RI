@@ -268,14 +268,6 @@ public class WebIndexer {
         static void indexUrl(Path locPath, String indexPath, String analyzer, String title, String body) {
             Path locNotagsPath = Path.of(locPath.toString() + ".notags");
             IndexWriter writer = null;
-            IndexWriterConfig config;
-            if (analyzer.equals("StandardAnalyzer")) {
-                config = new IndexWriterConfig(new StandardAnalyzer());
-            } else if (analyzer.equals("EnglishAnalyzer")) {
-                config = new IndexWriterConfig(new EnglishAnalyzer());  // TODO: añadir el resto de analyzers
-            } else {
-                throw new IllegalArgumentException("Invalid analyzer: " + analyzer);
-            }
 
             /*
             * Creates a new index if one does not exist, otherwise it opens the index and
@@ -284,9 +276,10 @@ public class WebIndexer {
 
             // index document
             try (InputStream stream = Files.newInputStream(locPath)) {
-                writer = new IndexWriter(FSDirectory.open(Paths.get(indexPath)), config);
-
                 org.apache.lucene.document.Document doc = new org.apache.lucene.document.Document();
+
+                writer = getWriter(indexPath, analyzer);
+
                 FileTime creationTime = (FileTime) Files.getAttribute(locPath, "creationTime");
                 FileTime lastAccessTime = (FileTime) Files.getAttribute(locPath, "lastAccessTime");
                 FileTime lastModifiedTime = (FileTime) Files.getAttribute(locPath, "lastModifiedTime");
@@ -317,15 +310,33 @@ public class WebIndexer {
                     writer.commit();
                     System.out.println("Wrote document \"" + title + "\" in the index");    // TODO: arreglar mensajes excepciones (en toda la práctica)
                     writer.close();
-                } catch (CorruptIndexException e) {
-                    System.out.println("Graceful message: exception " + e);
-                    e.printStackTrace();
                 } catch (IOException e) {
                     System.out.println("Graceful message: exception " + e);
                     e.printStackTrace();
                 }
             } catch (IOException e) {
                 System.err.println("IOException on thread " + Thread.currentThread().getName() + ": " + e);
+            }
+        }
+        static IndexWriter getWriter (String indexPath, String analyzer) {
+
+            try {
+                IndexWriterConfig config;
+                if (analyzer.equals("StandardAnalyzer")) {
+                    config = new IndexWriterConfig(new StandardAnalyzer());
+                } else if (analyzer.equals("EnglishAnalyzer")) {
+                    config = new IndexWriterConfig(new EnglishAnalyzer());  // TODO: añadir el resto de analyzers
+                } else {
+                    throw new IllegalArgumentException("Invalid analyzer: " + analyzer);
+                }
+                return new IndexWriter(FSDirectory.open(Paths.get(indexPath)), config);
+            } catch(IOException e) {
+                try {
+                    Thread.sleep(100 * Thread.currentThread().getId());
+                } catch (InterruptedException ex) {
+                    throw new RuntimeException(ex);
+                }
+                return getWriter(indexPath, analyzer);
             }
         }
 
