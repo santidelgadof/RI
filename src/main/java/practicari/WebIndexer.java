@@ -244,7 +244,7 @@ public class WebIndexer {
 
                         System.out.println("Page " + url + " downloaded and saved.");
 
-                        indexUrl(locFilePath, docsPath, analyzer, title, body);
+                        indexUrl(locFilePath, indexPath, analyzer, title, body);
                         
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -304,7 +304,6 @@ public class WebIndexer {
                 doc.add(new TextField("body", body, Field.Store.YES));
                 
                 // add to index and close
-
                 try {
                     writer.addDocument(doc);
                     writer.commit();
@@ -331,8 +330,9 @@ public class WebIndexer {
                 }
                 return new IndexWriter(FSDirectory.open(Paths.get(indexPath)), config);
             } catch(IOException e) {
+                // si el writer ya está siendo usado por otro hilo, esperamos y volvemos a intentarlo
                 try {
-                    Thread.sleep(100 * Thread.currentThread().getId());
+                    Thread.sleep(Thread.currentThread().getId());
                 } catch (InterruptedException ex) {
                     throw new RuntimeException(ex);
                 }
