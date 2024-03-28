@@ -29,23 +29,23 @@
   <link crossorigin="anonymous" media="all" rel="stylesheet" href="https://github.githubassets.com/assets/light-0eace2597ca3.css" /><link crossorigin="anonymous" media="all" rel="stylesheet" href="https://github.githubassets.com/assets/dark-a167e256da9c.css" /><link data-color-theme="light" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/light-0eace2597ca3.css" /><link data-color-theme="dark" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/dark-a167e256da9c.css" /><link data-color-theme="dark_dimmed" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/dark_dimmed-d11f2cf8009b.css" /><link data-color-theme="dark_high_contrast" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/dark_high_contrast-ea7373db06c8.css" /><link data-color-theme="dark_colorblind" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/dark_colorblind-afa99dcf40f7.css" /><link data-color-theme="light_colorblind" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/light_colorblind-af6c685139ba.css" /><link data-color-theme="light_high_contrast" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/light_high_contrast-578cdbc8a5a9.css" /><link data-color-theme="light_tritanopia" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/light_tritanopia-5cb699a7e247.css" /><link data-color-theme="dark_tritanopia" crossorigin="anonymous" media="all" rel="stylesheet" data-href="https://github.githubassets.com/assets/dark_tritanopia-9b32204967c6.css" />
     <link crossorigin="anonymous" media="all" rel="stylesheet" href="https://github.githubassets.com/assets/primer-primitives-366b5c973fad.css" />
     <link crossorigin="anonymous" media="all" rel="stylesheet" href="https://github.githubassets.com/assets/primer-f3607eccaaae.css" />
-    <link crossorigin="anonymous" media="all" rel="stylesheet" href="https://github.githubassets.com/assets/global-c2f8efb9bce8.css" />
+    <link crossorigin="anonymous" media="all" rel="stylesheet" href="https://github.githubassets.com/assets/global-bac48eb8df38.css" />
     <link crossorigin="anonymous" media="all" rel="stylesheet" href="https://github.githubassets.com/assets/github-19c85be4af9c.css" />
   <link crossorigin="anonymous" media="all" rel="stylesheet" href="https://github.githubassets.com/assets/dashboard-eff640980650.css" />
 <link crossorigin="anonymous" media="all" rel="stylesheet" href="https://github.githubassets.com/assets/discussions-4a9715cdd9f3.css" />
-<link crossorigin="anonymous" media="all" rel="stylesheet" href="https://github.githubassets.com/assets/site-5c3e54ae0543.css" />
-<link crossorigin="anonymous" media="all" rel="stylesheet" href="https://github.githubassets.com/assets/home-bd387065bbce.css" />
+<link crossorigin="anonymous" media="all" rel="stylesheet" href="https://github.githubassets.com/assets/site-fe2057b57083.css" />
+<link crossorigin="anonymous" media="all" rel="stylesheet" href="https://github.githubassets.com/assets/home-993d2c38b2c1.css" />
 
   
 
 
   <script type="application/json" id="client-env">{"locale":"en","featureFlags":["code_vulnerability_scanning","copilot_conversational_ux_history_refs","copilot_smell_icebreaker_ux","copilot_implicit_context","failbot_handle_non_errors","geojson_azure_maps","image_metric_tracking","marketing_forms_api_integration_contact_request","marketing_pages_search_explore_provider","turbo_experiment_risky","sample_network_conn_type","no_character_key_shortcuts_in_inputs","react_start_transition_for_navigations","custom_inp","remove_child_patch","site_features_copilot_cli_ga","copilot_code_chat_diff_header_button"]}</script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/wp-runtime-5afb085e74be.js"></script>
+<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/wp-runtime-ca8ae01e33b4.js"></script>
 <script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/vendors-node_modules_dompurify_dist_purify_js-6890e890956f.js"></script>
 <script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/vendors-node_modules_stacktrace-parser_dist_stack-trace-parser_esm_js-node_modules_github_bro-a4c183-79f9611c275b.js"></script>
 <script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/vendors-node_modules_oddbird_popover-polyfill_dist_popover_js-7bd350d761f4.js"></script>
 <script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/ui_packages_failbot_failbot_ts-5bd9ba639cc0.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/environment-27057bd9ed0b.js"></script>
+<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/environment-ad941a96f009.js"></script>
 <script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/vendors-node_modules_github_selector-observer_dist_index_esm_js-9f960d9b217c.js"></script>
 <script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/vendors-node_modules_primer_behaviors_dist_esm_focus-zone_js-086f7a27bac0.js"></script>
 <script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/vendors-node_modules_github_relative-time-element_dist_index_js-c76945c5961a.js"></script>
@@ -54,7 +54,7 @@
 <script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/vendors-node_modules_github_text-expander-element_dist_index_js-8a621df59e80.js"></script>
 <script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/vendors-node_modules_github_filter-input-element_dist_index_js-node_modules_github_remote-inp-b7d8f4-654130b7cde5.js"></script>
 <script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/vendors-node_modules_github_file-attachment-element_dist_index_js-node_modules_primer_view-co-3959a9-68b3d6c8feb2.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/github-elements-369bd99876f6.js"></script>
+<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/github-elements-31df4ccdeed4.js"></script>
 <script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/element-registry-fb4b8d40f206.js"></script>
 <script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/vendors-node_modules_github_mini-throttle_dist_index_js-node_modules_github_alive-client_dist-bf5aa2-5a0e291a0298.js"></script>
 <script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/vendors-node_modules_lit-html_lit-html_js-5b376145beff.js"></script>
@@ -63,18 +63,18 @@
 <script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/vendors-node_modules_github_remote-form_dist_index_js-node_modules_scroll-anchoring_dist_scro-52dc4b-4fecca2d00e4.js"></script>
 <script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/vendors-node_modules_color-convert_index_js-72c9fbde5ad4.js"></script>
 <script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/vendors-node_modules_primer_behaviors_dist_esm_dimensions_js-node_modules_github_jtml_lib_index_js-95b84ee6bc34.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/vendors-node_modules_github_paste-markdown_dist_index_esm_js-node_modules_github_quote-select-cbac5f-c7885f4526c5.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/app_assets_modules_github_updatable-content_ts-ee3fc84d7fb0.js"></script>
+<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/vendors-node_modules_github_quote-selection_dist_index_js-node_modules_github_session-resume_-ff65ee-c202d20e2d3d.js"></script>
+<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/app_assets_modules_github_updatable-content_ts-5d7607113ea3.js"></script>
 <script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/app_assets_modules_github_behaviors_task-list_ts-app_assets_modules_github_onfocus_ts-app_ass-421cec-9de4213015af.js"></script>
 <script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/app_assets_modules_github_sticky-scroll-into-view_ts-94209c43e6af.js"></script>
 <script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/app_assets_modules_github_behaviors_ajax-error_ts-app_assets_modules_github_behaviors_include-467754-244ee9d9ed77.js"></script>
 <script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/app_assets_modules_github_behaviors_commenting_edit_ts-app_assets_modules_github_behaviors_ht-83c235-9285faa0e011.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/behaviors-4e25e265ef84.js"></script>
+<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/behaviors-b2cd2ed93da5.js"></script>
 <script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/vendors-node_modules_delegated-events_dist_index_js-node_modules_github_catalyst_lib_index_js-d0256ebff5cd.js"></script>
 <script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/notifications-global-352d84c6cc82.js"></script>
 <script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/vendors-node_modules_delegated-events_dist_index_js-node_modules_github_catalyst_lib_index_js-b4a243-ee680693e2b9.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/marketing-0f9641faa97a.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/home-b79d63e9f100.js"></script>
+<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/marketing-d07c89bdfeb9.js"></script>
+<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/home-5523b374aaa9.js"></script>
 <script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/vendors-node_modules_github_webgl-globe_dist_js_main_js-cf5f119d1214.js"></script>
 <script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/webgl-globe-d3e3295f0ac2.js"></script>
   
@@ -91,7 +91,7 @@
   <meta name="current-catalog-service-hash" content="40dc28bd654b20f337468a532ff456ed5863889cfbb4e982b793597321d48d3f">
 
 
-  <meta name="request-id" content="240F:264E01:8415C5F:85728D1:6601A639" data-pjax-transient="true"/><meta name="html-safe-nonce" content="a96509e2f530c05479bcf7e4f3b515c8a26d6f010cd182b5a600e203164e4396" data-pjax-transient="true"/><meta name="visitor-payload" content="eyJyZWZlcnJlciI6IiIsInJlcXVlc3RfaWQiOiIyNDBGOjI2NEUwMTo4NDE1QzVGOjg1NzI4RDE6NjYwMUE2MzkiLCJ2aXNpdG9yX2lkIjoiNTkxMDcyNjYyODU5NzY3MTQ4MSIsInJlZ2lvbl9lZGdlIjoiZnJhIiwicmVnaW9uX3JlbmRlciI6ImZyYSJ9" data-pjax-transient="true"/><meta name="visitor-hmac" content="2f68535ca91223e37c79a3ad3f40d79b568ee4273796fa228bb420d02e3308d9" data-pjax-transient="true"/>
+  <meta name="request-id" content="F4F0:369FA7:103B7DE:105F613:6605B1CA" data-pjax-transient="true"/><meta name="html-safe-nonce" content="f97d0d13eb048843716725b92d2ca7b99499117523325de5dc4e4fb7e6dfc8f3" data-pjax-transient="true"/><meta name="visitor-payload" content="eyJyZWZlcnJlciI6IiIsInJlcXVlc3RfaWQiOiJGNEYwOjM2OUZBNzoxMDNCN0RFOjEwNUY2MTM6NjYwNUIxQ0EiLCJ2aXNpdG9yX2lkIjoiOTEwMzY2MzYwNzc0MDQ3Nzg5OCIsInJlZ2lvbl9lZGdlIjoiZnJhIiwicmVnaW9uX3JlbmRlciI6ImZyYSJ9" data-pjax-transient="true"/><meta name="visitor-hmac" content="c3e3cb2d6ffc9fa82b2b0f03eb0b7b303841a4f92947ef882f9e02f4026eb2cb" data-pjax-transient="true"/>
 
 
 
@@ -143,10 +143,10 @@
         <meta name="expected-hostname" content="github.com">
 
 
-  <meta http-equiv="x-pjax-version" content="d1534b299eddb0c1d23ae4964ff16ba670ba47bfa1e3103b87f01921f77cef73" data-turbo-track="reload">
-  <meta http-equiv="x-pjax-csp-version" content="6b606b69d609bde981b31b4b202bffac943c25f9230dd7f78c45cb5beb91012e" data-turbo-track="reload">
-  <meta http-equiv="x-pjax-css-version" content="4ed2df85e436c9302f86ff3fcd9d18714ca3fbadabc250472f3d50e7da238083" data-turbo-track="reload">
-  <meta http-equiv="x-pjax-js-version" content="e452718705e355bdfbf30c6bd921785e6e85280c72ced916ec750ad387cd9d0a" data-turbo-track="reload">
+  <meta http-equiv="x-pjax-version" content="bf4f0da40564d7360193c53230635d7ada98763ffa7e0f81316a2b877eeca446" data-turbo-track="reload">
+  <meta http-equiv="x-pjax-csp-version" content="05e1ef017f6f4cb64485b94121e0c1dd20980283cbfb2d9c8a7ff4850da82b7c" data-turbo-track="reload">
+  <meta http-equiv="x-pjax-css-version" content="401c342494272ee398dfb0fe4138a70b543d2bb230a3a34442ce5e819c1ec7ce" data-turbo-track="reload">
+  <meta http-equiv="x-pjax-js-version" content="a2a6f0b866a9de2e69b1f990e0730e22d502d619ef6d55aae603cacc6e2f5285" data-turbo-track="reload">
 
   <meta name="turbo-cache-control" content="no-preview" data-turbo-transient="">
 
@@ -156,7 +156,7 @@
 
   <link rel="me" href="https://hachyderm.io/@github">
 
-  <link crossorigin="anonymous" media="all" rel="stylesheet" href="https://github.githubassets.com/assets/home-bd387065bbce.css" />
+  <link crossorigin="anonymous" media="all" rel="stylesheet" href="https://github.githubassets.com/assets/home-993d2c38b2c1.css" />
   <link rel="preload" href="https://github.githubassets.com/assets/mona-sans-d1bf285e9b9b.woff2" as="font" type="font/woff2" crossorigin>
   <meta name="is_logged_out_page" content="true">
 
@@ -196,13 +196,13 @@
   
 
 <script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/react-lib-1fbfc5be2c18.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/vendors-node_modules_primer_octicons-react_dist_index_esm_js-node_modules_primer_react_lib-es-2e8e7c-a58d7c11e858.js"></script>
+<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/vendors-node_modules_primer_octicons-react_dist_index_esm_js-node_modules_primer_react_lib-es-2e8e7c-81fbc7d814d2.js"></script>
 <script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/vendors-node_modules_primer_react_lib-esm_Box_Box_js-8f8c5e2a2cbf.js"></script>
 <script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/vendors-node_modules_primer_react_lib-esm_Button_Button_js-d5726d25c548.js"></script>
 <script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/vendors-node_modules_primer_react_lib-esm_ActionList_index_js-1501d3ef83c2.js"></script>
 <script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/vendors-node_modules_primer_react_lib-esm_Button_IconButton_js-node_modules_primer_react_lib--23bcad-01764c79fa41.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/ui_packages_react-core_create-browser-history_ts-ui_packages_react-core_AppContextProvider_ts-809ab9-4a2cf4ad7f60.js"></script>
-<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/keyboard-shortcuts-dialog-20a011926f27.js"></script>
+<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/ui_packages_react-core_create-browser-history_ts-ui_packages_react-core_AppContextProvider_ts-809ab9-5bc018b15303.js"></script>
+<script crossorigin="anonymous" defer="defer" type="application/javascript" src="https://github.githubassets.com/assets/keyboard-shortcuts-dialog-ae7cd7fa1372.js"></script>
 
 <react-partial
   partial-name="keyboard-shortcuts-dialog"
@@ -611,7 +611,7 @@
                 
 
 
-<qbsearch-input class="search-input" data-scope="" data-custom-scopes-path="/search/custom_scopes" data-delete-custom-scopes-csrf="3vM3imOVnlEwQM0Eu2M61PYIzZxaVhEMXvPXNJZaJCrGjgXxzdL-Nqq4ynAWkzUpNLPbTzl1d_cB-by0Rjaxgg" data-max-custom-scopes="10" data-header-redesign-enabled="false" data-initial-value="" data-blackbird-suggestions-path="/search/suggestions" data-jump-to-suggestions-path="/_graphql/GetSuggestedNavigationDestinations" data-current-repository="" data-current-org="" data-current-owner="" data-logged-in="false" data-copilot-chat-enabled="false" data-blackbird-indexed-repo-csrf="<esi:include src=&quot;/_esi/rails_csrf_token_form_hidden?r=q2H9R6X%2FQ65MW2P35lDTWRonkMkBkEsPKt%2FoIXyhyUFDopHYpIip%2FAM5qf5MPZZzO7NeRnXLFQ0K5Uk7eJxmcYpQ8pn2uuqhxM%2F9rfcRW2M8E4DiwIU7aGf1I9J1d8SgxyVSDjMsfEERadsVfKudLh5bkGUubiREVZAWAjD524BYpO%2FRwygjtQuJvAhTq8q9LPPqUuly1A9s3%2FUhHJeF9E71l9wzdu%2BCSHiJ7Pga0kwXf5TjY%2BjGFUuXcKFL0oLiDNAwhKYlZs2tEbbZGunqHwArqmlE1l%2BJHmypd1%2BqKYIfbYM%2BIQQA9S%2BUvClR4SCb5GXEjIph3KCrddSB%2FGS4dB4itvTH83KyjIK0vvjyZRvcrH7G84qkBc9%2FB%2FVi3eCvIhLntfa0%2FqA7xbrBvd2CUC%2FEXHWVfzC2egnpwXYEpDArZm56Lrp1zBJ9MjUZZfV%2B53fMFRnQunY%2F1uuMxhjI7XgHW0eMa8jj81%2BWzgRPXsFiI2x0UWw%3D--HoQSxoxFCSSfOpUF--3vKDd8rzYX2K5%2BrVS%2B8FgQ%3D%3D&quot; />">
+<qbsearch-input class="search-input" data-scope="" data-custom-scopes-path="/search/custom_scopes" data-delete-custom-scopes-csrf="5fM12uZGGCDyb_3oVfQoOEzE9Bb_-UkCasIb5ax7I8WhTzvD8SQy7nNAznS0Oazv86W3D6QhKTq3niRor542rg" data-max-custom-scopes="10" data-header-redesign-enabled="false" data-initial-value="" data-blackbird-suggestions-path="/search/suggestions" data-jump-to-suggestions-path="/_graphql/GetSuggestedNavigationDestinations" data-current-repository="" data-current-org="" data-current-owner="" data-logged-in="false" data-copilot-chat-enabled="false" data-blackbird-indexed-repo-csrf="<esi:include src=&quot;/_esi/rails_csrf_token_form_hidden?r=AqZzmgRHSYdwJlWV5Y1%2B0xzTNPKAc3Nq2dKmUUSpOOPNSXhwtM3PIYwpJucguaKVt5wbUQCydscGhGCJmqWbueNtjbZFG6gVi9Oaczp8JR2wUYCw1F4S%2BoBPCPTo3wTzwvBoQ0b03nErgTNt03s7ENGy36NWst%2BwriBUwjrHY8gHaiPMM%2BRRdjGJMWeFbTIKNzcO%2BnxQOA6mh27gw1M9TN2X6nFPCUi%2FrYx60r72aO4KJOmKlznxWyirbYGuXX1W%2B4aeu1PEPA8%2FqyZ4rWeUgVLk0iXHsXE3S7jhqj1wyIMy3ST9bkI2pgW5ygz%2BzsVDVrvB29W7zoV06cZHNfFYRvS16syeIAzdg6iGj12rfyMTS7RJ%2FJiMFcoWL54%2F6c9PRS0lb8QRWvPl783l8LLzTPt2T75AsosW0bHGK7RtRhghOgVEkswunRHhr5qlWM5UzlF4KqQvIqUpzvmiDvHnChf9bamcE%2FfQwuUZ3dn4GYF3EItVv48%3D--cLdYbYgEHNMRIl4A--oPz8kr6AlUNObWZHczFpHw%3D%3D&quot; />">
   <div
     class="search-input-container search-with-dialog position-relative d-flex flex-row flex-items-center mr-4 rounded"
     data-action="click:qbsearch-input#searchInputContainerClicked"
@@ -673,7 +673,7 @@
           ></div>
           <div class="QueryBuilder-InputWrapper">
             <div aria-hidden="true" class="QueryBuilder-Sizer" data-target="query-builder.sizer"></div>
-            <input id="query-builder-test" name="query-builder-test" value="" autocomplete="off" type="text" role="combobox" spellcheck="false" aria-expanded="false" aria-describedby="validation-d5bd749b-df9d-4c8a-a12d-1169b21986a2" data-target="query-builder.input" data-action="
+            <input id="query-builder-test" name="query-builder-test" value="" autocomplete="off" type="text" role="combobox" spellcheck="false" aria-expanded="false" aria-describedby="validation-30d210e5-6911-4283-86a5-87a9a745d291" data-target="query-builder.input" data-action="
           input:query-builder#inputChange
           blur:query-builder#inputBlur
           keydown:query-builder#inputKeydown
@@ -904,7 +904,7 @@
                   id="query-builder-test-results"
                 ></ul>
         </div>
-      <div class="FormControl-inlineValidation" id="validation-d5bd749b-df9d-4c8a-a12d-1169b21986a2" hidden="hidden">
+      <div class="FormControl-inlineValidation" id="validation-30d210e5-6911-4283-86a5-87a9a745d291" hidden="hidden">
         <span class="FormControl-inlineValidation--visual">
           <svg aria-hidden="true" height="12" viewBox="0 0 12 12" version="1.1" width="12" data-view-component="true" class="octicon octicon-alert-fill">
     <path d="M4.855.708c.5-.896 1.79-.896 2.29 0l4.675 8.351a1.312 1.312 0 0 1-1.146 1.954H1.33A1.313 1.313 0 0 1 .183 9.058ZM7 7V3H5v4Zm-1 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"></path>
@@ -945,7 +945,7 @@
   </div>
 </div>
       <scrollable-region data-labelled-by="feedback-dialog-title">
-        <div data-view-component="true" class="Overlay-body">        <!-- '"` --><!-- </textarea></xmp> --></option></form><form id="code-search-feedback-form" data-turbo="false" action="/search/feedback" accept-charset="UTF-8" method="post"><input type="hidden" data-csrf="true" name="authenticity_token" value="uz2f+s5BFL0Z72u7h7naus8oOnG/MkPK348D1WI0CG254QL3gBw7XMCkrB7WywdhlgmetTApxJOMkjPbmHPWmQ==" />
+        <div data-view-component="true" class="Overlay-body">        <!-- '"` --><!-- </textarea></xmp> --></option></form><form id="code-search-feedback-form" data-turbo="false" action="/search/feedback" accept-charset="UTF-8" method="post"><input type="hidden" data-csrf="true" name="authenticity_token" value="S+rY44xVVWz/RaYaMpFEAqIOqSXrbPFxLCvd2ivd6TH8cla993y9j+sJZuTXoiWzP779BJHudDZd7ypo8XHE0w==" />
           <p>We read every piece of feedback, and take your input very seriously.</p>
           <textarea name="feedback" class="form-control width-full mb-2" style="height: 120px" id="feedback"></textarea>
           <input name="include_email" id="include_email" aria-label="Include my email address so I can be contacted" class="form-control mr-2" type="checkbox">
@@ -982,7 +982,7 @@
         <div data-view-component="true" class="Overlay-body">        <div data-target="custom-scopes.customScopesModalDialogFlash"></div>
 
         <div hidden class="create-custom-scope-form" data-target="custom-scopes.createCustomScopeForm">
-        <!-- '"` --><!-- </textarea></xmp> --></option></form><form id="custom-scopes-dialog-form" data-turbo="false" action="/search/custom_scopes" accept-charset="UTF-8" method="post"><input type="hidden" data-csrf="true" name="authenticity_token" value="KSgQpfta71khfKlqXskm/yUDbDBktrdKH0s2ZC0EozsjmHRDQmANs/N8Q44lYXwwneb1ZI6ReShcsPmlTFe7VA==" />
+        <!-- '"` --><!-- </textarea></xmp> --></option></form><form id="custom-scopes-dialog-form" data-turbo="false" action="/search/custom_scopes" accept-charset="UTF-8" method="post"><input type="hidden" data-csrf="true" name="authenticity_token" value="wzofDRZF1BzDa45o1UXGVPyQ5cMPPiucjAh98kZ6ZawALJ9+3y5yBL7NFSM4jD2ar22DgmZgL9nSWaxd/EnvPw==" />
           <div data-target="custom-scopes.customScopesModalDialogFlash"></div>
 
           <input type="hidden" id="custom_scope_id" name="custom_scope_id" data-target="custom-scopes.customScopesIdField">
@@ -1000,7 +1000,7 @@
                 placeholder="github-ruby"
                 required
                 maxlength="50">
-              <input type="hidden" data-csrf="true" value="VGeAlQxHdARlstcWjcDP/eZFakF6C7nh2Gq/cDVLCtyJqZwEw1kUflPtxOLzgkmTAspyEDEfig2MPs5awdrIwA==" />
+              <input type="hidden" data-csrf="true" value="qeJinN6jvsh5tf5TQHBLs7JPNAMKGwkhBtz7vib/3WPpH9CGx5lWkRJKXhPtPlkp3p1t8Lj6/YU9kXboMk4zEA==" />
             </auto-check>
           </div>
 
@@ -1037,7 +1037,7 @@
 </dialog></dialog-helper>
     </custom-scopes>
   </div>
-</qbsearch-input><input type="hidden" data-csrf="true" class="js-data-jump-to-suggestions-path-csrf" value="cqWYOvxaxPbyY2SI9DbR+gPchRcbAJv2zhe2ZtEXv5Q6WKsh6TNLUvZ8wbk8PT0t+Q0VjWT2JTx04dOAIvf3sg==" />
+</qbsearch-input><input type="hidden" data-csrf="true" class="js-data-jump-to-suggestions-path-csrf" value="vnipsV0qj2XU/TUI4oQMf6Ht1ZJa1GSApeRd+3afqJLzJ67J4Zfw7fyEDuyHin6x5wq/90dNTVoclp2OS5lILw==" />
 
 
           <div class="position-relative mr-lg-3 d-lg-inline-block">
@@ -1071,10 +1071,10 @@
         <span class="js-stale-session-flash-signed-out" hidden>You signed out in another tab or window. <a class="Link--inTextBlock" href="">Reload</a> to refresh your session.</span>
         <span class="js-stale-session-flash-switched" hidden>You switched accounts on another tab or window. <a class="Link--inTextBlock" href="">Reload</a> to refresh your session.</span>
 
-    <button id="icon-button-a4f6cbca-fe0c-44db-95ab-780429911936" aria-labelledby="tooltip-e7933d75-0775-4dc2-a9f2-a5ef3b2ecafa" type="button" data-view-component="true" class="Button Button--iconOnly Button--invisible Button--medium flash-close js-flash-close">  <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-x Button-visual">
+    <button id="icon-button-96e33cc2-60a1-48e2-a6b5-8a99bd07b99f" aria-labelledby="tooltip-75b7338f-0603-483f-8304-62a942952260" type="button" data-view-component="true" class="Button Button--iconOnly Button--invisible Button--medium flash-close js-flash-close">  <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-x Button-visual">
     <path d="M3.72 3.72a.75.75 0 0 1 1.06 0L8 6.94l3.22-3.22a.749.749 0 0 1 1.275.326.749.749 0 0 1-.215.734L9.06 8l3.22 3.22a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215L8 9.06l-3.22 3.22a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042L6.94 8 3.72 4.78a.75.75 0 0 1 0-1.06Z"></path>
 </svg>
-</button><tool-tip id="tooltip-e7933d75-0775-4dc2-a9f2-a5ef3b2ecafa" for="icon-button-a4f6cbca-fe0c-44db-95ab-780429911936" popover="manual" data-direction="s" data-type="label" data-view-component="true" class="sr-only position-absolute">Dismiss alert</tool-tip>
+</button><tool-tip id="tooltip-75b7338f-0603-483f-8304-62a942952260" for="icon-button-96e33cc2-60a1-48e2-a6b5-8a99bd07b99f" popover="manual" data-direction="s" data-type="label" data-view-component="true" class="sr-only position-absolute">Dismiss alert</tool-tip>
 
 
   
@@ -1251,8 +1251,8 @@
 
       <div class="sub-nav-mktg-links flex-auto f4-mktg d-flex flex-column flex-lg-row gap-4" id="sub-nav-dropdown">
           <a class="sub-nav-mktg-link Link--primary no-underline py-1 py-lg-2 js-scrollnav-item js-smoothscroll-anchor" data-analytics-event="{&quot;category&quot;:&quot;Homepage&quot;,&quot;action&quot;:&quot;click item to scroll to Productivity&quot;,&quot;label&quot;:&quot;ref_cta:Productivity;&quot;}" href="#productivity">Productivity</a>
-          <a class="sub-nav-mktg-link Link--primary no-underline py-1 py-lg-2 js-scrollnav-item js-smoothscroll-anchor" data-analytics-event="{&quot;category&quot;:&quot;Homepage&quot;,&quot;action&quot;:&quot;click item to scroll to Collaboration&quot;,&quot;label&quot;:&quot;ref_cta:Collaboration;&quot;}" href="#collaboration">Collaboration</a>
           <a class="sub-nav-mktg-link Link--primary no-underline py-1 py-lg-2 js-scrollnav-item js-smoothscroll-anchor" data-analytics-event="{&quot;category&quot;:&quot;Homepage&quot;,&quot;action&quot;:&quot;click item to scroll to Security&quot;,&quot;label&quot;:&quot;ref_cta:Security;&quot;}" href="#security">Security</a>
+          <a class="sub-nav-mktg-link Link--primary no-underline py-1 py-lg-2 js-scrollnav-item js-smoothscroll-anchor" data-analytics-event="{&quot;category&quot;:&quot;Homepage&quot;,&quot;action&quot;:&quot;click item to scroll to Collaboration&quot;,&quot;label&quot;:&quot;ref_cta:Collaboration;&quot;}" href="#collaboration">Collaboration</a>
       </div>
 
         <div class="sub-nav-mktg-ctas ml-lg-3">
@@ -1817,20 +1817,6 @@
       <div class="overflow-hidden col-md-6 rounded-right-3">
     <div class="d-flex flex-wrap position-relative top-n12 mt-n4 right-n4 p-4 js-build-in-trigger" style="transform: rotate(-15deg) translateZ(10px); max-height: 480px;" data-build-in-stagger="75">
         <div class="col-6 col-sm-4 col-md-6 col-lg-4">
-          <a target="_blank" class="rounded p-4 border color-bg-subtle no-underline d-flex flex-column flex-items-center m-2 box-shadow-default-mktg js-build-in-item build-in-scale-up" tabindex="-1" href="/chaynhq">
-            <img alt="chaynHQ avatar" width="96" height="96" class="d-block rounded" loading="lazy" decoding="async" src="https://github.githubassets.com/assets/chaynhq-4c5953025dca.png" />
-            <div class="color-fg-muted text-truncate my-2">chaynHQ</div>
-            <button tabindex="-1" type="button" data-view-component="true" class="Button--secondary Button--medium Button">  <span class="Button-content">
-      <span class="Button-visual Button-leadingVisual">
-        <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-heart">
-    <path d="m8 14.25.345.666a.75.75 0 0 1-.69 0l-.008-.004-.018-.01a7.152 7.152 0 0 1-.31-.17 22.055 22.055 0 0 1-3.434-2.414C2.045 10.731 0 8.35 0 5.5 0 2.836 2.086 1 4.25 1 5.797 1 7.153 1.802 8 3.02 8.847 1.802 10.203 1 11.75 1 13.914 1 16 2.836 16 5.5c0 2.85-2.045 5.231-3.885 6.818a22.066 22.066 0 0 1-3.744 2.584l-.018.01-.006.003h-.002ZM4.25 2.5c-1.336 0-2.75 1.164-2.75 3 0 2.15 1.58 4.144 3.365 5.682A20.58 20.58 0 0 0 8 13.393a20.58 20.58 0 0 0 3.135-2.211C12.92 9.644 14.5 7.65 14.5 5.5c0-1.836-1.414-3-2.75-3-1.373 0-2.609.986-3.029 2.456a.749.749 0 0 1-1.442 0C6.859 3.486 5.623 2.5 4.25 2.5Z"></path>
-</svg>
-      </span>
-    <span class="Button-label">Sponsor</span>
-  </span>
-</button>
-</a>        </div>
-        <div class="col-6 col-sm-4 col-md-6 col-lg-4">
           <a target="_blank" class="rounded p-4 border color-bg-subtle no-underline d-flex flex-column flex-items-center m-2 box-shadow-default-mktg js-build-in-item build-in-scale-up" tabindex="-1" href="/prophen">
             <img alt="Nikema avatar" width="96" height="96" class="d-block circle" loading="lazy" decoding="async" src="https://github.githubassets.com/assets/prophen-da9b089d8a25.jpeg" />
             <div class="color-fg-muted text-truncate my-2">Nikema</div>
@@ -1845,37 +1831,9 @@
 </button>
 </a>        </div>
         <div class="col-6 col-sm-4 col-md-6 col-lg-4">
-          <a target="_blank" class="rounded p-4 border color-bg-subtle no-underline d-flex flex-column flex-items-center m-2 box-shadow-default-mktg js-build-in-item build-in-scale-up" tabindex="-1" href="/kazupon">
-            <img alt="kazuya kawaguchi avatar" width="96" height="96" class="d-block circle" loading="lazy" decoding="async" src="https://github.githubassets.com/assets/kazupon-d7aeb7b8df20.jpeg" />
-            <div class="color-fg-muted text-truncate my-2">kazuya kawaguchi</div>
-            <button tabindex="-1" type="button" data-view-component="true" class="Button--secondary Button--medium Button">  <span class="Button-content">
-      <span class="Button-visual Button-leadingVisual">
-        <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-heart">
-    <path d="m8 14.25.345.666a.75.75 0 0 1-.69 0l-.008-.004-.018-.01a7.152 7.152 0 0 1-.31-.17 22.055 22.055 0 0 1-3.434-2.414C2.045 10.731 0 8.35 0 5.5 0 2.836 2.086 1 4.25 1 5.797 1 7.153 1.802 8 3.02 8.847 1.802 10.203 1 11.75 1 13.914 1 16 2.836 16 5.5c0 2.85-2.045 5.231-3.885 6.818a22.066 22.066 0 0 1-3.744 2.584l-.018.01-.006.003h-.002ZM4.25 2.5c-1.336 0-2.75 1.164-2.75 3 0 2.15 1.58 4.144 3.365 5.682A20.58 20.58 0 0 0 8 13.393a20.58 20.58 0 0 0 3.135-2.211C12.92 9.644 14.5 7.65 14.5 5.5c0-1.836-1.414-3-2.75-3-1.373 0-2.609.986-3.029 2.456a.749.749 0 0 1-1.442 0C6.859 3.486 5.623 2.5 4.25 2.5Z"></path>
-</svg>
-      </span>
-    <span class="Button-label">Sponsor</span>
-  </span>
-</button>
-</a>        </div>
-        <div class="col-6 col-sm-4 col-md-6 col-lg-4">
-          <a target="_blank" class="rounded p-4 border color-bg-subtle no-underline d-flex flex-column flex-items-center m-2 box-shadow-default-mktg js-build-in-item build-in-scale-up" tabindex="-1" href="/commandpost">
-            <img alt="CommandPost avatar" width="96" height="96" class="d-block rounded" loading="lazy" decoding="async" src="https://github.githubassets.com/assets/commandpost-18d45fffda67.png" />
-            <div class="color-fg-muted text-truncate my-2">CommandPost</div>
-            <button tabindex="-1" type="button" data-view-component="true" class="Button--secondary Button--medium Button">  <span class="Button-content">
-      <span class="Button-visual Button-leadingVisual">
-        <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-heart">
-    <path d="m8 14.25.345.666a.75.75 0 0 1-.69 0l-.008-.004-.018-.01a7.152 7.152 0 0 1-.31-.17 22.055 22.055 0 0 1-3.434-2.414C2.045 10.731 0 8.35 0 5.5 0 2.836 2.086 1 4.25 1 5.797 1 7.153 1.802 8 3.02 8.847 1.802 10.203 1 11.75 1 13.914 1 16 2.836 16 5.5c0 2.85-2.045 5.231-3.885 6.818a22.066 22.066 0 0 1-3.744 2.584l-.018.01-.006.003h-.002ZM4.25 2.5c-1.336 0-2.75 1.164-2.75 3 0 2.15 1.58 4.144 3.365 5.682A20.58 20.58 0 0 0 8 13.393a20.58 20.58 0 0 0 3.135-2.211C12.92 9.644 14.5 7.65 14.5 5.5c0-1.836-1.414-3-2.75-3-1.373 0-2.609.986-3.029 2.456a.749.749 0 0 1-1.442 0C6.859 3.486 5.623 2.5 4.25 2.5Z"></path>
-</svg>
-      </span>
-    <span class="Button-label">Sponsor</span>
-  </span>
-</button>
-</a>        </div>
-        <div class="col-6 col-sm-4 col-md-6 col-lg-4">
-          <a target="_blank" class="rounded p-4 border color-bg-subtle no-underline d-flex flex-column flex-items-center m-2 box-shadow-default-mktg js-build-in-item build-in-scale-up" tabindex="-1" href="/homebrew">
-            <img alt="Homebrew avatar" width="96" height="96" class="d-block rounded" loading="lazy" decoding="async" src="https://github.githubassets.com/assets/homebrew-c7e38eeacb52.png" />
-            <div class="color-fg-muted text-truncate my-2">Homebrew</div>
+          <a target="_blank" class="rounded p-4 border color-bg-subtle no-underline d-flex flex-column flex-items-center m-2 box-shadow-default-mktg js-build-in-item build-in-scale-up" tabindex="-1" href="/sindresorhus">
+            <img alt="sindresorhus avatar" width="96" height="96" class="d-block circle" loading="lazy" decoding="async" src="https://github.githubassets.com/assets/sindresorhus-d3224f241a4d.jpeg" />
+            <div class="color-fg-muted text-truncate my-2">sindresorhus</div>
             <button tabindex="-1" type="button" data-view-component="true" class="Button--secondary Button--medium Button">  <span class="Button-content">
       <span class="Button-visual Button-leadingVisual">
         <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-heart">
@@ -1901,9 +1859,9 @@
 </button>
 </a>        </div>
         <div class="col-6 col-sm-4 col-md-6 col-lg-4">
-          <a target="_blank" class="rounded p-4 border color-bg-subtle no-underline d-flex flex-column flex-items-center m-2 box-shadow-default-mktg js-build-in-item build-in-scale-up" tabindex="-1" href="/dayhaysoos">
-            <img alt="Nick DeJesus avatar" width="96" height="96" class="d-block circle" loading="lazy" decoding="async" src="https://github.githubassets.com/assets/dayhaysoos-c50659cac73b.jpeg" />
-            <div class="color-fg-muted text-truncate my-2">Nick DeJesus</div>
+          <a target="_blank" class="rounded p-4 border color-bg-subtle no-underline d-flex flex-column flex-items-center m-2 box-shadow-default-mktg js-build-in-item build-in-scale-up" tabindex="-1" href="/yyx990803">
+            <img alt="Evan You avatar" width="96" height="96" class="d-block circle" loading="lazy" decoding="async" src="https://github.githubassets.com/assets/yyx990803-e11c7b140b17.jpeg" />
+            <div class="color-fg-muted text-truncate my-2">Evan You</div>
             <button tabindex="-1" type="button" data-view-component="true" class="Button--secondary Button--medium Button">  <span class="Button-content">
       <span class="Button-visual Button-leadingVisual">
         <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-heart">
@@ -1929,9 +1887,51 @@
 </button>
 </a>        </div>
         <div class="col-6 col-sm-4 col-md-6 col-lg-4">
+          <a target="_blank" class="rounded p-4 border color-bg-subtle no-underline d-flex flex-column flex-items-center m-2 box-shadow-default-mktg js-build-in-item build-in-scale-up" tabindex="-1" href="/dayhaysoos">
+            <img alt="Nick DeJesus avatar" width="96" height="96" class="d-block circle" loading="lazy" decoding="async" src="https://github.githubassets.com/assets/dayhaysoos-c50659cac73b.jpeg" />
+            <div class="color-fg-muted text-truncate my-2">Nick DeJesus</div>
+            <button tabindex="-1" type="button" data-view-component="true" class="Button--secondary Button--medium Button">  <span class="Button-content">
+      <span class="Button-visual Button-leadingVisual">
+        <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-heart">
+    <path d="m8 14.25.345.666a.75.75 0 0 1-.69 0l-.008-.004-.018-.01a7.152 7.152 0 0 1-.31-.17 22.055 22.055 0 0 1-3.434-2.414C2.045 10.731 0 8.35 0 5.5 0 2.836 2.086 1 4.25 1 5.797 1 7.153 1.802 8 3.02 8.847 1.802 10.203 1 11.75 1 13.914 1 16 2.836 16 5.5c0 2.85-2.045 5.231-3.885 6.818a22.066 22.066 0 0 1-3.744 2.584l-.018.01-.006.003h-.002ZM4.25 2.5c-1.336 0-2.75 1.164-2.75 3 0 2.15 1.58 4.144 3.365 5.682A20.58 20.58 0 0 0 8 13.393a20.58 20.58 0 0 0 3.135-2.211C12.92 9.644 14.5 7.65 14.5 5.5c0-1.836-1.414-3-2.75-3-1.373 0-2.609.986-3.029 2.456a.749.749 0 0 1-1.442 0C6.859 3.486 5.623 2.5 4.25 2.5Z"></path>
+</svg>
+      </span>
+    <span class="Button-label">Sponsor</span>
+  </span>
+</button>
+</a>        </div>
+        <div class="col-6 col-sm-4 col-md-6 col-lg-4">
           <a target="_blank" class="rounded p-4 border color-bg-subtle no-underline d-flex flex-column flex-items-center m-2 box-shadow-default-mktg js-build-in-item build-in-scale-up" tabindex="-1" href="/directus">
             <img alt="Directus avatar" width="96" height="96" class="d-block rounded" loading="lazy" decoding="async" src="https://github.githubassets.com/assets/directus-4da9e46da0ac.png" />
             <div class="color-fg-muted text-truncate my-2">Directus</div>
+            <button tabindex="-1" type="button" data-view-component="true" class="Button--secondary Button--medium Button">  <span class="Button-content">
+      <span class="Button-visual Button-leadingVisual">
+        <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-heart">
+    <path d="m8 14.25.345.666a.75.75 0 0 1-.69 0l-.008-.004-.018-.01a7.152 7.152 0 0 1-.31-.17 22.055 22.055 0 0 1-3.434-2.414C2.045 10.731 0 8.35 0 5.5 0 2.836 2.086 1 4.25 1 5.797 1 7.153 1.802 8 3.02 8.847 1.802 10.203 1 11.75 1 13.914 1 16 2.836 16 5.5c0 2.85-2.045 5.231-3.885 6.818a22.066 22.066 0 0 1-3.744 2.584l-.018.01-.006.003h-.002ZM4.25 2.5c-1.336 0-2.75 1.164-2.75 3 0 2.15 1.58 4.144 3.365 5.682A20.58 20.58 0 0 0 8 13.393a20.58 20.58 0 0 0 3.135-2.211C12.92 9.644 14.5 7.65 14.5 5.5c0-1.836-1.414-3-2.75-3-1.373 0-2.609.986-3.029 2.456a.749.749 0 0 1-1.442 0C6.859 3.486 5.623 2.5 4.25 2.5Z"></path>
+</svg>
+      </span>
+    <span class="Button-label">Sponsor</span>
+  </span>
+</button>
+</a>        </div>
+        <div class="col-6 col-sm-4 col-md-6 col-lg-4">
+          <a target="_blank" class="rounded p-4 border color-bg-subtle no-underline d-flex flex-column flex-items-center m-2 box-shadow-default-mktg js-build-in-item build-in-scale-up" tabindex="-1" href="/imolorhe">
+            <img alt="Samuel avatar" width="96" height="96" class="d-block circle" loading="lazy" decoding="async" src="https://github.githubassets.com/assets/imolorhe-9d771b1d4332.jpeg" />
+            <div class="color-fg-muted text-truncate my-2">Samuel</div>
+            <button tabindex="-1" type="button" data-view-component="true" class="Button--secondary Button--medium Button">  <span class="Button-content">
+      <span class="Button-visual Button-leadingVisual">
+        <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-heart">
+    <path d="m8 14.25.345.666a.75.75 0 0 1-.69 0l-.008-.004-.018-.01a7.152 7.152 0 0 1-.31-.17 22.055 22.055 0 0 1-3.434-2.414C2.045 10.731 0 8.35 0 5.5 0 2.836 2.086 1 4.25 1 5.797 1 7.153 1.802 8 3.02 8.847 1.802 10.203 1 11.75 1 13.914 1 16 2.836 16 5.5c0 2.85-2.045 5.231-3.885 6.818a22.066 22.066 0 0 1-3.744 2.584l-.018.01-.006.003h-.002ZM4.25 2.5c-1.336 0-2.75 1.164-2.75 3 0 2.15 1.58 4.144 3.365 5.682A20.58 20.58 0 0 0 8 13.393a20.58 20.58 0 0 0 3.135-2.211C12.92 9.644 14.5 7.65 14.5 5.5c0-1.836-1.414-3-2.75-3-1.373 0-2.609.986-3.029 2.456a.749.749 0 0 1-1.442 0C6.859 3.486 5.623 2.5 4.25 2.5Z"></path>
+</svg>
+      </span>
+    <span class="Button-label">Sponsor</span>
+  </span>
+</button>
+</a>        </div>
+        <div class="col-6 col-sm-4 col-md-6 col-lg-4">
+          <a target="_blank" class="rounded p-4 border color-bg-subtle no-underline d-flex flex-column flex-items-center m-2 box-shadow-default-mktg js-build-in-item build-in-scale-up" tabindex="-1" href="/chaynhq">
+            <img alt="chaynHQ avatar" width="96" height="96" class="d-block rounded" loading="lazy" decoding="async" src="https://github.githubassets.com/assets/chaynhq-4c5953025dca.png" />
+            <div class="color-fg-muted text-truncate my-2">chaynHQ</div>
             <button tabindex="-1" type="button" data-view-component="true" class="Button--secondary Button--medium Button">  <span class="Button-content">
       <span class="Button-visual Button-leadingVisual">
         <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-heart">
@@ -2011,7 +2011,7 @@
 
     <div class="position-relative z-2 user-select-none home-globe-scene js-webgl-globe-data">
   <div class="home-globe-container home-globe-container-webgl mx-auto">
-    <div class="mx-auto width-full home-globe position-relative height-full js-webgl-globe">
+    <div class="mx-auto width-full position-relative height-full js-webgl-globe js-webgl-globe-trigger">
       <video width="916" height="918" loop muted playsinline preload="none" class="home-globe-container-video js-globe-fallback-video " hidden>
         <source type="video/mp4; codecs=hevc,mp4a.40.2" src="https://github.githubassets.com/assets/globe-900.hevc-58019d77b21c.mp4">
         <source type="video/mp4; codecs=avc1.4D401E,mp4a.40.2" src="https://github.githubassets.com/assets/globe-900.h264-975e7b5ac572.mp4">
@@ -2038,9 +2038,9 @@
 
     </div>
 
-    <img alt="" aria-hidden="true" width="150" height="150" style="left: 0; top: 30%;" class="d-none d-md-block position-absolute home-footer-float" loading="lazy" decoding="async" src="https://github.githubassets.com/assets/footer-copilot-54114bfd1d20.png" />
+    <img alt="" aria-hidden="true" width="150" height="150" style="left: 0; top: 30%;" class="d-none d-md-block position-absolute home-footer-float z-1" loading="lazy" decoding="async" src="https://github.githubassets.com/assets/footer-copilot-54114bfd1d20.png" />
 
-    <img alt="" aria-hidden="true" width="200" height="200" style="right: 5%; top: 50%; animation-delay: 1s;" class="d-none d-md-block position-absolute home-footer-float" loading="lazy" decoding="async" src="https://github.githubassets.com/assets/footer-mona-d1c861cd8018.png" />
+    <img alt="" aria-hidden="true" width="200" height="200" style="right: 5%; top: 50%; animation-delay: 1s;" class="d-none d-md-block position-absolute home-footer-float z-2" loading="lazy" decoding="async" src="https://github.githubassets.com/assets/footer-mona-d1c861cd8018.png" />
 
     <img alt="" aria-hidden="true" width="48" height="48" style="left: -5%; top: 50%;" class="d-none d-md-block position-absolute home-footer-rotate" loading="lazy" decoding="async" src="https://github.githubassets.com/assets/footer-star-36e5b5724973.png" />
 
