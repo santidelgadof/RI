@@ -63,7 +63,7 @@ public class WebIndexer {
         // Guardar y validar opciones
         String indexPath = INDEX_DIR;
         String docsPath = DOCS_DIR;
-        boolean create = true;
+        boolean create = false;
         int numThreads = Runtime.getRuntime().availableProcessors();
         boolean showThreadInfo = true;          // TODO: cambiar a false tras acabar la práctica
         boolean showIndexCreatTime = true;
@@ -118,6 +118,7 @@ public class WebIndexer {
         if (!analyzer.equals("StandardAnalyzer") && !analyzer.equals("EnglishAnalyzer")) {
             throw new IllegalArgumentException("Invalid analyzer: " + analyzer);
         }
+        IndexWriter indexWriter = getWriter(indexPath, analyzer, create);
 
         // Creamos el pool de threads
         final ExecutorService executor = Executors.newFixedThreadPool(numThreads);
@@ -127,7 +128,8 @@ public class WebIndexer {
             List<String> urls = readUrlsFromFile(Paths.get(urlFilePath));
 
             for (final String url : urls) {
-                final Runnable worker = new WorkerThread(url, docsPath, indexPath, analyzer, showThreadInfo, showIndexCreatTime, create, titleTermVectors, bodyTermVectors);
+                final Runnable worker = new WorkerThread(url, docsPath, indexPath, analyzer, showThreadInfo,
+                        showIndexCreatTime, create, titleTermVectors, bodyTermVectors, indexWriter);
                 /*
                 * Send the thread to the ThreadPool. It will be processed eventually.
                 */
@@ -188,9 +190,12 @@ public class WebIndexer {
         private final boolean create;
         private final boolean titleTermVectors;
         private final boolean bodyTermVectors;
+        private final IndexWriter indexWriter;
 
 		public WorkerThread(final String url, final String docsPath, final String indexPath,
-                            final String analyzer, final boolean showThreadInfo, final boolean showIndexCreatTime, final boolean create, final boolean titleTermVectors, final boolean bodyTermVectors) {
+                            final String analyzer, final boolean showThreadInfo, final boolean showIndexCreatTime,
+                            final boolean create, final boolean titleTermVectors, final boolean bodyTermVectors,
+                            final IndexWriter indexWriter) {
 			this.url = url;
 			this.docsPath = docsPath;
             this.indexPath = indexPath;
@@ -200,6 +205,7 @@ public class WebIndexer {
             this.create = create;  
             this.titleTermVectors = titleTermVectors;
             this.bodyTermVectors = bodyTermVectors;
+            this.indexWriter = indexWriter;
 		}
 
 		/**
@@ -212,14 +218,23 @@ public class WebIndexer {
 					Thread.currentThread().getName(), url));
 
 			// Aquí va el trabajo del thread (PROCESAMIENTO URL)
-			processUrl(url, docsPath, indexPath, analyzer, showIndexCreatTime, create, titleTermVectors, bodyTermVectors);
+			processUrl(url, docsPath, indexPath, analyzer, showIndexCreatTime, create, titleTermVectors,
+                    bodyTermVectors, indexWriter);
 
             if(showThreadInfo)
                 System.out.println(String.format("Hilo '%s' fin url '%s'",
                         Thread.currentThread().getName(), url));
-		}
 
-		static void processUrl(String url, String docsPath, String indexPath, String analyzer, boolean showIndexCreatTime, boolean create, boolean titleTermVectors, boolean bodyTermVectors) {
+            try {
+                indexWriter.close();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+		static void processUrl(String url, String docsPath, String indexPath, String analyzer,
+                               boolean showIndexCreatTime, boolean create, boolean titleTermVectors,
+                               boolean bodyTermVectors, IndexWriter indexWriter) {
             // Timeout de 5 minutos
         	HttpClient httpClient = HttpClient.newBuilder().connectTimeout(Duration.ofMinutes(5)).build(); // TODO: handle timeout exception?
 
@@ -256,9 +271,10 @@ public class WebIndexer {
                         writer.newLine();
                         writer.write(body);
 
-                        System.out.println("Page " + url + " downloaded and saved.");
+                        // System.out.println("Page " + url + " downloaded and saved.");
 
-                        indexUrl(locFilePath, indexPath, analyzer, title, body, showIndexCreatTime, create, titleTermVectors, bodyTermVectors);
+                        indexUrl(locFilePath, indexPath, analyzer, title, body, showIndexCreatTime, create,
+                                titleTermVectors, bodyTermVectors, indexWriter);
                         
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -280,21 +296,16 @@ public class WebIndexer {
 		}
 
         static void indexUrl(Path locPath, String indexPath, String analyzer, String title, String body,
-                     boolean showIndexCreatTime, boolean create, boolean titleTermVectors, boolean bodyTermVectors) {
+                     boolean showIndexCreatTime, boolean create, boolean titleTermVectors, boolean bodyTermVectors, IndexWriter writer) {
             long t1 = 0;
             if (showIndexCreatTime)
                 t1 = currentTimeMillis();
             Path locNotagsPath = Path.of(locPath.toString() + ".notags");
-            IndexWriter writer = null;
-
-            /*
-            * Creates a new index if one does not exist, otherwise it opens the index and
-            * documents will be appended with writer.addDocument(doc).
-            */
+            //IndexWriter writer = null;
 
             // index document
             try (InputStream stream = Files.newInputStream(locPath)) {
-                writer = getWriter(indexPath, analyzer, create);
+                //writer = getWriter(indexPath, analyzer, create);
                 org.apache.lucene.document.Document doc = new org.apache.lucene.document.Document();
 
                 FileTime creationTime = (FileTime) Files.getAttribute(locPath, "creationTime");
@@ -332,62 +343,64 @@ public class WebIndexer {
                 // add to index and close
                 if (create) {
                     // New index, so we just add the document (no old document can be there):
-                    System.out.println("adding " + locPath);
+                    // System.out.println("adding " + locPath);
                     writer.addDocument(doc);
                 } else {
                     // Existing index (an old copy of this document may have been indexed) so
                     // we use updateDocument instead to replace the old one matching the exact
                     // path, if present:
-                    System.out.println("updating " + locPath);
+                    // System.out.println("updating " + locPath);
                     writer.updateDocument(new Term("path", locPath.toString()), doc);
-                }
-                try {
-                    //writer.addDocument(doc);
                     writer.commit();
+                }
+                //try {
+                    //writer.addDocument(doc);
+                    //writer.commit();
                     if (showIndexCreatTime) {
                         long t2 = currentTimeMillis();
                         System.out.println("Creado índice \"" + title + "\" en " + (t2-t1) + " msec");    // TODO: arreglar mensajes excepciones (en toda la práctica)
-                    }                    writer.close();
-                } catch (IOException e) {
+                    }
+                    //writer.close();
+                /*} catch (IOException e) {
                     System.out.println("Graceful message: exception " + e);
                     e.printStackTrace();
-                }
+                }*/
             } catch (IOException e) {
                 System.err.println("IOException on thread " + Thread.currentThread().getName() + ": " + e);
             }
         }
 
-        static IndexWriter getWriter (String indexPath, String analyzer, boolean create) {
-
-            try {
-                IndexWriterConfig config;
-                if (analyzer.equals("StandardAnalyzer")) {
-                    config = new IndexWriterConfig(new StandardAnalyzer());
-                } else if (analyzer.equals("EnglishAnalyzer")) {
-                    config = new IndexWriterConfig(new EnglishAnalyzer());  // TODO: añadir el resto de analyzers
-                } else {
-                    throw new IllegalArgumentException("Invalid analyzer: " + analyzer);
-                }
-                if (create)
-                    config.setOpenMode(OpenMode.CREATE);
-                else
-                    config.setOpenMode(OpenMode.CREATE_OR_APPEND);
-
-                // if (titleTermVectors || bodyTermVectors) {
-                //     config.setTermVectorsFormat(TermVectorsFormat.forName("Lucene50"));
-                //     config.setTermVectorsFieldFlags(Field.TermVector.WITH_POSITIONS_OFFSETS);
-                // }
-                return new IndexWriter(FSDirectory.open(Paths.get(indexPath)), config);
-            } catch(IOException e) {
-                // si el writer ya está siendo usado por otro hilo, esperamos y volvemos a intentarlo
-                try {
-                    Thread.sleep(Thread.currentThread().getId());
-                } catch (InterruptedException ex) {
-                    throw new RuntimeException(ex);
-                }
-                return getWriter(indexPath, analyzer, create);
-            }
-        }
-
 	}
+
+    static IndexWriter getWriter (String indexPath, String analyzer, boolean create) {
+
+        try {
+            IndexWriterConfig config;
+            if (analyzer.equals("StandardAnalyzer")) {
+                config = new IndexWriterConfig(new StandardAnalyzer());
+            } else if (analyzer.equals("EnglishAnalyzer")) {
+                config = new IndexWriterConfig(new EnglishAnalyzer());  // TODO: añadir el resto de analyzers
+            } else {
+                throw new IllegalArgumentException("Invalid analyzer: " + analyzer);
+            }
+            if (create)
+                config.setOpenMode(OpenMode.CREATE);
+            else
+                config.setOpenMode(OpenMode.CREATE_OR_APPEND);
+
+            // if (titleTermVectors || bodyTermVectors) {
+            //     config.setTermVectorsFormat(TermVectorsFormat.forName("Lucene50"));
+            //     config.setTermVectorsFieldFlags(Field.TermVector.WITH_POSITIONS_OFFSETS);
+            // }
+            return new IndexWriter(FSDirectory.open(Paths.get(indexPath)), config);
+        } catch(IOException e) {
+            // si el writer ya está siendo usado por otro hilo, esperamos y volvemos a intentarlo
+            try {
+                Thread.sleep(Thread.currentThread().getId());
+            } catch (InterruptedException ex) {
+                throw new RuntimeException(ex);
+            }
+            return getWriter(indexPath, analyzer, create);
+        }
+    }
 }
