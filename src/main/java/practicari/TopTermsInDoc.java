@@ -1,5 +1,16 @@
 package practicari;
 
+import org.apache.lucene.index.DirectoryReader;
+import org.apache.lucene.index.FieldInfos;
+import org.apache.lucene.index.MultiTerms;
+import org.apache.lucene.index.Terms;
+import org.apache.lucene.store.FSDirectory;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.nio.file.Paths;
+
 public class TopTermsInDoc {
 
     public static int tryParse(String text, String errorMessage) {
@@ -18,16 +29,16 @@ public class TopTermsInDoc {
 			return;
 		}
 
-        String index;
-        String field;
-        int docId;
-        int top;
-        String outfile;
+        String indexPath = null;
+        String field = null;
+        int docId = -1;
+        int top = -1;
+        String outfile = null;
 
         for (int i = 0; i < args.length; i++) {
             switch (args[i]) {
                 case "-index":
-                    index = args[++i];
+                    indexPath = args[++i];
                     break;
                 case "-field":
                     field = args[++i];
@@ -44,6 +55,45 @@ public class TopTermsInDoc {
                 default:
                     throw new IllegalArgumentException("unknown parameter " + args[i]);
             }
-          }
+        }
+
+        if(indexPath == null) {
+            System.out.println("Parámetro \"index\" no válido");
+            System.exit(1);
+        } else if(field == null) {
+            System.out.println("Parámetro \"field\" no válido");
+            System.exit(1);
+        } else if (outfile == null) {
+            System.out.println("Parámetro \"outfile\" no válido");
+            System.exit(1);
+        } else if (docId == -1) {
+            System.out.println("Parámetro \"docId\" no válido");
+            System.exit(1);
+        } else if (top == -1) {
+            System.out.println("Parámetro \"top\" no válido");
+            System.exit(1);
+        }
+
+        FSDirectory indexDir;
+        DirectoryReader indexReader;
+        try {
+            indexDir = FSDirectory.open(Paths.get(indexPath));
+            indexReader = DirectoryReader.open(indexDir);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        final FieldInfos fields = FieldInfos.getMergedFieldInfos(indexReader);
+        try {
+            Terms terms = MultiTerms.getTerms(indexReader, field);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        try (PrintWriter writer = new PrintWriter(outfile)){
+
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

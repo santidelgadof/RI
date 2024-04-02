@@ -18,15 +18,15 @@ public class TopTermsInField {
 			return;
 		}
 
-        String index;
-        String field;
-        int top;
-        String outfile;
+        String indexPath = null;
+        String field = null;
+        int top = -1;
+        String outfile = null;
 
         for (int i = 0; i < args.length; i++) {
             switch (args[i]) {
                 case "-index":
-                    index = args[++i];
+                    indexPath = args[++i];
                     break;
                 case "-field":
                     field = args[++i];
@@ -40,6 +40,22 @@ public class TopTermsInField {
                 default:
                     throw new IllegalArgumentException("unknown parameter " + args[i]);
             }
-          }
+        }
+
+        if(indexPath == null) {
+            System.out.println("Parámetro \"index\" no válido");
+            System.exit(1);
+        } else if(field == null) {
+            System.out.println("Parámetro \"field\" no válido");
+            System.exit(1);
+        } else if (outfile == null) {
+            System.out.println("Parámetro \"outfile\" no válido");
+            System.exit(1);
+        } else if (top == -1) {
+            System.out.println("Parámetro \"top\" no válido");
+            System.exit(1);
+        }
+
+
     }
 }
