@@ -29,7 +29,6 @@ import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.StringField;
 import org.apache.lucene.document.TextField;
 import org.apache.lucene.document.DateTools.Resolution;
-import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.en.EnglishAnalyzer;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
@@ -43,7 +42,6 @@ import org.apache.lucene.document.KeywordField;
 import org.apache.lucene.document.LongField;
 import org.apache.lucene.index.IndexWriterConfig.OpenMode;
 
-
 import static java.lang.System.currentTimeMillis;
 
 
@@ -52,21 +50,22 @@ public class WebIndexer {
     private static final String INDEX_DIR = "Index/";   // TODO: quitar carpetas por defecto al acabar la práctica
     private static final String DOCS_DIR = "Doc/";
     private static final int HTTP_OK = 200;
+    private static final String urlFilePath = "src/test/resources/urls/sites.url";
     public static final String usage = "Usage: java WebIndexer -index INDEX_PATH -docs DOCS_PATH [-create] [-numThreads int] [-h] [-p] [-titleTermVectors] [-bodyTermVectors] [-analyzer Analyzer]";
 
     public static void main(String[] args) {
-        /*if (args.length < 4) {            // TODO: descomentar al ponerlo disponible por comando
+        if (args.length < 4) {
             System.out.println(usage);
             return;
-        }*/
+        }
 
         // Guardar y validar opciones
-        String indexPath = INDEX_DIR;
+        String indexPath = INDEX_DIR;   // TODO: quitar tras acabar
         String docsPath = DOCS_DIR;
         boolean create = false;
         int numThreads = Runtime.getRuntime().availableProcessors();
-        boolean showThreadInfo = true;          // TODO: cambiar a false tras acabar la práctica
-        boolean showIndexCreatTime = true;
+        boolean showThreadInfo = false;
+        boolean showIndexCreatTime = false;
         boolean titleTermVectors = false;
         boolean bodyTermVectors = false;
         String analyzer = "StandardAnalyzer";
@@ -107,7 +106,6 @@ public class WebIndexer {
 
         Path indexDir = Paths.get(indexPath);
         Path docsDir = Paths.get(docsPath);
-        //IndexWriterConfig config;
 
         if (!Files.exists(indexDir) || !Files.isDirectory(indexDir)) {
             throw new IllegalArgumentException("Index directory does not exist: " + indexPath);
@@ -118,28 +116,24 @@ public class WebIndexer {
         if (!analyzer.equals("StandardAnalyzer") && !analyzer.equals("EnglishAnalyzer")) {
             throw new IllegalArgumentException("Invalid analyzer: " + analyzer);
         }
+
         IndexWriter indexWriter = getWriter(indexPath, analyzer, create);
 
         // Creamos el pool de threads
         final ExecutorService executor = Executors.newFixedThreadPool(numThreads);
 
         try {
-            String urlFilePath = "src/test/resources/urls/sites.url";
             List<String> urls = readUrlsFromFile(Paths.get(urlFilePath));
 
             for (final String url : urls) {
                 final Runnable worker = new WorkerThread(url, docsPath, indexPath, analyzer, showThreadInfo,
                         showIndexCreatTime, create, titleTermVectors, bodyTermVectors, indexWriter);
-                /*
-                * Send the thread to the ThreadPool. It will be processed eventually.
-                */
+                /* Send the thread to the ThreadPool. It will be processed eventually. */
                 executor.execute(worker);
             }
 
-            /*
-            * Close the ThreadPool; no more jobs will be accepted, but all the previously
-            * submitted jobs will be processed.
-            */
+            /* Close the ThreadPool; no more jobs will be accepted, but all the previously
+               submitted jobs will be processed. */
             executor.shutdown();
 
             /* Wait up to 1 hour to finish all the previously submitted jobs */
@@ -153,7 +147,7 @@ public class WebIndexer {
             System.out.println("Finished all threads");
             
         } catch (IOException e) {
-            System.err.println("Error reading URLs file: " + e.getMessage());
+            System.err.println("Error de lectura del archivo de URLs: " + e.getMessage());
             e.printStackTrace();
         }
     }
@@ -217,7 +211,6 @@ public class WebIndexer {
 			    System.out.println(String.format("Hilo '%s' comienzo url '%s'",
 					Thread.currentThread().getName(), url));
 
-			// Aquí va el trabajo del thread (PROCESAMIENTO URL)
 			processUrl(url, docsPath, indexPath, analyzer, showIndexCreatTime, create, titleTermVectors,
                     bodyTermVectors, indexWriter);
 
@@ -271,8 +264,6 @@ public class WebIndexer {
                         writer.newLine();
                         writer.write(body);
 
-                        // System.out.println("Page " + url + " downloaded and saved.");
-
                         indexUrl(locFilePath, indexPath, analyzer, title, body, showIndexCreatTime, create,
                                 titleTermVectors, bodyTermVectors, indexWriter);
                         
@@ -301,11 +292,9 @@ public class WebIndexer {
             if (showIndexCreatTime)
                 t1 = currentTimeMillis();
             Path locNotagsPath = Path.of(locPath.toString() + ".notags");
-            //IndexWriter writer = null;
 
             // index document
             try (InputStream stream = Files.newInputStream(locPath)) {
-                //writer = getWriter(indexPath, analyzer, create);
                 org.apache.lucene.document.Document doc = new org.apache.lucene.document.Document();
 
                 FileTime creationTime = (FileTime) Files.getAttribute(locPath, "creationTime");
@@ -342,29 +331,19 @@ public class WebIndexer {
 
                 // add to index and close
                 if (create) {
-                    // New index, so we just add the document (no old document can be there):
-                    // System.out.println("adding " + locPath);
+                    // se borran los archivos anteriores y quedan sólo los nuevos
                     writer.addDocument(doc);
                 } else {
-                    // Existing index (an old copy of this document may have been indexed) so
-                    // we use updateDocument instead to replace the old one matching the exact
-                    // path, if present:
-                    // System.out.println("updating " + locPath);
+                    /* si había archivos en el índice se dejan ahí. Los nuevos se crean, si hay alguno que
+                    quedaría repetido se actualiza el viejo. */
                     writer.updateDocument(new Term("path", locPath.toString()), doc);
                     writer.commit();
                 }
-                //try {
-                    //writer.addDocument(doc);
-                    //writer.commit();
-                    if (showIndexCreatTime) {
-                        long t2 = currentTimeMillis();
-                        System.out.println("Creado índice \"" + title + "\" en " + (t2-t1) + " msec");    // TODO: arreglar mensajes excepciones (en toda la práctica)
-                    }
-                    //writer.close();
-                /*} catch (IOException e) {
-                    System.out.println("Graceful message: exception " + e);
-                    e.printStackTrace();
-                }*/
+
+                if (showIndexCreatTime) {
+                    long t2 = currentTimeMillis();
+                    System.out.println("Creado índice \"" + title + "\" en " + (t2-t1) + " msec");
+                }
             } catch (IOException e) {
                 System.err.println("IOException on thread " + Thread.currentThread().getName() + ": " + e);
             }
