@@ -60,7 +60,7 @@ public class WebIndexer {
         String docsPath = DOCS_DIR;
         boolean create;
         int numThreads = Runtime.getRuntime().availableProcessors();
-        boolean showThreadInfo;
+        boolean showThreadInfo = true;
         boolean showAppInfo;
         boolean titleTermVectors;
         boolean bodyTermVectors;
@@ -129,7 +129,7 @@ public class WebIndexer {
             List<String> urls = readUrlsFromFile(Paths.get(urlFilePath));
 
             for (final String url : urls) {
-                final Runnable worker = new WorkerThread(url, docsPath, indexPath, analyzer);
+                final Runnable worker = new WorkerThread(url, docsPath, indexPath, analyzer, showThreadInfo);
                 /*
                 * Send the thread to the ThreadPool. It will be processed eventually.
                 */
@@ -185,12 +185,14 @@ public class WebIndexer {
 		private final String docsPath;
         private final String indexPath;
         private final String analyzer;
+        private final boolean showThreadInfo;
 
-		public WorkerThread(final String url, final String docsPath, final String indexPath, final String analyzer) {
+		public WorkerThread(final String url, final String docsPath, final String indexPath, final String analyzer, final boolean showThreadInfo) {
 			this.url = url;
 			this.docsPath = docsPath;
             this.indexPath = indexPath;
             this.analyzer = analyzer;
+            this.showThreadInfo = showThreadInfo;
 		}
 
 		/**
@@ -198,11 +200,16 @@ public class WebIndexer {
 		 */
 		@Override
 		public void run() {
-			System.out.println(String.format("I am the thread '%s' and I am responsible for url '%s'",
+            if(showThreadInfo)
+			    System.out.println(String.format("Hilo '%s' comienzo url '%s'",
 					Thread.currentThread().getName(), url));
 
 			// Aquí va el trabajo del thread (PROCESAMIENTO URL)
 			processUrl(url, docsPath, indexPath, analyzer);
+
+            if(showThreadInfo)
+                System.out.println(String.format("Hilo '%s' fin url '%s'",
+                        Thread.currentThread().getName(), url));
 		}
 
 		static void processUrl(String url, String docsPath, String indexPath, String analyzer) {
