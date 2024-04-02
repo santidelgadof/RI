@@ -42,6 +42,8 @@ import org.apache.lucene.document.Field;
 import org.apache.lucene.document.KeywordField;
 import org.apache.lucene.document.LongField;
 
+import static java.lang.System.currentTimeMillis;
+
 public class WebIndexer {
 
     private static final String INDEX_DIR = "Index/";   // TODO: quitar carpetas por defecto al acabar la práctica
@@ -60,8 +62,8 @@ public class WebIndexer {
         String docsPath = DOCS_DIR;
         boolean create;
         int numThreads = Runtime.getRuntime().availableProcessors();
-        boolean showThreadInfo = true;
-        boolean showAppInfo;
+        boolean showThreadInfo = true;          // TODO: cambiar a false tras acabar la práctica
+        boolean showIndexCreatTime = true;
         boolean titleTermVectors;
         boolean bodyTermVectors;
         String analyzer = "StandardAnalyzer";
@@ -84,7 +86,7 @@ public class WebIndexer {
                     showThreadInfo = true;
                     break;
                 case "-p":
-                    showAppInfo = true;
+                    showIndexCreatTime = true;
                     break;
                 case "-titleTermVectors":
                     titleTermVectors = true;
@@ -129,7 +131,7 @@ public class WebIndexer {
             List<String> urls = readUrlsFromFile(Paths.get(urlFilePath));
 
             for (final String url : urls) {
-                final Runnable worker = new WorkerThread(url, docsPath, indexPath, analyzer, showThreadInfo);
+                final Runnable worker = new WorkerThread(url, docsPath, indexPath, analyzer, showThreadInfo, showIndexCreatTime);
                 /*
                 * Send the thread to the ThreadPool. It will be processed eventually.
                 */
@@ -186,13 +188,16 @@ public class WebIndexer {
         private final String indexPath;
         private final String analyzer;
         private final boolean showThreadInfo;
+        private final boolean showIndexCreatTime;
 
-		public WorkerThread(final String url, final String docsPath, final String indexPath, final String analyzer, final boolean showThreadInfo) {
+		public WorkerThread(final String url, final String docsPath, final String indexPath,
+                            final String analyzer, final boolean showThreadInfo, final boolean showIndexCreatTime) {
 			this.url = url;
 			this.docsPath = docsPath;
             this.indexPath = indexPath;
             this.analyzer = analyzer;
             this.showThreadInfo = showThreadInfo;
+            this.showIndexCreatTime = showIndexCreatTime;
 		}
 
 		/**
@@ -205,14 +210,14 @@ public class WebIndexer {
 					Thread.currentThread().getName(), url));
 
 			// Aquí va el trabajo del thread (PROCESAMIENTO URL)
-			processUrl(url, docsPath, indexPath, analyzer);
+			processUrl(url, docsPath, indexPath, analyzer, showIndexCreatTime);
 
             if(showThreadInfo)
                 System.out.println(String.format("Hilo '%s' fin url '%s'",
                         Thread.currentThread().getName(), url));
 		}
 
-		static void processUrl(String url, String docsPath, String indexPath, String analyzer) {
+		static void processUrl(String url, String docsPath, String indexPath, String analyzer, boolean showIndexCreatTime) {
             // Timeout de 5 minutos
         	HttpClient httpClient = HttpClient.newBuilder().connectTimeout(Duration.ofMinutes(5)).build(); // TODO: handle timeout exception?
 
@@ -251,7 +256,7 @@ public class WebIndexer {
 
                         System.out.println("Page " + url + " downloaded and saved.");
 
-                        indexUrl(locFilePath, indexPath, analyzer, title, body);
+                        indexUrl(locFilePath, indexPath, analyzer, title, body, showIndexCreatTime);
                         
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -272,7 +277,11 @@ public class WebIndexer {
             }
 		}
 
-        static void indexUrl(Path locPath, String indexPath, String analyzer, String title, String body) {
+        static void indexUrl(Path locPath, String indexPath, String analyzer, String title, String body,
+                             boolean showIndexCreatTime) {
+            long t1 = 0;
+            if (showIndexCreatTime)
+                t1 = currentTimeMillis();
             Path locNotagsPath = Path.of(locPath.toString() + ".notags");
             IndexWriter writer = null;
 
@@ -314,8 +323,10 @@ public class WebIndexer {
                 try {
                     writer.addDocument(doc);
                     writer.commit();
-                    System.out.println("Wrote document \"" + title + "\" in the index");    // TODO: arreglar mensajes excepciones (en toda la práctica)
-                    writer.close();
+                    if (showIndexCreatTime) {
+                        long t2 = currentTimeMillis();
+                        System.out.println("Creado índice \"" + title + "\" en " + (t2-t1) + " msec");    // TODO: arreglar mensajes excepciones (en toda la práctica)
+                    }                    writer.close();
                 } catch (IOException e) {
                     System.out.println("Graceful message: exception " + e);
                     e.printStackTrace();
