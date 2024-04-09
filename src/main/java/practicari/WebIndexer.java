@@ -1,10 +1,6 @@
 package practicari;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.InetAddress;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -12,46 +8,64 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.FileSystems;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.nio.file.*;
 import java.nio.file.attribute.FileTime;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.Date;
 
+import org.apache.lucene.analysis.classic.ClassicAnalyzer;
+import org.apache.lucene.analysis.core.*;
+import org.apache.lucene.analysis.es.SpanishAnalyzer;
+import org.apache.lucene.analysis.gl.GalicianAnalyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
-import org.apache.lucene.document.StringField;
-import org.apache.lucene.document.TextField;
+import org.apache.lucene.document.*;
 import org.apache.lucene.document.DateTools.Resolution;
 import org.apache.lucene.analysis.en.EnglishAnalyzer;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.index.Term;
+import org.apache.lucene.index.IndexOptions;
 import org.apache.lucene.store.FSDirectory;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.apache.lucene.document.DateTools;
-import org.apache.lucene.document.Field;
-import org.apache.lucene.document.KeywordField;
-import org.apache.lucene.document.LongField;
 import org.apache.lucene.index.IndexWriterConfig.OpenMode;
 
 import static java.lang.System.currentTimeMillis;
+import static java.lang.System.lineSeparator;
 
 
 public class WebIndexer {
 
-    private static final String INDEX_DIR = "Index/";   // TODO: quitar carpetas por defecto al acabar la práctica
-    private static final String DOCS_DIR = "Doc/";
     private static final int HTTP_OK = 200;
-    private static final String urlFilePath = "src/test/resources/urls/sites.url";
-    public static final String usage = "Usage: java WebIndexer -index INDEX_PATH -docs DOCS_PATH [-create] [-numThreads int] [-h] [-p] [-titleTermVectors] [-bodyTermVectors] [-analyzer Analyzer]";
+    private static final String urlFilePath = "src" + File.separator + "test" + File.separator + "resources"
+            + File.separator + "urls" + File.separator + "sites.url";
+    
+    private static final String CONFIG_FILE_PATH = "src" + File.separator + "main" + File.separator + "resources"
+            + File.separator + "config.properties";  
+
+    public static final String usage = "Usage: java WebIndexer -index INDEX_PATH -docs DOCS_PATH [-create]" +
+            "[-numThreads int] [-h] [-p] [-titleTermVectors] [-bodyTermVectors] [-analyzer Analyzer]\n\n" +
+            "-index INDEX_PATH: indica la carpeta donde se almacenará el índice\n" +
+            "-docs DOCS_PATH: indica la carpeta donde se almacenan los archivos .loc y .loc.notags\n" +
+            "-create: pide que el índice se abra con CREATE, por defecto con CREATE_OR_APPEND\n" +
+            "-numThreads int: indica el número de hilos. Si no se indica esta opción, se " +
+            "usarán por defecto tantos hilos como el número de cores que se puede obtener con " +
+            "Runtime.getRuntime().availableProcessors()\n" +
+            "-h: hace que cada hilo informe del comienzo y fin de su trabajo: «Hilo xxx comienzo url yyy» «Hilo" +
+            "xxx fin url yyy»\n" +
+            "-p: hace que la aplicación informe del fin de su trabajo: «Creado índice zzz en mmm msecs»\n" +
+            "-titleTermVectors: indica que el campo title debe almacenar Term Vectors\n" +
+            "-bodyTermVectors: indica que el campo body debe almacenar Term Vectors\n" +
+            "-analyzer Analyzer: pide que se use uno de los Analyzers ya proporcionados por " +
+            "Lucene, por defecto se usará el Standard Analyzer. Los analyzers aceptados son:\n" +
+            "     StandardAnalyzer, ClassicAnalyzer, GalicianAnalyzer, EnglishAnalyzer, KeywordAnalyzer, " +
+            "SimpleAnalyzer, SpanishAnalyzer, UnicodeWhitespaceAnalyzer, y WhitespaceAnalyzer";
 
     public static void main(String[] args) {
         if (args.length < 4) {
@@ -60,8 +74,8 @@ public class WebIndexer {
         }
 
         // Guardar y validar opciones
-        String indexPath = INDEX_DIR;   // TODO: quitar tras acabar
-        String docsPath = DOCS_DIR;
+        String indexPath = null;
+        String docsPath = null;
         boolean create = false;
         int numThreads = Runtime.getRuntime().availableProcessors();
         boolean showThreadInfo = false;
@@ -69,6 +83,8 @@ public class WebIndexer {
         boolean titleTermVectors = false;
         boolean bodyTermVectors = false;
         String analyzer = "StandardAnalyzer";
+        Properties configProperties = loadConfigProperties();
+
 
         for (int i = 0; i < args.length; i++) {
             switch (args[i]) {
@@ -82,7 +98,7 @@ public class WebIndexer {
                     create = true;
                     break;
                 case "-numThreads":
-                    numThreads = tryParse(args[++i], "numThreads parameter is not a valid integer.");
+                    numThreads = tryParse(args[++i], "Parámetro numThreads no es un entero válido.");
                     break;
                 case "-h":
                     showThreadInfo = true;
@@ -100,21 +116,37 @@ public class WebIndexer {
                     analyzer = args[++i];
                     break;
                 default:
-                    throw new IllegalArgumentException("Unknown parameter: " + args[i]);
+                    System.out.println("Parámetro desconocido: " + args[i]);
+                    System.out.println(usage);
+                    return;
             }
+        }
+
+        if(indexPath == null) {
+            System.out.println("El argumento \"index\" es obligatorio.");
+            System.exit(-1);
+        }
+
+        if(docsPath == null){
+            System.out.println("El argumento \"docs\" es obligatorio.");
+            System.exit(-1);
+        }
+
+        if(numThreads < 1) {
+            System.out.println("El argumento \"numThreads\" ha de ser un número positivo.");
+            System.exit(-1);
         }
 
         Path indexDir = Paths.get(indexPath);
         Path docsDir = Paths.get(docsPath);
 
         if (!Files.exists(indexDir) || !Files.isDirectory(indexDir)) {
-            throw new IllegalArgumentException("Index directory does not exist: " + indexPath);
+            System.out.println("El directorio para el índice \"" + indexPath + "\" no existe.");
+            System.exit(-1);
         }
         if (!Files.exists(docsDir) || !Files.isDirectory(docsDir)) {
-            throw new IllegalArgumentException("Docs directory does not exist: " + docsPath);
-        }
-        if (!analyzer.equals("StandardAnalyzer") && !analyzer.equals("EnglishAnalyzer")) {
-            throw new IllegalArgumentException("Invalid analyzer: " + analyzer);
+            System.out.println("El directorio para los documentos \"" + docsPath + "\" no existe.");
+            System.exit(-1);
         }
 
         IndexWriter indexWriter = getWriter(indexPath, analyzer, create);
@@ -122,33 +154,41 @@ public class WebIndexer {
         // Creamos el pool de threads
         final ExecutorService executor = Executors.newFixedThreadPool(numThreads);
 
-        try {
-            List<String> urls = readUrlsFromFile(Paths.get(urlFilePath));
+        List<String> urls = readUrlsFromFile(Paths.get(urlFilePath));
 
-            for (final String url : urls) {
-                final Runnable worker = new WorkerThread(url, docsPath, indexPath, analyzer, showThreadInfo,
-                        showIndexCreatTime, create, titleTermVectors, bodyTermVectors, indexWriter);
-                /* Send the thread to the ThreadPool. It will be processed eventually. */
-                executor.execute(worker);
+        if (configProperties != null) {
+            String onlyDoms = configProperties.getProperty("onlyDoms");
+            if (onlyDoms != null && !onlyDoms.isEmpty()) {
+                // Filtrar las URLs según el dominio especificado en onlyDoms
+                urls = filterUrlsByDomain(urls, onlyDoms);
             }
+        }
+
+        for (final String url : urls) {
+            final Runnable worker = new WorkerThread(url, docsPath, showThreadInfo,
+                    showIndexCreatTime, create, titleTermVectors, bodyTermVectors, indexWriter);
+            /* Send the thread to the ThreadPool. It will be processed eventually. */
+            executor.execute(worker);
+        }
 
             /* Close the ThreadPool; no more jobs will be accepted, but all the previously
                submitted jobs will be processed. */
-            executor.shutdown();
+        executor.shutdown();
 
-            /* Wait up to 1 hour to finish all the previously submitted jobs */
-            try {
-                executor.awaitTermination(1, TimeUnit.HOURS);
-            } catch (final InterruptedException e) {
-                e.printStackTrace();
-                System.exit(-2);
-            }
-
-            System.out.println("Finished all threads");
-            
-        } catch (IOException e) {
-            System.err.println("Error de lectura del archivo de URLs: " + e.getMessage());
+        /* Wait up to 1 hour to finish all the previously submitted jobs */
+        try {
+            executor.awaitTermination(1, TimeUnit.HOURS);
+        } catch (final InterruptedException e) {
+            System.out.println("Thread interrumpido: "+ e.getMessage());
             e.printStackTrace();
+            System.exit(-2);
+        }
+        try {
+            indexWriter.close();
+        } catch (IOException e) {
+            System.out.println("IOException al cerrar el indexWriter: "+ e.getMessage());
+            e.printStackTrace();
+            System.exit(-1);
         }
     }
 
@@ -156,11 +196,13 @@ public class WebIndexer {
         try {
             return Integer.parseInt(text);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(errorMessage);
+            System.err.println(errorMessage);
+            System.exit(-1);
         }
+        return 0;
     }
 
-    private static List<String> readUrlsFromFile(Path filePath) throws IOException {
+    private static List<String> readUrlsFromFile(Path filePath){
         List<String> urls = new ArrayList<>();
         try (BufferedReader reader = Files.newBufferedReader(filePath)) {
             String line;
@@ -169,6 +211,10 @@ public class WebIndexer {
                     urls.add(line.trim());
                 }
             }
+        } catch (IOException e) {
+            System.out.println("Excepción de IO al leer las urls del archivo: " + e);
+            e.printStackTrace();
+            System.exit(-1);
         }
         return urls;
     }
@@ -177,8 +223,6 @@ public class WebIndexer {
 
 		private final String url;
 		private final String docsPath;
-        private final String indexPath;
-        private final String analyzer;
         private final boolean showThreadInfo;
         private final boolean showIndexCreatTime;
         private final boolean create;
@@ -186,14 +230,11 @@ public class WebIndexer {
         private final boolean bodyTermVectors;
         private final IndexWriter indexWriter;
 
-		public WorkerThread(final String url, final String docsPath, final String indexPath,
-                            final String analyzer, final boolean showThreadInfo, final boolean showIndexCreatTime,
+		public WorkerThread(final String url, final String docsPath, final boolean showThreadInfo, final boolean showIndexCreatTime,
                             final boolean create, final boolean titleTermVectors, final boolean bodyTermVectors,
                             final IndexWriter indexWriter) {
 			this.url = url;
 			this.docsPath = docsPath;
-            this.indexPath = indexPath;
-            this.analyzer = analyzer;
             this.showThreadInfo = showThreadInfo;
             this.showIndexCreatTime = showIndexCreatTime;
             this.create = create;  
@@ -208,28 +249,22 @@ public class WebIndexer {
 		@Override
 		public void run() {
             if(showThreadInfo)
-			    System.out.println(String.format("Hilo '%s' comienzo url '%s'",
-					Thread.currentThread().getName(), url));
+			    System.out.printf("Hilo '%s' comienzo url '%s'%n",
+					Thread.currentThread().getName(), url);
 
-			processUrl(url, docsPath, indexPath, analyzer, showIndexCreatTime, create, titleTermVectors,
+			processUrl(url, docsPath, showIndexCreatTime, create, titleTermVectors,
                     bodyTermVectors, indexWriter);
 
             if(showThreadInfo)
-                System.out.println(String.format("Hilo '%s' fin url '%s'",
-                        Thread.currentThread().getName(), url));
-
-            try {
-                indexWriter.close();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+                System.out.printf("Hilo '%s' fin url '%s'%n",
+                        Thread.currentThread().getName(), url);
         }
 
-		static void processUrl(String url, String docsPath, String indexPath, String analyzer,
+		static void processUrl(String url, String docsPath,
                                boolean showIndexCreatTime, boolean create, boolean titleTermVectors,
                                boolean bodyTermVectors, IndexWriter indexWriter) {
             // Timeout de 5 minutos
-        	HttpClient httpClient = HttpClient.newBuilder().connectTimeout(Duration.ofMinutes(5)).build(); // TODO: handle timeout exception?
+        	HttpClient httpClient = HttpClient.newBuilder().connectTimeout(Duration.ofMinutes(5)).build();
 
 			try {
                 HttpRequest request = HttpRequest.newBuilder()
@@ -263,36 +298,37 @@ public class WebIndexer {
                         writer.write(title);
                         writer.newLine();
                         writer.write(body);
+                        writer.close();
 
-                        indexUrl(locFilePath, indexPath, analyzer, title, body, showIndexCreatTime, create,
+                        indexUrl(locFilePath, title, body, showIndexCreatTime, create,
                                 titleTermVectors, bodyTermVectors, indexWriter);
                         
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                 } else {
-                    System.err.println("Failed to download page " + url + ". Status code: " + statusCode);
+                    System.err.println("Error al descargar la url " + url + ". Status code: " + statusCode);
                 }
             } catch (URISyntaxException e) {
-                System.err.println("Invalid URL syntax: " + url);
+                System.err.println("La sintaxis de la URL es inválida: " + url);
                 e.printStackTrace();
             } catch (IOException e) {
-                System.err.println("Error reading or writing file: " + e.getMessage());
+                System.err.println("Error leyendo o escribiendo el archivo: " + e.getMessage());
                 e.printStackTrace();
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
-                System.err.println("Thread interrupted while waiting for response: " + e.getMessage());
+                System.err.println("Thread interrumpido mientras esperaba respuesta: " + e.getMessage());
                 e.printStackTrace();
             }
 		}
 
-        static void indexUrl(Path locPath, String indexPath, String analyzer, String title, String body,
-                     boolean showIndexCreatTime, boolean create, boolean titleTermVectors, boolean bodyTermVectors, IndexWriter writer) {
+        static void indexUrl(Path locPath, String title, String body, boolean showIndexCreatTime,
+                             boolean create, boolean titleTermVectors, boolean bodyTermVectors, IndexWriter writer) {
             long t1 = 0;
             if (showIndexCreatTime)
                 t1 = currentTimeMillis();
             Path locNotagsPath = Path.of(locPath.toString() + ".notags");
-
+            
             // index document
             try (InputStream stream = Files.newInputStream(locPath)) {
                 org.apache.lucene.document.Document doc = new org.apache.lucene.document.Document();
@@ -305,11 +341,21 @@ public class WebIndexer {
                 String lastModifiedTimeLucene = DateTools.dateToString(Date.from(lastModifiedTime.toInstant()), Resolution.MILLISECOND);
 
                 doc.add(new KeywordField("path", locPath.toString(), Field.Store.YES));
-                doc.add(new TextField("contents", new BufferedReader(new InputStreamReader(stream, StandardCharsets.UTF_8))));
+
+                BufferedReader reader = new BufferedReader(new InputStreamReader(stream, StandardCharsets.UTF_8));
+                StringBuilder contentsBuilder = new StringBuilder();
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    contentsBuilder.append(line);
+                    contentsBuilder.append(lineSeparator());
+                }
+                reader.close();
+                doc.add(new TextField("contents", contentsBuilder.toString(), Field.Store.YES));
+
                 doc.add(new StringField("hostname", InetAddress.getLocalHost().getHostName(), Field.Store.YES));
                 doc.add(new StringField("thread", Thread.currentThread().getName(), Field.Store.YES));
-                doc.add(new LongField("locKb", Files.size(locPath) / 1024, Field.Store.YES));
-                doc.add(new LongField("notagsKb", Files.size(locNotagsPath) / 1024, Field.Store.YES));
+                doc.add(new LongField("locKb", Files.size(locPath)/1024, Field.Store.YES));
+                doc.add(new LongField("notagsKb", Files.size(locNotagsPath)/1024, Field.Store.YES));
                 doc.add(new StringField("creationTime", creationTime.toString(), Field.Store.YES));
                 doc.add(new StringField("lastAccessTime", lastAccessTime.toString(), Field.Store.YES));
                 doc.add(new StringField("lastModifiedTime", lastModifiedTime.toString(), Field.Store.YES));
@@ -317,16 +363,29 @@ public class WebIndexer {
                 doc.add(new StringField("lastAccessTimeLucene", lastAccessTimeLucene, Field.Store.YES));
                 doc.add(new StringField("lastModifiedTimeLucene", lastModifiedTimeLucene, Field.Store.YES));
 
-                doc.add(new TextField("title", title, Field.Store.YES));
-                doc.add(new TextField("body", body, Field.Store.YES));
-
-                //TermVectors y bodyTermVectors
-                if (titleTermVectors) {
-                    doc.add(new TextField("titleVector", title, Field.Store.YES));
+                // title & body guardan o no term vectors dependiendo de los argumentos
+                if(!titleTermVectors) {
+                    doc.add(new TextField("title", title, Field.Store.YES));
+                } else {
+                    FieldType titleVect = new FieldType();
+                    titleVect.setIndexOptions(IndexOptions.DOCS_AND_FREQS_AND_POSITIONS);
+                    titleVect.setStored(true);
+                    titleVect.setTokenized(true);
+                    titleVect.setOmitNorms(false);
+                    titleVect.setStoreTermVectors(true);
+                    doc.add(new Field("title", title, titleVect));
                 }
 
-                if (bodyTermVectors) {
-                    doc.add(new TextField("bodyVector", body, Field.Store.YES));
+                if(!bodyTermVectors) {
+                    doc.add(new TextField("body", body, Field.Store.YES));
+                } else {
+                    FieldType bodyVect = new FieldType();
+                    bodyVect.setIndexOptions(IndexOptions.DOCS_AND_FREQS_AND_POSITIONS);
+                    bodyVect.setStored(true);
+                    bodyVect.setTokenized(true);
+                    bodyVect.setOmitNorms(true);
+                    bodyVect.setStoreTermVectors(true);
+                    doc.add(new Field("body", body, bodyVect));
                 }
 
                 // add to index and close
@@ -345,7 +404,7 @@ public class WebIndexer {
                     System.out.println("Creado índice \"" + title + "\" en " + (t2-t1) + " msec");
                 }
             } catch (IOException e) {
-                System.err.println("IOException on thread " + Thread.currentThread().getName() + ": " + e);
+                System.err.println("IOException en el thread " + Thread.currentThread().getName() + ": " + e);
             }
         }
 
@@ -354,32 +413,63 @@ public class WebIndexer {
     static IndexWriter getWriter (String indexPath, String analyzer, boolean create) {
 
         try {
-            IndexWriterConfig config;
-            if (analyzer.equals("StandardAnalyzer")) {
-                config = new IndexWriterConfig(new StandardAnalyzer());
-            } else if (analyzer.equals("EnglishAnalyzer")) {
-                config = new IndexWriterConfig(new EnglishAnalyzer());  // TODO: añadir el resto de analyzers
-            } else {
-                throw new IllegalArgumentException("Invalid analyzer: " + analyzer);
+            IndexWriterConfig config = null;
+            switch(analyzer) {
+                case "StandardAnalyzer": config = new IndexWriterConfig(new StandardAnalyzer()); break;
+                case "EnglishAnalyzer": config = new IndexWriterConfig(new EnglishAnalyzer()); break;
+                case "KeywordAnalyzer": config = new IndexWriterConfig(new KeywordAnalyzer()); break;
+                case "SimpleAnalyzer": config = new IndexWriterConfig(new SimpleAnalyzer()); break;
+                case "UnicodeWhitespaceAnalyzer": config = new IndexWriterConfig(new UnicodeWhitespaceAnalyzer()); break;
+                case "WhitespaceAnalyzer": config = new IndexWriterConfig(new WhitespaceAnalyzer()); break;
+                case "ClassicAnalyzer": config = new IndexWriterConfig(new ClassicAnalyzer()); break;
+                case "GalicianAnalyzer": config = new IndexWriterConfig(new GalicianAnalyzer()); break;
+                case "SpanishAnalyzer": config = new IndexWriterConfig(new SpanishAnalyzer()); break;
+                default:
+                    System.out.println("Invalid analyzer: " + analyzer); System.exit(-1); break;
             }
+
+
             if (create)
                 config.setOpenMode(OpenMode.CREATE);
             else
                 config.setOpenMode(OpenMode.CREATE_OR_APPEND);
 
-            // if (titleTermVectors || bodyTermVectors) {
-            //     config.setTermVectorsFormat(TermVectorsFormat.forName("Lucene50"));
-            //     config.setTermVectorsFieldFlags(Field.TermVector.WITH_POSITIONS_OFFSETS);
-            // }
             return new IndexWriter(FSDirectory.open(Paths.get(indexPath)), config);
         } catch(IOException e) {
             // si el writer ya está siendo usado por otro hilo, esperamos y volvemos a intentarlo
             try {
                 Thread.sleep(Thread.currentThread().getId());
             } catch (InterruptedException ex) {
-                throw new RuntimeException(ex);
+                System.err.println("Thread interrumpido: " + e.getMessage());
+                e.printStackTrace();
             }
             return getWriter(indexPath, analyzer, create);
         }
     }
+    
+    private static Properties loadConfigProperties() {
+        Properties properties = new Properties();
+        try (FileInputStream fis = new FileInputStream(CONFIG_FILE_PATH)) {
+            properties.load(fis);
+        } catch (IOException e) {
+            System.err.println("Error al cargar el archivo de configuración: " + e.getMessage());
+            return null;
+        }
+        return properties;
+    }
+
+    private static List<String> filterUrlsByDomain(List<String> urls, String domains) {
+        List<String> filteredUrls = new ArrayList<>();
+        String[] domainArray = domains.split("\\s+");
+        for (String url : urls) {
+            for (String domain : domainArray) {
+                if (url.endsWith(domain) || url.endsWith(domain + "/")) {
+                    filteredUrls.add(url);
+                    break; // No necesitamos verificar otros dominios una vez que encontramos una coincidencia
+                }
+            }
+        }
+        return filteredUrls;
+    }
+    
 }
