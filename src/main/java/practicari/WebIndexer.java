@@ -11,13 +11,10 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.*;
 import java.nio.file.attribute.FileTime;
 import java.time.Duration;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
+import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
-import java.util.Date;
 
 import org.apache.lucene.analysis.classic.ClassicAnalyzer;
 import org.apache.lucene.analysis.core.*;
@@ -44,7 +41,7 @@ public class WebIndexer {
 
     private static final int HTTP_OK = 200;
     private static final String urlFilePath = "src" + File.separator + "test" + File.separator + "resources"
-            + File.separator + "urls" + File.separator + "sites.url";
+            + File.separator + "urls";
     
     private static final String CONFIG_FILE_PATH = "src" + File.separator + "main" + File.separator + "resources"
             + File.separator + "config.properties";  
@@ -83,7 +80,6 @@ public class WebIndexer {
         boolean titleTermVectors = false;
         boolean bodyTermVectors = false;
         String analyzer = "StandardAnalyzer";
-        Properties configProperties = loadConfigProperties();
 
 
         for (int i = 0; i < args.length; i++) {
@@ -154,18 +150,25 @@ public class WebIndexer {
         // Creamos el pool de threads
         final ExecutorService executor = Executors.newFixedThreadPool(numThreads);
 
-        List<String> urls = readUrlsFromFile(Paths.get(urlFilePath));
+        // Obtenemos la lista de archivos de la carpeta urls
+        File folder = new File(urlFilePath);
+        File[] listOfFiles = folder.listFiles();
+        List<Path> listOfPaths = new LinkedList<>();
 
-        if (configProperties != null) {
-            String onlyDoms = configProperties.getProperty("onlyDoms");
-            if (onlyDoms != null && !onlyDoms.isEmpty()) {
-                // Filtrar las URLs según el dominio especificado en onlyDoms
-                urls = filterUrlsByDomain(urls, onlyDoms);
-            }
+        // Si no hay archivos en la carpeta urls, salimos
+        if(listOfFiles == null) {
+            System.out.println("No se han encontrado arhivos en la carpeta urls.");
+            System.exit(0);
+        }
+    
+        // Añadimos a la lista de paths los archivos que sean ficheros y se puedan leer
+        for (File file : listOfFiles) {
+            if(file.isFile() && file.canRead())
+                listOfPaths.add(file.toPath());
         }
 
-        for (final String url : urls) {
-            final Runnable worker = new WorkerThread(url, docsPath, showThreadInfo,
+        for (Path path : listOfPaths) {
+            final Runnable worker = new WorkerThread(path, docsPath, showThreadInfo,
                     showIndexCreatTime, create, titleTermVectors, bodyTermVectors, indexWriter);
             /* Send the thread to the ThreadPool. It will be processed eventually. */
             executor.execute(worker);
@@ -176,6 +179,7 @@ public class WebIndexer {
         executor.shutdown();
 
         /* Wait up to 1 hour to finish all the previously submitted jobs */
+        // Si no termina en una hora, salimos
         try {
             executor.awaitTermination(1, TimeUnit.HOURS);
         } catch (final InterruptedException e) {
@@ -183,6 +187,8 @@ public class WebIndexer {
             e.printStackTrace();
             System.exit(-2);
         }
+
+        // Cerramos el indexWriter
         try {
             indexWriter.close();
         } catch (IOException e) {
@@ -192,6 +198,7 @@ public class WebIndexer {
         }
     }
 
+    // Convertir un String a un entero
     private static int tryParse(String text, String errorMessage) {
         try {
             return Integer.parseInt(text);
@@ -202,8 +209,10 @@ public class WebIndexer {
         return 0;
     }
 
+    // Leer las urls de un archivo
     private static List<String> readUrlsFromFile(Path filePath){
         List<String> urls = new ArrayList<>();
+
         try (BufferedReader reader = Files.newBufferedReader(filePath)) {
             String line;
             while ((line = reader.readLine()) != null) {
@@ -221,7 +230,7 @@ public class WebIndexer {
 
     public static class WorkerThread implements Runnable {
 
-		private final String url;
+		private final Path path;
 		private final String docsPath;
         private final boolean showThreadInfo;
         private final boolean showIndexCreatTime;
@@ -230,10 +239,10 @@ public class WebIndexer {
         private final boolean bodyTermVectors;
         private final IndexWriter indexWriter;
 
-		public WorkerThread(final String url, final String docsPath, final boolean showThreadInfo, final boolean showIndexCreatTime,
+		public WorkerThread(final Path path, final String docsPath, final boolean showThreadInfo, final boolean showIndexCreatTime,
                             final boolean create, final boolean titleTermVectors, final boolean bodyTermVectors,
                             final IndexWriter indexWriter) {
-			this.url = url;
+			this.path = path;
 			this.docsPath = docsPath;
             this.showThreadInfo = showThreadInfo;
             this.showIndexCreatTime = showIndexCreatTime;
@@ -246,33 +255,51 @@ public class WebIndexer {
 		/**
 		 * This is the work that the current thread will do when processed by the pool.
 		 */
+
+        // Método que se ejecuta en cada hilo
 		@Override
 		public void run() {
-            if(showThreadInfo)
-			    System.out.printf("Hilo '%s' comienzo url '%s'%n",
-					Thread.currentThread().getName(), url);
+            List<String> urls = readUrlsFromFile(path);
+            Properties configProperties = loadConfigProperties();
 
-			processUrl(url, docsPath, showIndexCreatTime, create, titleTermVectors,
-                    bodyTermVectors, indexWriter);
+            if (configProperties != null) {
+                String onlyDoms = configProperties.getProperty("onlyDoms");
+                if (onlyDoms != null && !onlyDoms.isEmpty()) {
+                    // Filtrar las URLs según el dominio especificado en onlyDoms
+                    urls = filterUrlsByDomain(urls, onlyDoms);
+                }
+            }
 
-            if(showThreadInfo)
-                System.out.printf("Hilo '%s' fin url '%s'%n",
-                        Thread.currentThread().getName(), url);
+            for(String url : urls) {
+                if(showThreadInfo)
+                    System.out.printf("Hilo '%s' comienzo url '%s'%n",
+                            Thread.currentThread().getName(), url);
+
+                processUrl(url, docsPath, showIndexCreatTime, create, titleTermVectors,
+                        bodyTermVectors, indexWriter);
+
+                if(showThreadInfo)
+                    System.out.printf("Hilo '%s' fin url '%s'%n",
+                            Thread.currentThread().getName(), url);
+            }
         }
-
+        
+        // Procesar url
 		static void processUrl(String url, String docsPath,
                                boolean showIndexCreatTime, boolean create, boolean titleTermVectors,
                                boolean bodyTermVectors, IndexWriter indexWriter) {
             // Timeout de 5 minutos
         	HttpClient httpClient = HttpClient.newBuilder().connectTimeout(Duration.ofMinutes(5)).build();
-
+            
+            // Descargar la página web
 			try {
+                // Realizar petición GET a la URL
                 HttpRequest request = HttpRequest.newBuilder()
                         .uri(new URI(url))
                         .build();
 
                 HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
-
+                
                 int statusCode = response.statusCode();
                 if (statusCode == HTTP_OK) {
                     // Crear archivo .loc
@@ -313,7 +340,7 @@ public class WebIndexer {
                 System.err.println("La sintaxis de la URL es inválida: " + url);
                 e.printStackTrace();
             } catch (IOException e) {
-                System.err.println("Error leyendo o escribiendo el archivo: " + e.getMessage());
+                System.err.println("Error leyendo o escribiendo la url: " + e.getMessage());
                 e.printStackTrace();
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
@@ -321,7 +348,8 @@ public class WebIndexer {
                 e.printStackTrace();
             }
 		}
-
+        
+        // Indexar url
         static void indexUrl(Path locPath, String title, String body, boolean showIndexCreatTime,
                              boolean create, boolean titleTermVectors, boolean bodyTermVectors, IndexWriter writer) {
             long t1 = 0;
@@ -332,7 +360,8 @@ public class WebIndexer {
             // index document
             try (InputStream stream = Files.newInputStream(locPath)) {
                 org.apache.lucene.document.Document doc = new org.apache.lucene.document.Document();
-
+                
+                // Añadir campos al documento
                 FileTime creationTime = (FileTime) Files.getAttribute(locPath, "creationTime");
                 FileTime lastAccessTime = (FileTime) Files.getAttribute(locPath, "lastAccessTime");
                 FileTime lastModifiedTime = (FileTime) Files.getAttribute(locPath, "lastModifiedTime");
@@ -350,8 +379,8 @@ public class WebIndexer {
                     contentsBuilder.append(lineSeparator());
                 }
                 reader.close();
-                doc.add(new TextField("contents", contentsBuilder.toString(), Field.Store.YES));
 
+                doc.add(new TextField("contents", contentsBuilder.toString(), Field.Store.YES));
                 doc.add(new StringField("hostname", InetAddress.getLocalHost().getHostName(), Field.Store.YES));
                 doc.add(new StringField("thread", Thread.currentThread().getName(), Field.Store.YES));
                 doc.add(new LongField("locKb", Files.size(locPath)/1024, Field.Store.YES));
@@ -410,10 +439,13 @@ public class WebIndexer {
 
 	}
 
+    // Método para obtener un IndexWriter
     static IndexWriter getWriter (String indexPath, String analyzer, boolean create) {
-
+        
         try {
             IndexWriterConfig config = null;
+
+            // Seleccionar el analyzer
             switch(analyzer) {
                 case "StandardAnalyzer": config = new IndexWriterConfig(new StandardAnalyzer()); break;
                 case "EnglishAnalyzer": config = new IndexWriterConfig(new EnglishAnalyzer()); break;
@@ -428,14 +460,16 @@ public class WebIndexer {
                     System.out.println("Invalid analyzer: " + analyzer); System.exit(-1); break;
             }
 
-
+            // Configurar el modo de apertura del índice
             if (create)
                 config.setOpenMode(OpenMode.CREATE);
             else
                 config.setOpenMode(OpenMode.CREATE_OR_APPEND);
 
             return new IndexWriter(FSDirectory.open(Paths.get(indexPath)), config);
+
         } catch(IOException e) {
+
             // si el writer ya está siendo usado por otro hilo, esperamos y volvemos a intentarlo
             try {
                 Thread.sleep(Thread.currentThread().getId());
@@ -447,6 +481,7 @@ public class WebIndexer {
         }
     }
     
+    // Método para cargar las propiedades del archivo de configuración
     private static Properties loadConfigProperties() {
         Properties properties = new Properties();
         try (FileInputStream fis = new FileInputStream(CONFIG_FILE_PATH)) {
@@ -458,6 +493,7 @@ public class WebIndexer {
         return properties;
     }
 
+    // Método para filtrar las URLs por dominio
     private static List<String> filterUrlsByDomain(List<String> urls, String domains) {
         List<String> filteredUrls = new ArrayList<>();
         String[] domainArray = domains.split("\\s+");

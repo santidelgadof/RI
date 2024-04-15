@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="https://www.fic.udc.es/sites/default/files/logo_fic_0.ico" type="image/vnd.microsoft.icon" />
+<meta name="description" content="Benvido a Facultade de Informática de A Coruña" />
+<meta name="keywords" content="facultade,informatica,universidad,coruña" />
+<meta name="abstract" content="Benvido a Facultade de Informática de A Coruña" />
+<meta name="generator" content="Drupal 7 (http://drupal.org)" />
+<link rel="canonical" href="https://www.fic.udc.es/gl" />
+<link rel="shortlink" href="https://www.fic.udc.es/gl" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://www.fic.udc.es/gl" />
+<meta property="og:title" content="Facultade de Informática de A Coruña" />
+<meta property="og:description" content="Facultade de Informática de A Coruña" />
+<meta name="twitter:url" content="https://www.fic.udc.es/gl" />
+<meta name="twitter:title" content="Facultade de Informática de A Coruña" />
+<meta name="twitter:description" content="Facultade de Informática de A Coruña" />
+<meta itemprop="name" content="Facultade de Informática de A Coruña" />
+<meta itemprop="description" content="Facultade de Informática de A Coruña" />
+<meta name="dcterms.title" content="Facultade de Informática de A Coruña" />
+<meta name="dcterms.description" content="Facultade de Informática de A Coruña" />
+<meta name="dcterms.identifier" content="https://www.fic.udc.es/gl" />
+		<title>Facultade de Informática de A Coruña | Facultade de Informática de A Coruña</title>
+		<link type="text/css" rel="stylesheet" href="https://www.fic.udc.es/sites/default/files/css/css_xE-rWrJf-fncB6ztZfd2huxqgxu4WO-qwma6Xer30m4.css" media="all" />
+<link type="text/css" rel="stylesheet" href="https://www.fic.udc.es/sites/default/files/css/css_6YdSP4ZAGBqA0KyKSoD3WiFp3nCwntldbT9z9qPFy90.css" media="all" />
+<link type="text/css" rel="stylesheet" href="https://www.fic.udc.es/sites/default/files/css/css__FJcJfxbxju99OY8qT7_VxsuVrUDvH8wmVTERczXkAM.css" media="all" />
+<link type="text/css" rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" media="all" />
+<link type="text/css" rel="stylesheet" href="https://www.fic.udc.es/sites/default/files/css/css_Jpv7ZVaQoeYAaxmgXGhaic_zlEHmPbjhr7HBZeR4Ub0.css" media="all" />
+<link type="text/css" rel="stylesheet" href="https://www.fic.udc.es/sites/default/files/css/css_f_S3-SqymeenE-xGx9XGliGxpk7RqUB5rDUdtBuCY5E.css" media="all" />
+		<script type="text/javascript" src="https://www.fic.udc.es/sites/default/files/js/js_v7z_ueNi9EIrZXPI8So7AkuzyXuKekr2jbdDptsM5Oc.js"></script>
+<script type="text/javascript" src="https://www.fic.udc.es/sites/default/files/js/js_f_BpsloZtITWNBq8h8TQNh4SUGlZKD__yTkMLSN2_t8.js"></script>
+<script type="text/javascript" src="https://www.fic.udc.es/sites/default/files/js/js_n8Vw0VmPu2N55mPw4omlMBYveguTjn67LAIooN0gPAY.js"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+(function(i,s,o,g,r,a,m){i["GoogleAnalyticsObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,"script","https://www.google-analytics.com/analytics.js","ga");ga("create", "UA-100441843-1", {"cookieDomain":"auto"});ga("set", "anonymizeIp", true);ga("send", "pageview");
+//--><!]]>
+</script>
+<script type="text/javascript" src="https://www.fic.udc.es/sites/default/files/js/js_fJ5Bb_gCk5nHg8x_XVMvQNblxUrIg25apVG1Ti2zGXY.js"></script>
+<script type="text/javascript" src="https://www.fic.udc.es/sites/default/files/js/js_aQipIAi8o3CUgoG5nRS6l9lQjUjIPUwG419GhlWwxpY.js"></script>
+<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+jQuery.extend(Drupal.settings, {"basePath":"\/","pathPrefix":"gl\/","ajaxPageState":{"theme":"evolve","theme_token":"_Qc8tkfNdAXmp1b8dOgLQN-Rq4F7qRCDwmomueQbg5s","js":{"sites\/all\/modules\/jquery_update\/replace\/jquery\/1.7\/jquery.min.js":1,"misc\/jquery.once.js":1,"misc\/drupal.js":1,"sites\/all\/modules\/spamspan\/spamspan.js":1,"sites\/all\/themes\/drupalexp\/assets\/js\/plugins.js":1,"public:\/\/languages\/gl_PBEl3OLC_fXkr9Sinp4H6MzbW_QwWQyMZLr6kM1H2Ms.js":1,"sites\/all\/libraries\/colorbox\/jquery.colorbox-min.js":1,"sites\/all\/modules\/colorbox\/js\/colorbox.js":1,"sites\/all\/modules\/colorbox\/styles\/default\/colorbox_style.js":1,"sites\/all\/modules\/lightbox2\/js\/lightbox.js":1,"sites\/all\/modules\/drupalexp\/modules\/dexp_menu\/js\/dexp-dropdown.js":1,"sites\/all\/modules\/google_analytics\/googleanalytics.js":1,"sites\/all\/modules\/drupalexp\/modules\/dexp_views_bxslider\/js\/dexp_bxslider.js":1,"sites\/all\/libraries\/bxslider\/jquery.bxslider.min.js":1,"0":1,"sites\/all\/modules\/drupalexp\/modules\/dexp_animation\/js\/dexp_animation.js":1,"sites\/all\/libraries\/appear\/jquery.appear.js":1,"sites\/all\/themes\/drupalexp\/vendor\/bootstrap\/js\/bootstrap.min.js":1,"sites\/all\/themes\/drupalexp\/assets\/js\/drupalexp-custompadding.js":1,"sites\/all\/themes\/drupalexp\/assets\/js\/drupalexp.js":1,"sites\/all\/themes\/drupalexp\/assets\/js\/dexp-smoothscroll.js":1,"sites\/all\/themes\/evolve\/assets\/scripts\/evolve.js":1},"css":{"modules\/system\/system.base.css":1,"modules\/system\/system.menus.css":1,"modules\/system\/system.messages.css":1,"modules\/system\/system.theme.css":1,"sites\/all\/modules\/calendar\/css\/calendar_multiday.css":1,"sites\/all\/modules\/date\/date_api\/date.css":1,"sites\/all\/modules\/date\/date_popup\/themes\/datepicker.1.7.css":1,"sites\/all\/modules\/date\/date_repeat_field\/date_repeat_field.css":1,"modules\/field\/theme\/field.css":1,"modules\/node\/node.css":1,"modules\/search\/search.css":1,"modules\/user\/user.css":1,"sites\/all\/modules\/views\/css\/views.css":1,"sites\/all\/modules\/ckeditor\/css\/ckeditor.css":1,"sites\/all\/modules\/media\/modules\/media_wysiwyg\/css\/media_wysiwyg.base.css":1,"sites\/all\/modules\/colorbox\/styles\/default\/colorbox_style.css":1,"sites\/all\/modules\/ctools\/css\/ctools.css":1,"sites\/all\/modules\/lightbox2\/css\/lightbox.css":1,"sites\/all\/modules\/drupalexp\/modules\/dexp_menu\/css\/dexp-dropdown.css":1,"sites\/all\/libraries\/bxslider\/jquery.bxslider.css":1,"sites\/all\/modules\/linkicon\/css\/linkicon.css":1,"modules\/locale\/locale.css":1,"sites\/all\/libraries\/fontello\/css\/fontello.css":1,"sites\/all\/modules\/drupalexp\/modules\/dexp_animation\/css\/animate.css":1,"sites\/all\/modules\/drupalexp\/modules\/dexp_widget\/css\/flickr.css":1,"\/\/maxcdn.bootstrapcdn.com\/font-awesome\/4.7.0\/css\/font-awesome.min.css":1,"sites\/all\/themes\/drupalexp\/assets\/css\/drupalexp.css":1,"sites\/all\/themes\/drupalexp\/vendor\/bootstrap\/css\/bootstrap.min.css":1,"sites\/all\/themes\/drupalexp\/vendor\/font-awesome\/css\/font-awesome.min.css":1,"sites\/all\/themes\/drupalexp\/assets\/css\/drupalexp-rtl.css":1,"public:\/\/drupalexp\/css\/style-preset1.css":1,"sites\/all\/themes\/evolve\/css\/net.css":1}},"colorbox":{"opacity":"0.85","current":"{current} of {total}","previous":"\u00ab Prev","next":"Next \u00bb","close":"Activar pechar","maxWidth":"98%","maxHeight":"98%","fixed":true,"mobiledetect":true,"mobiledevicewidth":"480px"},"lightbox2":{"rtl":"0","file_path":"\/(\\w\\w\/)public:\/","default_image":"\/sites\/all\/modules\/lightbox2\/images\/brokenimage.jpg","border_size":10,"font_color":"000","box_color":"fff","top_position":"","overlay_opacity":"0.8","overlay_color":"000","disable_close_click":true,"resize_sequence":0,"resize_speed":400,"fade_in_speed":400,"slide_down_speed":600,"use_alt_layout":false,"disable_resize":false,"disable_zoom":false,"force_show_nav":false,"show_caption":true,"loop_items":false,"node_link_text":"View Image Details","node_link_target":false,"image_count":"Imaxe !current de !total","video_count":"Video !current of !total","page_count":"Page !current of !total","lite_press_x_close":"press \u003Ca href=\u0022#\u0022 onclick=\u0022hideLightbox(); return FALSE;\u0022\u003E\u003Ckbd\u003Ex\u003C\/kbd\u003E\u003C\/a\u003E to close","download_link_text":"","enable_login":false,"enable_contact":false,"keys_close":"c x 27","keys_previous":"p 37","keys_next":"n 39","keys_zoom":"z","keys_play_pause":"32","display_image_size":"original","image_node_sizes":"()","trigger_lightbox_classes":"","trigger_lightbox_group_classes":"","trigger_slideshow_classes":"","trigger_lightframe_classes":"","trigger_lightframe_group_classes":"","custom_class_handler":0,"custom_trigger_classes":"","disable_for_gallery_lists":true,"disable_for_acidfree_gallery_lists":true,"enable_acidfree_videos":true,"slideshow_interval":5000,"slideshow_automatic_start":true,"slideshow_automatic_exit":true,"show_play_pause":true,"pause_on_next_click":false,"pause_on_previous_click":true,"loop_slides":false,"iframe_width":600,"iframe_height":400,"iframe_border":1,"enable_video":false,"useragent":"Zabbix 3.2.4"},"better_exposed_filters":{"views":{"blog":{"displays":{"block_7":{"filters":[]},"block_11":{"filters":[]}}},"eventos":{"displays":{"block_6":{"filters":[]}}},"destacados_banner":{"displays":{"block_9":{"filters":[]},"block_5":{"filters":[]},"block_3":{"filters":[]}}},"slider_imagen_banner":{"displays":{"block":{"filters":[]}}},"direccion":{"displays":{"block_2":{"filters":[]}}}}},"dexpbxsliders":{"blog-block-11":{"mode":"horizontal","speed":"4000","auto":true,"pause":"15000","infiniteLoop":true,"slideMargin":0,"startSlide":"0","randomStart":false,"pager":false,"controls":true,"minSlides":"1","maxSlides":"1","moveSlides":"0","slideWidth":"0","prevText":"\u003Ci class=\u0022fa fa-angle-left\u0022\u003E\u003C\/i\u003E","nextText":"\u003Ci class=\u0022fa fa-angle-right\u0022\u003E\u003C\/i\u003E"},"slider-imagen-banner-block":{"mode":"fade","speed":"2000","auto":true,"pause":"15000","infiniteLoop":true,"slideMargin":0,"startSlide":"0","randomStart":true,"pager":false,"controls":false,"minSlides":"1","maxSlides":"1","moveSlides":"0","slideWidth":"0","prevText":"\u003Ci class=\u0022fa fa-angle-left\u0022\u003E\u003C\/i\u003E","nextText":"\u003Ci class=\u0022fa fa-angle-right\u0022\u003E\u003C\/i\u003E"}},"googleanalytics":{"trackOutbound":1,"trackMailto":1,"trackDownload":1,"trackDownloadExtensions":"7z|aac|arc|arj|asf|asx|avi|bin|csv|doc(x|m)?|dot(x|m)?|exe|flv|gif|gz|gzip|hqx|jar|jpe?g|js|mp(2|3|4|e?g)|mov(ie)?|msi|msp|pdf|phps|png|ppt(x|m)?|pot(x|m)?|pps(x|m)?|ppam|sld(x|m)?|thmx|qtm?|ra(m|r)?|sea|sit|tar|tgz|torrent|txt|wav|wma|wmv|wpd|xls(x|m|b)?|xlt(x|m)|xlam|xml|z|zip","trackColorbox":1},"urlIsAjaxTrusted":{"\/":true},"drupalexp":{"key":"preset1","base_color":"#5F8CB4","text_color":"#666666","link_color":"#5F8CB4","link_hover_color":"#5F8CB4","heading_color":"#2D3237"}});
+//--><!]]>
+</script>
+	</head>
+	<body class="html front not-logged-in no-sidebars page-node i18n-gl ltr wide bg1 preset-preset1" >
+		<div id="skip-link">
+		<a href="#main-content" class="element-invisible element-focusable">Ir o contido principal</a>
+		</div>
+				<div class="dexp-body-inner default"><section  class="dexp-section" id="section-header">
+	<div class="container">
+		<div class="row">
+			<div class="hidden-lg hidden-md col-xs-3 col-sm-3"><span class="fa fa-bars menu-toggle"></span></div>
+      <!-- .region-top-->
+  <div class="region region-top col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div id="block-search-form" class="block block-search dexp-animate" data-animate="fadeInRight">
+<div class="content">
+<form action="/" method="post" id="search-block-form" accept-charset="UTF-8"><div><div class="container">
+  <div class="col-lg-11 col-md-11 col-sm-11 col-xs-10">
+        <h2 class="element-invisible">Formulario de busca</h2>
+        <div class="form-item form-type-textfield form-item-search-block-form">
+  <label class="element-invisible" for="edit-search-block-form--2">Buscar </label>
+ <input title="Introduza os termos que queira buscar." placeholder="" type="text" id="edit-search-block-form--2" name="search_block_form" value="" size="15" maxlength="128" class="form-text" />
+</div>
+<div class="element-invisible form-actions form-wrapper" id="edit-actions"><input class="btn btn-primary form-submit" type="submit" id="edit-submit" name="op" value="Buscar" /></div><input type="hidden" name="form_build_id" value="form-DFvnPix5NWsiyiFvREI1KCEYsZgZ3P7Bq6kHRa0I1s0" />
+<input type="hidden" name="form_id" value="search_block_form" />
+    <div class="clear"></div>
+  </div>
+  <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2">
+    <a class="search-close" href="#"><span class="glyphicon glyphicon-remove"></span></a>
+  </div>
+</div> </div></form>
+</div>
+</div>  </div>
+<!-- END .region-top-->
+<!-- .region-user20-->
+  <div class="region region-user20 col-xs-8 col-sm-8 col-md-12 col-lg-12">
+    <div id="block-locale-language" class="block block-locale">
+<div class="content">
+<ul class="language-switcher-locale-url"><li class="es first"><a href="/es" class="language-link" xml:lang="es">Español</a></li>
+<li class="gl active"><a href="/gl" class="language-link active" xml:lang="gl">Galego</a></li>
+<li class="en last"><a href="/en" class="language-link" xml:lang="en">English</a></li>
+</ul>
+</div>
+</div>  </div>
+<!-- END .region-user20-->
+<!-- .region-logo-->
+<div class="col-xs-6 col-sm-6 col-md-2 col-lg-2"><a href="/gl" class="site-logo active"><img src="https://www.fic.udc.es/sites/default/files/logo_fic_0.png" alt="FIC"/></a></div><!-- END .region-logo-->
+<!-- .region-navigation-->
+
+
+<!--
+  -->
+<!--
+  <div class="col-lg-1 col-md-1 col-sm-1 col-xs-2 pull-right right search-toggle-bar">
+      <a href="#" class="search-toggle"><span  class="fa fa-search"></span></a>
+    </div>
+-->
+<!--
+    -->
+
+
+
+  <div class="region region-navigation col-xs-12 col-sm-12 col-md-10 col-lg-10">
+  <div id="block-dexp-menu-dexp-menu-block" class="block block-dexp-menu">
+<div class="content">
+<div class="dexp-dropdown">
+<ul class="menu"><li class="first expanded"><span class="nolink">A FIC</span><ul class="menu"><li class="first leaf"><a href="/gl/presentacion" title="Presentación">Presentación</a></li>
+<li class="expanded"><span class="nolink">Estructura e organización</span><ul class="menu"><li class="first leaf"><a href="/gl/organos-de-goberno" title="Órganos de Goberno" target="_blank">Órganos de Goberno</a></li>
+<li class="last leaf"><a href="/gl/comisions" title="Comisións">Comisións</a></li>
+</ul></li>
+<li class="leaf"><a href="/gl/delegacion-e-asociacions" title="Delegación e Asociacións">Delegación e Asociacións</a></li>
+<li class="leaf"><a href="/gl/departamentos" title="Departamentos">Departamentos</a></li>
+<li class="last leaf"><a href="/gl/normativa" title="Normativa">Normativa</a></li>
+</ul></li>
+<li class="expanded"><span class="nolink">Estudos</span><ul class="menu"><li class="first expanded"><span class="nolink">Información Xeral</span><ul class="menu"><li class="first leaf"><a href="/gl/calendarios" title="Calendarios">Calendarios</a></li>
+<li class="leaf"><a href="https://www.udc.es/gl/centros_departamentos_servizos/centros/titorias/?codigo=614" title="Titorías" target="_blank">Titorías</a></li>
+<li class="leaf"><a href="/gl/plano-de-accion-titorial-pat" title="Plano de Acción Titorial (PAT)">Plano de Acción Titorial (PAT)</a></li>
+<li class="leaf"><a href="/gl/mobilidade" title="Mobilidade">Mobilidade</a></li>
+<li class="last leaf"><a href="/gl/procedementos-administrativos" title="[node:title]">Procedementos Administrativos</a></li>
+</ul></li>
+<li class="expanded"><span title="Grao en Enxeñería Informática (GEI)" class="nolink">Grao en Enxeñaría Informática (GEI)</span><ul class="menu"><li class="first leaf"><a href="http://estudos.udc.es/gl/study/start/614G01V01" title="[node:title]" target="_blank">Portal de Estudos</a></li>
+<li class="leaf"><a href="/gl/acceso-e-admisions" title="Acceso e Admisións">Acceso e Admisións</a></li>
+<li class="leaf"><a href="/gl/horarios-e-exames" title="[node:title]">Horarios e Exames</a></li>
+<li class="leaf"><a href="/gl/plan-de-estudos" title="Materias e Mencións">Plan de estudos</a></li>
+<li class="leaf"><a href="/gl/docencia-en-ingles" title="[node:title]">Docencia en inglés</a></li>
+<li class="leaf"><a href="/gl/practicas-en-empresas" title="Prácticas en Empresas">Prácticas en Empresa</a></li>
+<li class="leaf"><a href="/gl/traballo-fin-de-grao" title="Traballo Fin de Grao">Traballo Fin de Grao</a></li>
+<li class="leaf"><a href="/gl/orientacion" title="Orientación">Orientación</a></li>
+<li class="leaf"><a href="/gl/curso-ponte" title="[node:title]">Curso Ponte</a></li>
+<li class="last leaf"><a href="/gl/contacto" title="Documentación">Contacto</a></li>
+</ul></li>
+<li class="expanded"><span title="[node:title]" class="nolink">Grao en Ciencia e Enxeñaría de Datos (GCED)</span><ul class="menu"><li class="first leaf"><a href="http://estudos.udc.es/gl/study/start/614G02V01" title="[node:title]" target="_blank">Portal de Estudos</a></li>
+<li class="leaf"><a href="/gl/por-que-o-gced" title="[node:title]">Por qué o GCED?</a></li>
+<li class="leaf"><a href="/gl/acceso-e-admisions-0" title="[node:title]">Acceso e Admisións</a></li>
+<li class="leaf"><a href="/gl/horarios-e-exames-gced" title="[node:title]">Horarios e Exames</a></li>
+<li class="leaf"><a href="/gl/plan-de-estudos-0" title="[node:title]">Plan de Estudos</a></li>
+<li class="leaf"><a href="/gl/orientacion-0" title="[node:title]">Orientación</a></li>
+<li class="last leaf"><a href="/gl/contacto-0" title="[node:title]">Contacto</a></li>
+</ul></li>
+<li class="expanded"><span title="[node:title]" class="nolink">Grao en Intelixencia Artificial (GIA)</span><ul class="menu"><li class="first leaf"><a href="https://estudos.udc.es/gl/study/start/614G03V01" title="[node:title]">Portal de estudos</a></li>
+<li class="leaf"><a href="/gl/acceso-e-admisions-1" title="[node:title]">Acceso e Admisións</a></li>
+<li class="leaf"><a href="https://www.fic.udc.es/gl/horarios-y-examenes-0" title="[node:title]">Horarios e Exames</a></li>
+<li class="leaf"><a href="/gl/plan-de-estudos-1" title="[node:title]">Plan de estudos</a></li>
+<li class="leaf"><a href="/gl/orientacion-1" title="[node:title]">Orientación</a></li>
+<li class="last leaf"><a href="/gl/contacto-1" title="[node:title]">Contacto</a></li>
+</ul></li>
+<li class="leaf"><a href="/gl/muei" title="Mestrado en Enxeñería Informática (MUEI)">Máster Universitario en Enxeñaría Informática (MUEI)</a></li>
+<li class="leaf"><a href="/gl/outros-mestrados" title="Outros Mestrados">Outros Mestrados</a></li>
+<li class="last leaf"><a href="/gl/programas-de-doutoramento" title="Programas de Doutoramento">Programas de Doutoramento</a></li>
+</ul></li>
+<li class="expanded"><span title="Calidade" class="nolink">Calidade</span><ul class="menu"><li class="first leaf"><a href="/gl/sistema-de-garantia-da-calidade" title="[node:title]">SGIC</a></li>
+<li class="leaf"><a href="/gl/politica-de-calidade" title="[node:title]">Política de Calidade</a></li>
+<li class="leaf"><a href="/gl/memorias-e-informes" title="[node:title]">Memorias e Informes</a></li>
+<li class="leaf"><a href="/gl/seguimento-dos-titulos" title="[node:title]">Seguimento dos Títulos</a></li>
+<li class="leaf"><a href="/gl/encuestas" title="[node:title]">ENCUESTAS</a></li>
+<li class="last leaf"><a href="https://forms.office.com/r/VFuk241CYZ?lang=gl" title="[node:title]">Atención ao usuario (UDC)</a></li>
+</ul></li>
+<li class="expanded"><span class="nolink">Servizos</span><ul class="menu"><li class="first expanded"><span title="[node:title]" class="nolink">Secretaría</span><ul class="menu"><li class="first leaf"><a href="/gl/cita-previa" title="[node:title]">Cita previa</a></li>
+<li class="expanded"><span title="[node:title]" class="nolink">Información administrativa</span><ul class="menu"><li class="first leaf"><a href="/gl/estudos-de-grao" title="[node:title]">Estudos de grao</a></li>
+<li class="leaf"><a href="/gl/estudos-de-mestrado" title="[node:title]">Estudos de mestrado</a></li>
+<li class="last leaf"><a href="/gl/informacion-xeral-e-documentos" title="[node:title]">Trámites en secretaría</a></li>
+</ul></li>
+<li class="last leaf"><a href="/gl/horario" title="[node:title]">Horario</a></li>
+</ul></li>
+<li class="leaf"><a href="/gl/biblioteca-0" title="Biblioteca">Biblioteca</a></li>
+<li class="leaf"><a href="/gl/cafeteria" title="Cafetería">Cafetería</a></li>
+<li class="leaf"><a href="/gl/conserxeria" title="Conserxería">Conserxería</a></li>
+<li class="last expanded"><span class="nolink">Instalacións</span><ul class="menu"><li class="first leaf"><a href="/gl/aulas" title="Aulas">Aulas</a></li>
+<li class="leaf"><a href="/gl/laboratorios" title="Laboratorios">Laboratorios</a></li>
+<li class="last leaf"><a href="/gl/salas-especiais" title="Salas Especiais">Salas Especiais</a></li>
+</ul></li>
+</ul></li>
+<li class="leaf"><a href="https://www.fic.udc.es/es/international" title="International">International</a></li>
+<li class="expanded"><span class="nolink">+ FIC</span><ul class="menu"><li class="first expanded"><span class="nolink">Coñécenos</span><ul class="menu"><li class="first leaf"><a href="/gl/onde-estamos" title="Onde estamos">Onde estamos</a></li>
+<li class="last leaf"><a href="/gl/historia" title="Historia">Historia</a></li>
+</ul></li>
+<li class="leaf"><a href="/gl/estudar-na-fic" title="Estudiar na FIC">Estudar na FIC</a></li>
+<li class="leaf"><a href="https://ptfg.fic.udc.es/index-gal.html" title="Premio TFG" target="_blank">Premio TFG</a></li>
+<li class="leaf"><a href="https://fepe.fic.udc.es/" title="[node:title]" target="_blank">Feira de Empresas</a></li>
+<li class="leaf"><a href="/gl/emprendedores" title="Emprendedores">Emprendedores</a></li>
+<li class="leaf"><a href="/gl/fic-sociedade" title="FIC-Sociedade">FIC-Sociedade</a></li>
+<li class="leaf"><a href="https://www.fundacion.udc.es/aldaba-wib/" title="[node:title]" target="_blank">CÁTEDRA ALDABA</a></li>
+<li class="leaf"><a href="https://catedra-cicas.udc.gal/" title="[node:title]">CÁTEDRA CICAS</a></li>
+<li class="leaf"><a href="https://www.fundacion.udc.es/catedra-nttdata/" title="[node:title]" target="_blank">CÁTEDRA NTT DATA</a></li>
+<li class="leaf"><a href="https://catedrarciberseguridade.com/catedra_es" title="[node:title]" target="_blank">CÁTEDRA R</a></li>
+<li class="last expanded"><span title="[node:title]" class="nolink">IDEFIC</span><ul class="menu"><li class="first leaf"><a href="/gl/node/6268" title="[node:title]">Historia do club</a></li>
+<li class="last leaf"><a href="/gl/node/6270" title="[node:title]">Quen somos?</a></li>
+</ul></li>
+</ul></li>
+<li class="leaf"><a href="/gl/novas" title="Novas">Novas / Emprego</a></li>
+<li class="leaf"><a href="/gl/calendar" class="fa fa-calendar">.</a></li>
+<li class="last leaf"><a href="/gl/procurar" title="Procurar" class="fa fa-search">.</a></li>
+</ul></div>
+</div>
+</div>  </div>
+<!-- END .region-navigation-->
+		</div>
+	</div>
+</section><!--#section-parallax-second-->
+<section  class="dexp-section" id="section-parallax-second">
+	<div class="dexp-container">
+		<div class="row">
+			<!-- .region-parallax-->
+  <div class="region region-parallax col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div id="block-views-slider-imagen-banner-block" class="block block-views">
+<div class="content">
+<div class="view view-slider-imagen-banner view-id-slider_imagen_banner view-display-id-block view-dom-id-980685d0cffa0e238140c37f1979112d">
+        
+  
+  
+      <div class="view-content">
+      <div id="slider-imagen-banner-block" class="dexp-bxslider">
+			<div class="bxslide">
+						  
+  <div class="views-field views-field-nothing">        <span class="field-content"><div class="fondo-slider-banner"></div></span>  </div>  
+  <div class="views-field views-field-field-imagen-banner">        <div class="field-content"><img typeof="foaf:Image" alt="Facultad de Informática de A Coruña" src="https://www.fic.udc.es/sites/default/files/styles/banner_inicio/public/banner/facultad-informatica-coruna.jpg?itok=1TIC5sZI" width="2500" height="1660" title="Facultad de Informática de A Coruña" /></div>  </div>					</div>
+			<div class="bxslide">
+						  
+  <div class="views-field views-field-nothing">        <span class="field-content"><div class="fondo-slider-banner"></div></span>  </div>  
+  <div class="views-field views-field-field-imagen-banner">        <div class="field-content"><img typeof="foaf:Image" alt="Facultad de Informática de A Coruña" src="https://www.fic.udc.es/sites/default/files/styles/banner_inicio/public/banner/facultad-informatica-coruna-2.jpg?itok=hcx5-FLM" width="2500" height="2829" title="Facultad de Informática de A Coruña" /></div>  </div>					</div>
+	</div>    </div>
+  
+  
+  
+  
+  
+  
+</div>
+</div>
+</div>  </div>
+<!-- END .region-parallax-->
+		</div>
+	</div>
+</section>
+<!--END #section-parallax-second-->
+<!--#section-banner-->
+<section  class="dexp-section" id="section-banner">
+	<div class="container">
+		<div class="row">
+			<!-- .region-banner-->
+  <div class="region region-banner col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div id="block-views-blog-block-11" class="block block-views">
+<div class="content">
+<div class="view view-blog view-id-blog view-display-id-block_11 slider-post view-dom-id-e53adab3acc804abeb0eeffa3851420e">
+        
+  
+  
+      <div class="view-content">
+      <div id="blog-block-11" class="dexp-bxslider">
+			<div class="bxslide">
+						  
+  <h4 class="views-field views-field-title">        <span class="field-content"><a href="/gl/novas/fepefic-2024">#fepeFIC 2024!</a></span>  </h4>  
+  <div class="views-field views-field-field-subtitulo">        <div class="field-content"><h5>V Feira de Prácticas e de Emprego</h5></div>  </div>					</div>
+			<div class="bxslide">
+						  
+  <h4 class="views-field views-field-title">        <span class="field-content"><a href="/gl/novas/inditextech">INDITEXTECH</a></span>  </h4>  
+  <div class="views-field views-field-field-subtitulo">        <div class="field-content"><h5>RECRUITMENT WORKSHOP</h5></div>  </div>					</div>
+			<div class="bxslide">
+						  
+  <h4 class="views-field views-field-title">        <span class="field-content"><a href="/gl/novas/calendario-exames-xuno-2024">Calendario exames xuño 2024</a></span>  </h4>  
+  <div class="views-field views-field-field-subtitulo">        <div class="field-content"><h5>Actualización</h5></div>  </div>					</div>
+			<div class="bxslide">
+						  
+  <h4 class="views-field views-field-title">        <span class="field-content"><a href="/gl/novas/doutoramento-en-tecnoloxias-da-informacion-e-as-comunicacions-22">Doutoramento en Tecnoloxías da Información e as Comunicacións</a></span>  </h4>  
+  <div class="views-field views-field-field-subtitulo">        <div class="field-content"><h5>Listaxe definitva de admitidos e excluidos</h5></div>  </div>					</div>
+			<div class="bxslide">
+						  
+  <h4 class="views-field views-field-title">        <span class="field-content"><a href="/gl/novas/doutoramento-en-tecnoloxias-da-informacion-e-das-comunicacions-en-redes-mobiles-10">Doutoramento en Tecnoloxías da Información e das Comunicacións en Redes Móbiles</a></span>  </h4>  
+  <div class="views-field views-field-field-subtitulo">        <div class="field-content"><h5>Listaxe definitiva de admitidos e excluídos</h5></div>  </div>					</div>
+	</div>    </div>
+  
+  
+  
+  
+  
+  
+</div>
+</div>
+</div>  </div>
+<!-- END .region-banner-->
+		</div>
+	</div>
+</section>
+<!--END #section-banner-->
+<!--#section-features-->
+<section  class="dexp-section" id="section-features">
+	<div class="container">
+		<div class="row">
+			<!-- .region-user6-->
+  <div class="region region-user6 col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div id="block-views-destacados-banner-block-3" class="block block-views dexp-animate" data-animate="fadeInUp">
+<div class="content">
+<div class="view view-destacados-banner view-id-destacados_banner view-display-id-block_3 view-dom-id-9e4dd359d186196551ee55cb90626a57">
+        
+  
+  
+      <div class="view-content">
+      <div class="dexp-grid-items">
+  <div class="row">
+          <div class="dexp-grid-item col-lg-3 col-md-3 col-sm-6 col-xs-12">
+          
+  <div class="views-field views-field-field-enlace-a-banner">        <div class="field-content"><a href="https://www.fic.udc.es/gl/curso-2023-24" alt="Curso 2023-24" title="Curso 2023-24">Curso 2023-24</a></div>  </div>      </div>
+      </div>
+</div>    </div>
+  
+  
+  
+  
+  
+  
+</div>
+</div>
+</div>  </div>
+<!-- END .region-user6-->
+		</div>
+	</div>
+</section>
+<!--END #section-features-->
+<!--#section-features-second-->
+<section  class="dexp-section bg-light-blue" id="section-features-second" style="background-color:#326e76">
+	<div class="dexp-container">
+		<div class="row">
+			<!-- .region-feature-fourth-->
+  <div class="region region-feature-fourth col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div id="block-block-112" class="block block-block">
+<div class="content">
+<h1>Facultade de Informática da Coruña</h1>
+
+</div>
+</div>  </div>
+<!-- END .region-feature-fourth-->
+		</div>
+	</div>
+</section>
+<!--END #section-features-second-->
+<!--#section-main-content-->
+<section  class="dexp-section" id="section-main-content">
+	<div class="container">
+		<div class="row">
+			<!-- .region-content-->
+<div class="region region-content col-xs-12 col-sm-12 col-md-12 col-lg-12">
+<div class="tabs"></div><div id="block-system-main" class="block block-system">
+<div class="content">
+<div id="first-time"><p>Aínda non se creou contido para a páxina principal.</p></div>
+</div>
+</div><div id="block-views-blog-block-7" class="block block-views dexp-animate" data-animate="fadeInDown">
+  
+     
+              <h3 class="block-title">Últimas Novas</h3>
+           
+         
+<div class="content">
+<div class="view view-blog view-id-blog view-display-id-block_7 view-dom-id-9b2ba31dfb63b47cbf378d58616a2b95">
+        
+  
+  
+      <div class="view-content">
+      <div class="dexp-grid-items">
+  <div class="row">
+          <div class="dexp-grid-item col-lg-4 col-md-4 col-sm-6 col-xs-12">
+        <div id="node-6730" class="slider-blog"  about="/gl/novas/fepefic-2024" typeof="sioc:Item foaf:Document">
+
+	<div class='slider-post-content'>
+    <h4><a href="/gl/novas/fepefic-2024" alt="#fepeFIC 2024!" title="#fepeFIC 2024!"> #fepeFIC 2024!</a></h4>
+		<h5>
+			<div class="field field-name-field-subtitulo field-type-text field-label-hidden"><div class="field-items"><div class="field-item even">V Feira de Prácticas e de Emprego</div></div></div>		</h5>
+  <!--  <div class="read-more"><a href=""> -->
+				<!--    </a></div>  -->
+	</div>
+</div>
+      </div>
+          <div class="dexp-grid-item col-lg-4 col-md-4 col-sm-6 col-xs-12">
+        <div id="node-6727" class="slider-blog"  about="/gl/novas/palestra-intelixencia-artificial-verde" typeof="sioc:Item foaf:Document">
+
+	<div class='slider-post-content'>
+    <h4><a href="/gl/novas/palestra-intelixencia-artificial-verde" alt="Palestra: Intelixencia Artificial Verde" title="Palestra: Intelixencia Artificial Verde"> Palestra: Intelixencia Artificial Verde</a></h4>
+		<h5>
+			<div class="field field-name-field-subtitulo field-type-text field-label-hidden"><div class="field-items"><div class="field-item even">Cara a un futuro sostible</div></div></div>		</h5>
+  <!--  <div class="read-more"><a href=""> -->
+				<!--    </a></div>  -->
+	</div>
+</div>
+      </div>
+          <div class="dexp-grid-item col-lg-4 col-md-4 col-sm-6 col-xs-12">
+        <div id="node-6724" class="slider-blog"  about="/gl/novas/inditextech" typeof="sioc:Item foaf:Document">
+
+	<div class='slider-post-content'>
+    <h4><a href="/gl/novas/inditextech" alt="INDITEXTECH" title="INDITEXTECH"> INDITEXTECH</a></h4>
+		<h5>
+			<div class="field field-name-field-subtitulo field-type-text field-label-hidden"><div class="field-items"><div class="field-item even">RECRUITMENT WORKSHOP</div></div></div>		</h5>
+  <!--  <div class="read-more"><a href=""> -->
+				<!--    </a></div>  -->
+	</div>
+</div>
+      </div>
+          <div class="dexp-grid-item col-lg-4 col-md-4 col-sm-6 col-xs-12">
+        <div id="node-6721" class="slider-blog"  about="/gl/novas/resolucion-definitiva-de-prazas-de-mobilidade-internacional-para-o-curso-20242025-primeira" typeof="sioc:Item foaf:Document">
+
+	<div class='slider-post-content'>
+    <h4><a href="/gl/novas/resolucion-definitiva-de-prazas-de-mobilidade-internacional-para-o-curso-20242025-primeira" alt="Resolución definitiva de prazas de mobilidade internacional para o curso 2024/2025 - Primeira convocatoria" title="Resolución definitiva de prazas de mobilidade internacional para o curso 2024/2025 - Primeira convocatoria"> Resolución definitiva de prazas de mobilidade internacional para o curso 2024/2025 - Primeira convocatoria</a></h4>
+		<h5>
+					</h5>
+  <!--  <div class="read-more"><a href=""> -->
+				<!--    </a></div>  -->
+	</div>
+</div>
+      </div>
+          <div class="dexp-grid-item col-lg-4 col-md-4 col-sm-6 col-xs-12">
+        <div id="node-6718" class="slider-blog"  about="/gl/novas/calendario-exames-xuno-2024" typeof="sioc:Item foaf:Document">
+
+	<div class='slider-post-content'>
+    <h4><a href="/gl/novas/calendario-exames-xuno-2024" alt="Calendario exames xuño 2024" title="Calendario exames xuño 2024"> Calendario exames xuño 2024</a></h4>
+		<h5>
+			<div class="field field-name-field-subtitulo field-type-text field-label-hidden"><div class="field-items"><div class="field-item even">Actualización</div></div></div>		</h5>
+  <!--  <div class="read-more"><a href=""> -->
+				<!--    </a></div>  -->
+	</div>
+</div>
+      </div>
+          <div class="dexp-grid-item col-lg-4 col-md-4 col-sm-6 col-xs-12">
+        <div id="node-6716" class="slider-blog"  about="/gl/novas/resolucion-provisional-de-prazas-de-mobilidade-internacional-para-o-curso-20242025-primeira" typeof="sioc:Item foaf:Document">
+
+	<div class='slider-post-content'>
+    <h4><a href="/gl/novas/resolucion-provisional-de-prazas-de-mobilidade-internacional-para-o-curso-20242025-primeira" alt="Resolución provisional de prazas de mobilidade internacional para o curso 2024/2025 - Primeira convocatoria" title="Resolución provisional de prazas de mobilidade internacional para o curso 2024/2025 - Primeira convocatoria"> Resolución provisional de prazas de mobilidade internacional para o curso 2024/2025 - Primeira convocatoria</a></h4>
+		<h5>
+					</h5>
+  <!--  <div class="read-more"><a href=""> -->
+				<!--    </a></div>  -->
+	</div>
+</div>
+      </div>
+      </div>
+</div>    </div>
+  
+  
+  
+  
+      <div class="view-footer">
+      <p><a href="https://www.fic.udc.es/gl/novas" alt="Ver todas" title="Ver todas" target="_self">Ver todas</a></p>
+    </div>
+  
+  
+</div>
+</div>
+</div></div>
+<!-- END .region-content-->
+		</div>
+	</div>
+</section>
+<!--END #section-main-content-->
+<!--#section-content-bottom-second-->
+<section  class="dexp-section" id="section-content-bottom-second">
+	<div class="container">
+		<div class="row">
+			<!-- .region-content-bottom-second-->
+  <div class="region region-content-bottom-second col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div id="block-views-eventos-block-6" class="block block-views dexp-animate" data-animate="fadeInRightBig">
+  
+     
+              <h3 class="block-title">Eventos</h3>
+           
+         
+<div class="content">
+<div class="view view-eventos view-id-eventos view-display-id-block_6 slider-post view-dom-id-1b061d17fab8d09b7da2f162548b5576">
+        
+  
+  
+      <div class="view-content">
+      <div class="dexp-grid-items">
+  <div class="row">
+          <div class="dexp-grid-item col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <div id="node-6720" class="slider-blog"  about="/gl/evento/workshop-inditextech" typeof="sioc:Item foaf:Document">
+  <div class="slider-media">
+      <section class="date">
+        <span class="day">19</span>
+        <span class="month">Mar</span>
+      </section>
+      <div class="field field-name-field-media field-type-media field-label-hidden">
+<div class="field-items">
+<div class="field-item even"><div id="file-4694" class="file file-image file-image-jpeg">
+
+        <h2 class="element-invisible"><a href="/gl/file/thumbnailimage001jpg-2">thumbnail_image001.jpg</a></h2>
+    
+  
+  <div class="content">
+    <img typeof="foaf:Image" alt="" src="https://www.fic.udc.es/sites/default/files/styles/blog_timeline/public/thumbnail_image001_2.jpg?itok=qeOkFzpd" width="502" height="265" title="" />  </div>
+
+  
+</div>
+</div>
+</div>
+</div> 
+  </div>
+
+	<div class='slider-post-content'>
+    <h4><a href="/gl/evento/workshop-inditextech" alt="WORKSHOP INDITEXTECH" title="WORKSHOP INDITEXTECH"> WORKSHOP INDITEXTECH</a></h4>
+
+	  <div class="short-desc"></div>
+	</div>
+  </div>
+      </div>
+          <div class="dexp-grid-item col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <div id="node-6672" class="slider-blog"  about="/gl/evento/seminario-de-orientacion-laboral-0" typeof="sioc:Item foaf:Document">
+  <div class="slider-media">
+      <section class="date">
+        <span class="day">25</span>
+        <span class="month">Xan</span>
+      </section>
+      <div class="field field-name-field-media field-type-media field-label-hidden">
+<div class="field-items">
+<div class="field-item even"><div id="file-4658" class="file file-image file-image-jpeg">
+
+        <h2 class="element-invisible"><a href="/gl/file/pmecmod2jpg-0">pmec_mod_2.jpg</a></h2>
+    
+  
+  <div class="content">
+    <img typeof="foaf:Image" alt="" src="https://www.fic.udc.es/sites/default/files/styles/blog_timeline/public/pmec_mod_2_0.jpg?itok=NPrKz4Ka" width="502" height="265" title="" />  </div>
+
+  
+</div>
+</div>
+</div>
+</div> 
+  </div>
+
+	<div class='slider-post-content'>
+    <h4><a href="/gl/evento/seminario-de-orientacion-laboral-0" alt="SEMINARIO DE ORIENTACIÓN LABORAL" title="SEMINARIO DE ORIENTACIÓN LABORAL"> SEMINARIO DE ORIENTACIÓN LABORAL</a></h4>
+
+	  <div class="short-desc"></div>
+	</div>
+  </div>
+      </div>
+          <div class="dexp-grid-item col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <div id="node-6675" class="slider-blog"  about="/gl/evento/defensa-de-tese-de-doutoramento" typeof="sioc:Item foaf:Document">
+  <div class="slider-media">
+      <section class="date">
+        <span class="day">23</span>
+        <span class="month">Xan</span>
+      </section>
+      <div class="field field-name-field-media field-type-media field-label-hidden">
+<div class="field-items">
+<div class="field-item even"><div id="file-4660" class="file file-image file-image-png">
+
+        <h2 class="element-invisible"><a href="/gl/file/capturadepantalla2024-01-17alas140418png">captura_de_pantalla_2024-01-17_a_las_14.04.18.png</a></h2>
+    
+  
+  <div class="content">
+    <img typeof="foaf:Image" alt="" src="https://www.fic.udc.es/sites/default/files/styles/blog_timeline/public/captura_de_pantalla_2024-01-17_a_las_14.04.18.png?itok=-9MFTsyl" width="502" height="265" title="" />  </div>
+
+  
+</div>
+</div>
+</div>
+</div> 
+  </div>
+
+	<div class='slider-post-content'>
+    <h4><a href="/gl/evento/defensa-de-tese-de-doutoramento" alt="Defensa de Tese de Doutoramento" title="Defensa de Tese de Doutoramento"> Defensa de Tese de Doutoramento</a></h4>
+
+	  <div class="short-desc"></div>
+	</div>
+  </div>
+      </div>
+          <div class="dexp-grid-item col-lg-3 col-md-3 col-sm-6 col-xs-12">
+        <div id="node-6637" class="slider-blog"  about="/gl/evento/techday-altia-datos-en-cloud" typeof="sioc:Item foaf:Document">
+  <div class="slider-media">
+      <section class="date">
+        <span class="day">28</span>
+        <span class="month">Nov</span>
+      </section>
+      <div class="field field-name-field-media field-type-media field-label-hidden">
+<div class="field-items">
+<div class="field-item even"><div id="file-4638" class="file file-image file-image-jpeg">
+
+        <h2 class="element-invisible"><a href="/gl/file/imagenredessocialesjpg-0">imagen_redes_sociales.jpg</a></h2>
+    
+  
+  <div class="content">
+    <img typeof="foaf:Image" alt="" src="https://www.fic.udc.es/sites/default/files/styles/blog_timeline/public/imagen_redes_sociales_0.jpg?itok=2sT2bPtP" width="502" height="265" title="" />  </div>
+
+  
+</div>
+</div>
+</div>
+</div> 
+  </div>
+
+	<div class='slider-post-content'>
+    <h4><a href="/gl/evento/techday-altia-datos-en-cloud" alt="TECHDAY ALTIA: Datos en cloud" title="TECHDAY ALTIA: Datos en cloud"> TECHDAY ALTIA: Datos en cloud</a></h4>
+
+	  <div class="short-desc"></div>
+	</div>
+  </div>
+      </div>
+      </div>
+</div>    </div>
+  
+  
+  
+  
+      <div class="view-footer">
+      <p><a href="https://www.fic.udc.es/gl/eventos-gl" alt="Ver todos" title="Ver todos" target="_self">Ver todos</a></p>
+    </div>
+  
+  
+</div>
+</div>
+</div>  </div>
+<!-- END .region-content-bottom-second-->
+		</div>
+	</div>
+</section>
+<!--END #section-content-bottom-second-->
+<!--#section-content-bottom-third-->
+<section  class="dexp-section" id="section-content-bottom-third">
+	<div class="container">
+		<div class="row">
+			<!-- .region-content-bottom-third-->
+  <div class="region region-content-bottom-third col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div id="block-views-destacados-banner-block-9" class="block block-views dexp-animate" data-animate="fadeInUpBig">
+<div class="content">
+<div class="view view-destacados-banner view-id-destacados_banner view-display-id-block_9 view-dom-id-e59ba3f2552ab0f158af9c2766527b56">
+        
+  
+  
+      <div class="view-content">
+      <div class="dexp-grid-items">
+  <div class="row">
+          <div class="dexp-grid-item col-lg-4 col-md-4 col-sm-4 col-xs-12">
+          
+  <span class="views-field views-field-field-icono-fontawesome">        <span class="field-content"><a href="/gl/biblioteca"><i class="fa fa-book" aria-hidden="true"></i></a></span>  </span>  
+  <span class="views-field views-field-field-enlace-a-banner">        <span class="field-content"><a href="http://www.udc.es/biblioteca.fic/" alt="Biblioteca" title="Biblioteca">Biblioteca</a></span>  </span>      </div>
+          <div class="dexp-grid-item col-lg-4 col-md-4 col-sm-4 col-xs-12">
+          
+  <span class="views-field views-field-field-icono-fontawesome">        <span class="field-content"><a href="/gl/espazos"><i class="fa fa-desktop" aria-hidden="true"></i></a></span>  </span>  
+  <span class="views-field views-field-field-enlace-a-banner">        <span class="field-content"><a href="http://espazos.udc.es" alt="Espazos" title="Espazos">Espazos</a></span>  </span>      </div>
+          <div class="dexp-grid-item col-lg-4 col-md-4 col-sm-4 col-xs-12">
+          
+  <span class="views-field views-field-field-icono-fontawesome">        <span class="field-content"><a href="/gl/directorio-udc"><i class="fa fa-phone" aria-hidden="true"></i></a></span>  </span>  
+  <span class="views-field views-field-field-enlace-a-banner">        <span class="field-content"><a href="http://directorio.udc.es" alt="Directorio UDC" title="Directorio UDC">Directorio UDC</a></span>  </span>      </div>
+          <div class="dexp-grid-item col-lg-4 col-md-4 col-sm-4 col-xs-12">
+          
+  <span class="views-field views-field-field-icono-fontawesome">        <span class="field-content"><a href="/gl/titorias"><i class="fa fa-question-circle" aria-hidden="true"></i></a></span>  </span>  
+  <span class="views-field views-field-field-enlace-a-banner">        <span class="field-content"><a href="https://www.udc.es/gl/centros_departamentos_servizos/centros/titorias/?codigo=614" alt="Titorías" title="Titorías">Titorías</a></span>  </span>      </div>
+          <div class="dexp-grid-item col-lg-4 col-md-4 col-sm-4 col-xs-12">
+          
+  <span class="views-field views-field-field-icono-fontawesome">        <span class="field-content"><a href="/gl/taboleiro"><i class="fa fa-info-circle" aria-hidden="true"></i></a></span>  </span>  
+  <span class="views-field views-field-field-enlace-a-banner">        <span class="field-content"><a href="https://taboleirofic.udc.es" alt="Taboleiro" title="Taboleiro">Taboleiro</a></span>  </span>      </div>
+          <div class="dexp-grid-item col-lg-4 col-md-4 col-sm-4 col-xs-12">
+          
+  <span class="views-field views-field-field-icono-fontawesome">        <span class="field-content"><a href="/gl/acceso-campus-online"><i class="fa fa-edit" aria-hidden="true"></i></a></span>  </span>  
+  <span class="views-field views-field-field-enlace-a-banner">        <span class="field-content"><a href="https://www.udc.es/online" alt="Acceso Campus Online" title="Acceso Campus Online">Acceso Campus Online</a></span>  </span>      </div>
+          <div class="dexp-grid-item col-lg-4 col-md-4 col-sm-4 col-xs-12">
+          
+  <span class="views-field views-field-field-icono-fontawesome">        <span class="field-content"><a href="/gl/guias-docentes"><i class="fa fa-copy" aria-hidden="true"></i></a></span>  </span>  
+  <span class="views-field views-field-field-enlace-a-banner">        <span class="field-content"><a href="https://guiadocente.udc.es/guia_docent/index.php?centre=614&amp;ensenyament=null" alt="Guías Docentes" title="Guías Docentes">Guías Docentes</a></span>  </span>      </div>
+          <div class="dexp-grid-item col-lg-4 col-md-4 col-sm-4 col-xs-12">
+          
+  <span class="views-field views-field-field-icono-fontawesome">        <span class="field-content"><a href="/gl/atencion-ao-usuario"><i class="fa fa-mail-forward" aria-hidden="true"></i></a></span>  </span>  
+  <span class="views-field views-field-field-enlace-a-banner">        <span class="field-content"><a href="https://forms.office.com/r/HuDSWwxAuP" alt="Atención ao usuario" title="Atención ao usuario">Atención ao usuario</a></span>  </span>      </div>
+          <div class="dexp-grid-item col-lg-4 col-md-4 col-sm-4 col-xs-12">
+          
+  <span class="views-field views-field-field-icono-fontawesome">        <span class="field-content"><a href="/gl/premio-tfg-aplicado-de-la-fic"><i class="fa fa-trophy" aria-hidden="true"></i></a></span>  </span>  
+  <span class="views-field views-field-field-enlace-a-banner">        <span class="field-content"><a href="http://ptfg.fic.udc.es/" alt="Premio TFG aplicado de la FIC" title="Premio TFG aplicado de la FIC">Premio TFG aplicado de la FIC</a></span>  </span>      </div>
+      </div>
+</div>    </div>
+  
+  
+  
+  
+  
+  
+</div>
+</div>
+</div>  </div>
+<!-- END .region-content-bottom-third-->
+		</div>
+	</div>
+</section>
+<!--END #section-content-bottom-third-->
+<!--#section-bottom-->
+<section  class="dexp-section" id="section-bottom">
+	<div class="container">
+		<div class="row">
+			<!-- .region-bottom-first-->
+  <div class="region region-bottom-first col-xs-12 col-sm-6 col-md-3 col-lg-3">
+    <div id="block-views-direccion-block-2" class="block block-views">
+  
+     
+              <h3 class="block-title">Facultade de Informática da Coruña</h3>
+           
+         
+<div class="content">
+<div class="view view-direccion view-id-direccion view-display-id-block_2 view-dom-id-32c8608ddbdbe4b6650a2293921ba1d8">
+        
+  
+  
+      <div class="view-content">
+        <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">
+      
+  <div class="views-field views-field-field-direccion">        <div class="field-content"><i class="fa fa-map-marker" aria-hidden="true"></i> Campus de Elviña s/n C.P. 15071 A Coruña</div>  </div>  
+  <div class="views-field views-field-field-telefono">        <div class="field-content"><i class="fa fa-phone" aria-hidden="true"></i> 981 16 70 00</div>  </div>  
+  <div class="views-field views-field-field-fax">        <div class="field-content"><i class="fa fa-fax" aria-hidden="true"></i> 981 16 71 60</div>  </div>  
+  <div class="views-field views-field-field-e-mail">        <div class="field-content"><i class="fa fa-envelope-o" aria-hidden="true"></i> <a href="mailto:secretaria.decanato.fic@udc.gal">secretaria.decanato.fic@udc.gal</a></div>  </div>  
+  <div class="views-field views-field-field-redes-sociales">        <div class="field-content"><div  class="item-list item-list--linkicon" id="linkicon-node-acerca-de-field-redes-sociales-93"><ul  class="linkicon linkicon--inline linkicon--color linkicon--grey linkicon--square linkicon--tooltip linkicon--no-text"><li><a href="http://www.facebook.com/FIC.UDC" target="_blank" rel="nofollow" class="linkicon__item" data-title="Facebook"><i class="linkicon__icon icon fa fa-facebook" aria-hidden="true"></i><span class="linkicon__text">Facebook</span></a></li><li><a href="http://twitter.com/#!/FIC_UDC" target="_blank" rel="nofollow" class="linkicon__item" data-title="Twitter"><i class="linkicon__icon icon fa fa-twitter" aria-hidden="true"></i><span class="linkicon__text">Twitter</span></a></li><li><a href="https://www.youtube.com/channel/UC3uk5vkUEJUI_NuWrYP_UXw" target="_blank" rel="nofollow" class="linkicon__item" data-title="Youtube"><i class="linkicon__icon icon fa fa-youtube" aria-hidden="true"></i><span class="linkicon__text">Youtube</span></a></li><li><a href="https://www.fic.udc.es/gl/rss.xml" target="_blank" rel="nofollow" class="linkicon__item" data-title="Rss"><i class="linkicon__icon icon fa fa-rss" aria-hidden="true"></i><span class="linkicon__text">Rss</span></a></li><li><a href="https://t.me/+LHa3QApmGskyNDFk" target="_blank" rel="nofollow" class="linkicon__item" data-title="Telegram"><i class="linkicon__icon icon fa fa-telegram" aria-hidden="true"></i><span class="linkicon__text">Telegram</span></a></li></ul></div></div>  </div>  </div>
+    </div>
+  
+  
+  
+  
+  
+  
+</div>
+</div>
+</div>  </div>
+<!-- END .region-bottom-first-->
+<!-- .region-bottom-second-->
+  <div class="region region-bottom-second col-xs-12 col-sm-12 col-md-6 col-lg-6">
+    <div id="block-block-107" class="block block-block">
+<div class="content">
+<p><iframe allowfullscreen="" frameborder="0" height="280px" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d23216.757896241525!2d-8.417754927433306!3d43.33320660042891!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd2e7cb3d82865e7%3A0x426ea83b7a5a451f!2sUniversidade+da+Coru%C3%B1a%3AFacultade+de+Inform%C3%A1tica!5e0!3m2!1ses!2ses!4v1469016622260" style="border:0" width="100%"></iframe></p>
+
+</div>
+</div>  </div>
+<!-- END .region-bottom-second-->
+<!-- .region-bottom-third-->
+  <div class="region region-bottom-third col-xs-12 col-sm-6 col-md-3 col-lg-3">
+    <div id="block-block-108" class="block block-block">
+<div class="content">
+<p><a href="http://udc.es" target="_blank" title="Universidade da Coruña"><img alt="Universidade da Coruña" src="/sites/default/files/logo-udc.png" style="width: 220px; height: 28px;" /></a></p>
+
+</div>
+</div><div id="block-block-110" class="block block-block">
+<div class="content">
+<p><a href="https://www.udc.es/es/sobreUDC/localizacion/corunha/elvinha/f_informatica/" target="_blank"><img alt="Facultade de Informática A Coruña" src="/sites/default/files/alzado-fic.png" style="width: 220px; height: 53px;" /></a></p>
+<p>  <a href="https://www.conciti.org/acredita-plus-euro-inf/" target="_blank"><img alt="" src="/sites/default/files/adjuntos_noticias/euro_inf_bachelor_blanco.png" style="width: 100px; height: 83px;" /></a><a href="https://www.conciti.org/acredita-plus-euro-inf/" target="_blank"><img alt="" src="/sites/default/files/adjuntos_eventos/euro_inf_master_blanco.png" style="width: 100px; height: 83px;" /></a></p>
+
+</div>
+</div>  </div>
+<!-- END .region-bottom-third-->
+		</div>
+	</div>
+</section>
+<!--END #section-bottom-->
+</div><!--page rendered by drupalexp drupal theme framework-->
+			</body>
+</html>

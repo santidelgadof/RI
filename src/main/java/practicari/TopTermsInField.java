@@ -8,8 +8,10 @@ import java.io.PrintWriter;
 import java.nio.file.Paths;
 import java.util.*;
 
+// Clase que muestra los términos más frecuentes en un campo de un índice Lucene
 public class TopTermsInField {
 
+    // Intenta convertir un texto a un entero. Si no es posible, muestra un mensaje de error y termina el programa.
     public static int tryParse(String text, String errorMessage) {
         try {
             return Integer.parseInt(text);
@@ -54,6 +56,7 @@ public class TopTermsInField {
             }
         }
 
+        // Comprobar que los parámetros son válidos
         if (indexPath == null) {
             System.out.println("Parámetro \"index\" no válido");
             System.exit(1);
@@ -71,12 +74,14 @@ public class TopTermsInField {
         FSDirectory indexDir;
         DirectoryReader indexReader;
 
+        // Abrir el índice y leer los términos
         try {
             indexDir = FSDirectory.open(Paths.get(indexPath));
             indexReader = DirectoryReader.open(indexDir);
 
             final FieldInfos fieldinfos = FieldInfos.getMergedFieldInfos(indexReader);
 
+            // Escribir los términos en un archivo
             try (PrintWriter outFile = new PrintWriter(outFilePath)) {
                 // intro que identifica el campo y nº max de filas en la tabla
                 String intro = "Campo " + field + ", top " + top + " terms:\n";  // docId y nº terms en el top
@@ -133,6 +138,7 @@ public class TopTermsInField {
 
     }
 
+    // Devuelve un mapa ordenado según el valor de sus entradas
     private static LinkedHashMap<String, Integer> getSortedMap(HashMap<String, Integer> map) {
         List<Map.Entry<String, Integer>> list = new ArrayList<>(map.entrySet());
         Comparator<Map.Entry<String, Integer>> comparator = new Comparator<>() {

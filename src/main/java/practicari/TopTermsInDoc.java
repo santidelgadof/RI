@@ -15,6 +15,8 @@ import java.io.PrintWriter;
 import java.nio.file.Paths;
 import java.util.*;
 
+//Se utiliza para mostrar los términos más relevantes de un documento y campo específicos 
+//En función de su tf y su idf, ordenados por (raw tf) x idflog10.
 public class TopTermsInDoc {
     public static final String usage = "Usage: java TopTermsInDoc -index path -field campo (-docID int | -url url) -top n -outfile path\n" +
             "\t-index path: indica una carpeta con un índice\n" +
@@ -26,6 +28,7 @@ public class TopTermsInDoc {
             "\t\t  Es una alternativa a -docID int. No se pueden usar ambos parámetros a la vez.\n" +
             "\t-top n: indica cuántos términos han de mostrarse por pantalla e imprimirse en el archivo outfile\n" +
             "\t-outfile path: indica el archivo en el que se almacenará el output\n";
+
     public static int tryParse(String text, String errorMessage) {
         try {
             return Integer.parseInt(text);
@@ -76,6 +79,7 @@ public class TopTermsInDoc {
             }
         }
 
+        // Comprobación de parámetros
         if (indexPath == null) {
             System.out.println("Parámetro \"index\" no válido");
             System.exit(-1);
@@ -102,6 +106,7 @@ public class TopTermsInDoc {
         FSDirectory indexDir;
         DirectoryReader indexReader;
 
+        // Abrir el índice y obtener el reader
         try {
             indexDir = FSDirectory.open(Paths.get(indexPath));
             indexReader = DirectoryReader.open(indexDir);
@@ -115,7 +120,8 @@ public class TopTermsInDoc {
                 TopDocs topDocs = searcher.search(query, 1);
                 docId = topDocs.scoreDocs[0].doc;
             }
-
+            
+            // Obtener los términos del documento y campo indicados
             try (PrintWriter outFile = new PrintWriter(outFilePath)) {
                 if (fieldinfos.fieldInfo(field) != null) {
                     final Terms terms = MultiTerms.getTerms(indexReader, field);
@@ -197,6 +203,7 @@ public class TopTermsInDoc {
         }
     }
 
+    // Convierte una url en un campo path
     private static String urlToPathField(String url) {
         if(url.charAt(url.length() - 1) == '/')
             url = url.substring(url.indexOf("://") + 3, url.length() - 1);
@@ -206,6 +213,7 @@ public class TopTermsInDoc {
         return "*" + url + ".loc";    // url pasó de https://www.zzz.com a *www.zzz.com.loc
     }
 
+    // Ordena un mapa por sus valores
     private static LinkedHashMap<String, String> getSortedMap(HashMap<String, Double> map) {
         List<Map.Entry<String, Double>> list = new ArrayList<>(map.entrySet());
         Comparator<Map.Entry<String, Double>> comparator = new Comparator<>() {

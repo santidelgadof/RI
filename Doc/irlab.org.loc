@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Webpage of the Information Retrieval Lab at the University of A Coru&ntilde;a" />
+<meta name="keywords"
+    content="irlab, information retrieval lab, information retrieval, recommender systems, machine learning, computer science, coru&ntilde;a university, recuperaci&oacute;n de informaci&oacute;n, search, recsys" />
+  <title>Information Retrieval Lab</title>
+  <link rel="shortcut icon" href="assets/images/favicon.ico">
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+  <!-- Custom styles for our template -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Dosis" type="text/css">
+  <link rel="stylesheet" href="assets/css/bootstrap-theme.css" type="text/css">
+  <link rel="stylesheet" href="assets/css/main.css" type="text/css">
+</head>
+
+<body>
+	<nav id="nav" class="navbar navbar-inverse navbar-fixed-top normal">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">
+        <img class="img-responsive" src="assets/images/logo.png" alt="IRLab">
+      </a>
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li class=""><a href="research.html">Research</a></li>
+        <li class=""><a href="education.html">Education</a></li>
+        <li class=" dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            Publications<strong class="caret"></strong>
+          </a>
+          <ul class="dropdown-menu">
+            <li class=""><a href="papers.html">Papers</a></li>
+            <li class=""><a href="phd.html">PhD Theses</a></li>
+            <!--<li class=""><a href="degree_projects.html">Degree Projects</a></li>-->
+          </ul>
+        </li>
+        <li class=""><a href="technology_transfer.html">Technology Transfer</a></li>
+        <li class=" dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            Software Products<strong class="caret"></strong>
+          </a>
+          <ul class="dropdown-menu">
+            <li class=""><a href="software.html">Overview</a></li>
+            <li class="divider"></li>
+            <li class=""><a href="fashionrec.html">FashionRec</a></li>
+            <li class=""><a href="govell.html">Govell</a></li>
+            <li class=""><a href="filmyou.html">FilmYou</a></li>
+            <li class=""><a href="patrick.html">Patrick</a></li>
+            <li class=""><a href="nowonweb.html">NowOnWeb</a></li>
+            <li class=""><a href="lexisla.html">Lexisla</a></li>
+            <li class=""><a href="pase.html">PASE</a></li>
+            <li class=""><a href="cct.html">Coruña Corpus Tool</a></li>
+            <li class=""><a href="mocra.html">mOCRa</a></li>
+            <li class=""><a href="search.html">adSearch</a></li>
+            <li class=""><a href="dedos.html">DeDoS</a></li>
+          </ul>
+        </li>
+        <li class=""><a href="members.html">Members</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+	<header class="head" id="head-index">
+		<div class="container">
+			<div class="row">
+				<h1 class="lead white-shadow">Information Retrieval Lab</h1>
+				<h3 class="tagline white-shadow">A research group @ <a href="https://www.udc.es/en">University of A Coruña</a> (Spain)</h3>
+			</div>
+		</div>
+	</header>
+	<section class="container">
+		<br> <br>
+		<h2 class="text-center thin">Overview</h2>
+		<br>
+		<p class="text-justify">
+			The Information Retrieval Lab is part of the <a href="https://citic-research.org/?linguaxeId=en">CITIC</a>, Research Center on Information and Communication Technologies. The Information Retrieval Lab's goal is to research in basic and applied information retrieval topics, working in close collaboration with industries to transfer its research results. The IRLab (<a href="http://investigacion.udc.es/en/Research/Details/G000494">G000494</a>) was founded in the late nineties as part of the <a href="https://www.dc.fi.udc.es">Department of Computer Science</a> of the <a href="https://www.udc.es/en">University of A Coruña</a>. For many years, the group has been working on the development of new models and techniques to improve the effectiveness and efficiency of information retrieval systems. We aim to achieve better results for the final user optimizing the computational resources.
+		</p>
+	</section>
+	<section class="jumbotron top-space">
+		<div class="container">
+			<h2 class="text-center thin">Our activity</h2>
+			<div class="row">
+				<div class="col-md-3 col-sm-6 highlight">
+					<div class="h-caption">
+						<a href="research.html">
+							<h3><i class="fa fa-cogs fa-lg"></i>Research</h3>
+						</a>
+					</div>
+					<div class="h-body text-center">
+						<p>The group focuses on information retrieval models; crawling and indexing techniques; efficiency on storage systems and information processing; recommender systems; distributed information retrieval techniques and specific retrieval tasks; document classification; clustering, etc.</p>
+					</div>
+				</div>
+				<div class="col-md-3 col-sm-6 highlight">
+					<div class="h-caption">
+						<a href="education.html">
+							<h3><i class="fa fa-graduation-cap fa-lg"></i>Education</h3>
+						</a>
+					</div>
+					<div class="h-body text-center">
+						<p>The members of the group teach several Computer Science graduate and post-graduate courses such as Operating Systems, Algebra, Discrete Mathematics, Software Development Tools, Software Validation and Verification or Information Retrieval.</p>
+					</div>
+				</div>
+				<div class="clearfix visible-sm"></div>
+				<div class="col-md-3 col-sm-6 highlight">
+					<div class="h-caption">
+						<a href="technology_transfer.html">
+							<h3><i class="fa fa-rocket fa-lg"></i>Technology Transfer</h3>
+						</a>
+					</div>
+					<div class="h-body text-center">
+						<p>The IRLab has been applying its knowledge and research results to the development of useful and innovative applications in the field of Information Retrieval and in collaboration with the CITIC, Research Center on Information and Communication Technologies.</p>
+					</div>
+				</div>
+				<div class="col-md-3 col-sm-6 highlight">
+					<div class="h-caption">
+						<a href="software.html">
+							<h3><i class="fa fa-cubes fa-lg"></i>Software products</h3>
+						</a>
+					</div>
+					<div class="h-body text-center">
+						<p>This group have developed several successful software products as a result of its academic and industrial research: specific search engines (patents, news, advertisements...), web crawlers, mobile applications, distributed recommender platforms, etc.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<footer id="footer">
+  <div class="footer1">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-3 col-xs-6 widget">
+          <h3 class="widget-title">Contact</h3>
+          <div class="widget-body">
+            <dl class="dl-horizontal">
+              <dt>Mail</dt><dd>irlab [AT] udc [DOT] es</dd>
+              <dt>Voice</dt><dd>+34 881 01 1276</dd>
+              <dt>Fax</dt><dd>+34 981 16 71 60</dd>
+              <dt><i class="fa fa-twitter"></i></dt><dd><a href="https://twitter.com/IRLab_UDC">@IRLab_UDC</a></dd>
+            </dl>
+          </div>
+        </div>
+        <div class="col-md-3 col-xs-6 widget">
+          <h3 class="widget-title">Address</h3>
+          <div class="widget-body">
+            <p>
+              Lab. 4.2<br>
+              Fac. Informática<br>
+              Campus de Elviña s/n<br>
+              15071 A Coruña (Spain)
+            </p>
+          </div>
+        </div>
+        <div class="col-md-6 col-xs-12 widget">
+          <h3 class="widget-title"></h3>
+          <div class="widget-body">
+            <img src="assets/images/citic_udc_black_logo.png" alt="citic-udc"/>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer2">
+    <div class="container text-center">
+      <div class="widget-body">
+        <p class="simplenav">
+          <a href="/"><strong>Home</strong></a> |
+          <a href="research.html">Research</a> |
+          <a href="education.html">Education</a> |
+          <a href="papers.html">Publications</a> |
+          <a href="technology_transfer.html">Technology Transfer</a> |
+          <a href="software.html">Software Products</a> |
+          <a href="members.html">Members</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+	<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+$(window).scroll(function() {
+  if ($(document).scrollTop() > 150) {
+    $('.navbar').addClass('shrink');
+  }
+  else {
+    $('.navbar').removeClass('shrink'); }
+  });
+</script>
+
+</body>
+</html>
